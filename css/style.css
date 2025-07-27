@@ -3516,3 +3516,90 @@ a:hover {
         padding: 1.5rem 1rem;
     }
 }
+
+/* Custom Cursor css start */
+/* Ensure pointer cursor for all interactive elements */
+/* Hide default cursor everywhere */
+* {
+  cursor: none !important;
+}
+
+/* Custom cursor dot */
+* {
+  cursor: none !important;
+}
+
+/* Custom cursor dot - default state */
+.cursor-dot {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 15px;
+  height: 15px;
+  background: radial-gradient(circle, #00d4ff, #36ffff);
+  border-radius: 50%;
+  pointer-events: none;
+  z-index: 10000;
+  transition: all 0.2s ease;
+  transform: translate(-50%, -50%);
+  box-shadow: 0 0 10px rgba(0, 212, 255, 0.6);
+}
+
+/* Transform to finger pointer shape */
+.cursor-dot.pointer {
+  width: 0;
+  height: 0;
+  background: none;
+  border-radius: 0;
+  
+  /* Create pointer arrow using borders */
+  border-left: 12px solid #00d4ff;
+  border-right: 6px solid transparent;
+  border-bottom: 18px solid #00d4ff;
+  border-top: 2px solid transparent;
+  
+  /* Position and rotate to look like finger pointer */
+  transform: translate(-20%, -15%) rotate(-20deg);
+  
+  /* Enhanced glow for pointer */
+  box-shadow: 
+    0 0 15px rgba(0, 212, 255, 0.8),
+    0 0 25px rgba(54, 255, 255, 0.4);
+  
+  /* Add a small dot at the tip */
+  position: relative;
+}
+
+/* Add fingertip dot */
+.cursor-dot.pointer::after {
+  content: '';
+  position: absolute;
+  top: -8px;
+  left: -6px;
+  width: 4px;
+  height: 4px;
+  background: #36ffff;
+  border-radius: 50%;
+  box-shadow: 0 0 8px #36ffff;
+}
+
+/* Not allowed cursor for disabled buttons */
+.cursor-dot.not-allowed {
+  width: 20px;
+  height: 20px;
+  background: radial-gradient(circle, #ff4f6e, #cc3355);
+  border-radius: 50%;
+  transform: translate(-50%, -50%);
+  box-shadow: 0 0 15px rgba(255, 79, 110, 0.7);
+}
+
+.cursor-dot.not-allowed::before {
+  content: '✕';
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  color: white;
+  font-size: 12px;
+  font-weight: bold;
+}

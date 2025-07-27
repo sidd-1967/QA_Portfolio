@@ -8,7 +8,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1" />
     <title>Contact - Siddhesh D. Govalkar</title>
 
-    <!-- Fonts -->
+    <!-- Google Fonts -->
     <link href="https://fonts.googleapis.com/css2?family=Play:wght@400;700&display=swap" rel="stylesheet" />
     <link href="https://fonts.googleapis.com/css2?family=Josefin+Sans:wght@300;400;500;600;700&display=swap"
         rel="stylesheet" />
@@ -16,16 +16,533 @@
         href="https://fonts.googleapis.com/css2?family=Orbitron:wght@700;900&family=Rajdhani:wght@400;600&display=swap"
         rel="stylesheet" />
 
-    <!-- CSS Libraries -->
+    <!-- Bootstrap 5 CSS -->
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet" />
-    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css" rel="stylesheet" />
-    <link href="css/style.css" rel="stylesheet" />
 
-    <script src="https://www.google.com/recaptcha/api.js" async defer></script>
+    <!-- Font Awesome -->
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css" rel="stylesheet" />
+
+    <!-- Css Styles -->
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css" rel="stylesheet">
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/elegant-icons/1.0.0/style.min.css" rel="stylesheet">
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/OwlCarousel2/2.3.4/assets/owl.carousel.min.css" rel="stylesheet">
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/magnific-popup.js/1.1.0/magnific-popup.min.css" rel="stylesheet">
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/SlickNav/1.0.10/slicknav.min.css" rel="stylesheet">
+    <link rel="stylesheet" href="css/style.css" type="text/css">
+
+    <!-- Js Plugins -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/magnific-popup.js/1.1.0/jquery.magnific-popup.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/mixitup/3.3.1/mixitup.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/masonry/4.2.2/masonry.pkgd.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/SlickNav/1.0.10/jquery.slicknav.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/OwlCarousel2/2.3.4/owl.carousel.min.js"></script>
+    <script src="https://code.jquery.com/ui/1.13.2/jquery-ui.min.js"></script>
+    <script src="js/main.js"></script>
+
+    <style>
+        :root {
+            --primary-blue: #00d4ff;
+            --electric-blue: #36ffff;
+            --dark-bg: #000a19;
+            --dark-layer: rgba(0, 17, 34, 0.85);
+            --text-light: #e0f7ff;
+            --input-bg: #0a2332;
+            --input-border: #1a4a5a;
+            --input-focus: #00d4ff;
+            --input-outline: #2a5a6a;
+        }
+
+        body {
+            background-color: var(--dark-bg);
+            color: var(--text-light);
+            font-family: 'Rajdhani', sans-serif;
+            margin: 0;
+            min-height: 100vh;
+            display: flex;
+            flex-direction: column;
+        }
+
+        /* Header */
+        header {
+            background-color: #001122;
+            color: var(--text-light);
+            padding: 1rem 0;
+        }
+
+        header a {
+            color: var(--primary-blue);
+            text-decoration: none;
+            transition: color 0.3s;
+        }
+
+        header a:hover {
+            color: var(--electric-blue);
+        }
+
+        /* Section title */
+        .section-title span {
+            font-family: 'Orbitron', monospace;
+            font-size: 1.1rem;
+            letter-spacing: 0.2em;
+            display: block;
+            margin-bottom: 0.75rem;
+            color: var(--primary-blue);
+            text-shadow: 0 0 10px var(--primary-blue);
+        }
+
+        .section-title h2 {
+            font-family: 'Orbitron', monospace;
+            font-weight: 900;
+            font-size: 3rem;
+            margin-bottom: 2rem;
+            color: var(--primary-blue);
+            text-shadow: 0 0 20px var(--primary-blue);
+        }
+
+        /* Contact Section */
+        .contact {
+            flex-grow: 1;
+            padding: 4rem 0;
+        }
+
+        .contact__list {
+            margin-top: 2rem;
+            padding-right: 2rem;
+        }
+
+        .contact__item {
+            display: flex;
+            align-items: center;
+            margin-bottom: 2rem;
+            padding: 1rem;
+            background: rgba(0, 17, 34, 0.3);
+            border-radius: 0.75rem;
+            border-left: 4px solid var(--electric-blue);
+        }
+
+        .contact__item__icon {
+            font-size: 2.5rem;
+            color: var(--electric-blue);
+            width: 60px;
+            text-align: center;
+            text-shadow: 0 0 10px var(--electric-blue);
+        }
+
+        .contact__item__text h5 {
+            font-family: 'Orbitron', monospace;
+            font-weight: 700;
+            color: var(--primary-blue);
+            margin: 0 0 0.2rem 0;
+            text-shadow: 0 0 8px var(--primary-blue);
+        }
+
+        .contact__item__text p,
+        .contact__item__text a {
+            margin: 0;
+            font-size: 1.1rem;
+            font-weight: 500;
+            color: var(--text-light);
+            word-break: break-word;
+        }
+
+        /* Contact Form */
+        form.contact__form {
+            background-color: var(--dark-layer);
+            padding: 2rem;
+            border-radius: 1rem;
+            box-shadow: 0 0 35px rgba(54, 255, 255, 0.2);
+            color: var(--text-light);
+            height: fit-content;
+        }
+
+        /* Enhanced Form Labels */
+        form.contact__form label {
+            font-family: 'Orbitron', monospace;
+            font-weight: 600;
+            color: var(--primary-blue);
+            margin-bottom: 0.5rem;
+            display: block;
+            font-size: 0.95rem;
+            text-shadow: 0 0 5px rgba(0, 212, 255, 0.3);
+        }
+
+        .required {
+            color: #ff4f6e;
+            font-weight: bold;
+        }
+
+        /* Enhanced Form Inputs with Better Outlines */
+        form.contact__form input,
+        form.contact__form textarea {
+            background-color: var(--input-bg);
+            border: 2px solid var(--input-border);
+            outline: 1px solid var(--input-outline);
+            border-radius: 0.5rem;
+            color: var(--text-light);
+            font-family: 'Rajdhani', sans-serif;
+            font-size: 1rem;
+            font-weight: 500;
+            padding: 0.75rem 1rem;
+            margin-bottom: 0.5rem;
+            resize: vertical;
+            width: 100%;
+            transition: all 0.3s ease;
+            box-shadow: 0 2px 8px rgba(0, 0, 0, 0.2);
+        }
+
+        /* Enhanced Focus States */
+        form.contact__form input:focus,
+        form.contact__form textarea:focus {
+            background-color: var(--input-bg);
+            border-color: var(--input-focus);
+            outline: 2px solid var(--input-focus);
+            box-shadow: 0 0 15px rgba(0, 212, 255, 0.3), 0 2px 8px rgba(0, 0, 0, 0.2);
+            color: var(--text-light);
+        }
+
+        /* Better Placeholder Styling */
+        form.contact__form input::placeholder,
+        form.contact__form textarea::placeholder {
+            color: #8ab4c7;
+            font-weight: 400;
+            opacity: 0.9;
+        }
+
+        /* Character Counter */
+        .char-counter {
+            text-align: right;
+            margin-top: 0.25rem;
+            margin-bottom: 0.5rem;
+        }
+
+        .char-counter small {
+            color: #7a9db3;
+            font-family: 'Rajdhani', sans-serif;
+        }
+
+        /* Button Styling */
+        button.neon-btn {
+            background-image: linear-gradient(45deg, var(--primary-blue), var(--electric-blue));
+            border: none;
+            color: var(--dark-bg);
+            font-family: 'Orbitron', monospace;
+            font-weight: 700;
+            font-size: 1.1rem;
+            padding: 0.85rem 2rem;
+            border-radius: 2rem;
+            cursor: pointer;
+            box-shadow: 0 0 25px rgba(54, 255, 255, 0.4);
+            transition: all 0.3s ease;
+            display: block;
+            width: 100%;
+        }
+
+        button.neon-btn:disabled {
+            background-image: linear-gradient(45deg, #666, #888);
+            box-shadow: none;
+            cursor: not-allowed;
+            opacity: 0.6;
+            pointer-events: none;
+        }
+
+        button.neon-btn:not(:disabled):hover,
+        button.neon-btn:not(:disabled):focus {
+            background-image: linear-gradient(45deg, var(--electric-blue), var(--primary-blue));
+            box-shadow: 0 0 45px rgba(54, 255, 255, 0.6);
+            color: #fff;
+            outline: none;
+            transform: translateY(-2px);
+        }
+
+        /* Enhanced Validation Feedback */
+        .invalid-feedback {
+            color: #ff4f6e;
+            font-weight: 600;
+            font-family: 'Rajdhani', sans-serif;
+            font-size: 0.9rem;
+            margin-top: 0.25rem;
+        }
+
+        /* Enhanced validation states with better outlines */
+        .was-validated .form-control:invalid {
+            border-color: #ff4f6e;
+            outline: 2px solid #ff4f6e;
+            box-shadow: 0 0 10px rgba(255, 79, 110, 0.3);
+        }
+
+        .was-validated .form-control:valid {
+            border-color: #28a745;
+            outline: 2px solid #28a745;
+            box-shadow: 0 0 10px rgba(40, 167, 69, 0.3);
+        }
+
+        /* Custom Dropdown Styling */
+        .custom-dropdown {
+            position: relative;
+            width: 100%;
+            margin-bottom: 0.5rem;
+            z-index: 10;
+        }
+
+        /* Custom Dropdown with Better Outline */
+        .dropdown-selected {
+            background-color: var(--input-bg);
+            border: 2px solid var(--input-border);
+            outline: 1px solid var(--primary-blue);
+            border-radius: 0.5rem;
+            color: var(--text-light);
+            font-family: 'Rajdhani', sans-serif;
+            font-size: 1rem;
+            font-weight: 500;
+            padding: 0.75rem 1rem;
+            cursor: pointer;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            transition: all 0.3s ease;
+            user-select: none;
+            box-shadow: 0 2px 8px rgba(0, 0, 0, 0.2);
+        }
+
+        .dropdown-selected:hover,
+        .dropdown-selected.active {
+            border-color: var(--input-focus);
+            outline: 2px solid var(--electric-blue);
+            box-shadow: 0 0 15px rgba(0, 212, 255, 0.3), 0 2px 8px rgba(0, 0, 0, 0.2);
+            background-color: var(--input-bg);
+        }
+
+        /* Fixed dropdown text styling */
+        .selected-text {
+            color: var(--text-light);
+            user-select: none;
+            pointer-events: none;
+            display: flex;
+            align-items: center;
+        }
+
+        .selected-text.placeholder {
+            color: #8ab4c7;
+            opacity: 0.9;
+        }
+
+        /* Style for icons inside selected text */
+        .selected-text i {
+            color: var(--electric-blue);
+            width: 16px;
+            text-align: center;
+            flex-shrink: 0;
+            margin-right: 0.5rem;
+        }
+
+        .dropdown-arrow {
+            color: var(--primary-blue);
+            transition: transform 0.3s ease;
+            font-size: 0.9rem;
+            user-select: none;
+            pointer-events: none;
+        }
+
+        .dropdown-selected.active .dropdown-arrow {
+            transform: rotate(180deg);
+        }
+
+        /* FIXED: Enhanced dropdown options container */
+        .dropdown-options {
+            position: absolute;
+            top: 100%;
+            left: 0;
+            right: 0;
+            background-color: var(--dark-layer);
+            border: 2px solid var(--input-focus);
+            /* outline: 1px solid var(--input-outline); */
+            border-top: none;
+            border-radius: 0 0 0.5rem 0.5rem;
+            max-height: 200px;
+            overflow-y: auto;
+            overflow-x: hidden;
+            z-index: 1000;
+            opacity: 0;
+            visibility: hidden;
+            transform: translateY(-10px);
+            transition: all 0.3s ease;
+            box-shadow: 0 8px 25px rgba(0, 0, 0, 0.4);
+            backdrop-filter: blur(10px);
+        }
+
+        .dropdown-options.show {
+            opacity: 1;
+            visibility: visible;
+            transform: translateY(0);
+            z-index: 1001;
+        }
+
+        /* FIXED: Dropdown option styling with proper spacing */
+        .dropdown-option {
+            padding: 0.75rem 1rem;
+            color: var(--text-light);
+            font-family: 'Rajdhani', sans-serif;
+            font-size: 1rem;
+            font-weight: 500;
+            cursor: pointer;
+            display: flex;
+            align-items: center;
+            gap: 0.85rem;
+            /* FIXED: Increased spacing between icons and text */
+            transition: all 0.2s ease;
+            border-bottom: 1px solid rgba(54, 255, 255, 0.1);
+            background-color: transparent;
+            position: relative;
+            user-select: none;
+            overflow: hidden;
+            white-space: nowrap;
+            text-overflow: ellipsis;
+        }
+
+        .dropdown-option:last-child {
+            border-bottom: none;
+            border-radius: 0 0 0.5rem 0.5rem;
+        }
+
+        /* FIXED: Better hover state */
+        .dropdown-option:hover {
+            background-color: rgba(0, 212, 255, 0.15);
+            color: var(--primary-blue);
+            transform: translateX(3px);
+            /* FIXED: Reduced from 5px to prevent horizontal scroll */
+            cursor: pointer;
+        }
+
+        .dropdown-option i {
+            color: var(--electric-blue);
+            width: 16px;
+            text-align: center;
+            flex-shrink: 0;
+            user-select: none;
+            pointer-events: none;
+        }
+
+        .dropdown-option[data-value=""] {
+            color: #8ab4c7;
+            font-style: italic;
+            background-color: rgba(26, 74, 90, 0.2);
+        }
+
+        .dropdown-option[data-value=""]:hover {
+            background-color: rgba(255, 79, 110, 0.15);
+            color: #ff4f6e;
+            cursor: pointer;
+        }
+
+        /* Selected option highlighting */
+        .dropdown-option.selected {
+            background-color: rgba(0, 212, 255, 0.2) !important;
+            color: var(--primary-blue) !important;
+            font-weight: 600;
+        }
+
+        .dropdown-option.selected i {
+            color: var(--electric-blue) !important;
+        }
+
+        /* FIXED: Validation states for custom dropdown - no green outline */
+        .custom-dropdown.invalid .dropdown-selected {
+            border-color: #ff4f6e;
+            outline: 2px solid #ff4f6e;
+            box-shadow: 0 0 10px rgba(255, 79, 110, 0.3);
+        }
+
+        .custom-dropdown.valid .dropdown-selected {
+            border-color: var(--input-border);
+            /* FIXED: Same as normal state */
+            outline: 1px solid var(--input-outline);
+            /* FIXED: Same as normal state */
+            box-shadow: 0 2px 8px rgba(0, 0, 0, 0.2);
+            /* FIXED: Same as normal state */
+        }
+
+        /* Enhanced scrollbar for dropdown */
+        .dropdown-options::-webkit-scrollbar {
+            width: 6px;
+            /* FIXED: Reduced width to prevent horizontal scroll issues */
+        }
+
+        .char-counter-text {
+            color: #ffffff;
+            /* White color */
+            font-family: 'Rajdhani', sans-serif;
+            font-weight: 500;
+        }
+
+        .dropdown-options::-webkit-scrollbar-track {
+            background: rgba(26, 74, 90, 0.3);
+            border-radius: 3px;
+        }
+
+        .dropdown-options::-webkit-scrollbar-thumb {
+            background: linear-gradient(45deg, var(--primary-blue), var(--electric-blue));
+            border-radius: 3px;
+        }
+
+        .dropdown-options::-webkit-scrollbar-thumb:hover {
+            background: linear-gradient(45deg, var(--electric-blue), var(--primary-blue));
+        }
+
+        /* Footer */
+        footer.footer {
+            background-color: #001122;
+            color: var(--text-light);
+            padding: 1.5rem 0;
+            text-align: center;
+        }
+
+        footer.footer a {
+            color: var(--primary-blue);
+            margin: 0 1rem;
+            transition: color 0.3s;
+        }
+
+        footer.footer a:hover {
+            color: var(--electric-blue);
+        }
+
+        /* Responsive adjustments */
+        @media (max-width: 767px) {
+            .contact__list {
+                padding-right: 0;
+                margin-bottom: 2rem;
+            }
+
+            .contact__item {
+                flex-direction: column;
+                text-align: center;
+            }
+
+            .contact__item__icon {
+                margin-bottom: 0.5rem;
+            }
+
+            form.contact__form {
+                padding: 1.5rem;
+            }
+
+            .dropdown-options {
+                max-height: 150px;
+            }
+
+            .dropdown-option {
+                padding: 0.65rem 1rem;
+                font-size: 0.95rem;
+            }
+        }
+    </style>
 </head>
 
 <body>
-    <!-- Page Loader -->
+    <!-- Page Preloder -->
     <div id="preloder">
         <div class="loader"></div>
     </div>
@@ -45,10 +562,10 @@
                     <div class="header__nav__option">
                         <nav class="header__nav__menu">
                             <ul class="d-flex justify-content-center align-items-center mb-0">
-                                <li class="active"><a href="./index.html">Home</a></li>
+                                <li><a href="./index.html">Home</a></li>
                                 <li><a href="./about.html">About</a></li>
                                 <li><a href="./portfolio.html">Portfolio</a></li>
-                                <li><a href="./contact.html">Contact</a></li>
+                                <li class="active"><a href="./contact.html">Contact</a></li>
                             </ul>
                         </nav>
                     </div>
@@ -69,7 +586,7 @@
     </header>
     <!-- Header End -->
 
-    <!-- Contact Section -->
+    <!-- CONTACT SECTION -->
     <section class="contact">
         <div class="container">
             <div class="section-title text-center">
@@ -77,9 +594,9 @@
                 <h2>Get In Touch</h2>
             </div>
 
-            <div class="row mt-5 align-items-center">
-                <!-- Contact Info Left -->
-                <div class="col-md-5">
+            <div class="row mt-5">
+                <!-- Contact Info - Left Side -->
+                <div class="col-md-6">
                     <div class="contact__list">
                         <div class="contact__item">
                             <div class="contact__item__icon"><i class="fas fa-map-marker-alt"></i></div>
@@ -106,64 +623,119 @@
                     </div>
                 </div>
 
-                <!-- Contact Form Right -->
-                <div class="col-md-7">
-                    <form class="contact__form needs-validation" novalidate>
+                <!-- Contact Form - Right Side -->
+                <div class="col-md-6">
+                    <form id="contact-form" class="contact__form needs-validation"
+                        action="https://formspree.io/f/xldlbkng" method="POST" novalidate>
                         <div class="row g-3">
+                            <!-- Name Field -->
                             <div class="col-md-6">
-                                <input type="text" class="form-control" id="name" placeholder="Your Name" required />
+                                <label for="from_name" class="form-label">Your Name <span
+                                        class="required">*</span></label>
+                                <input type="text" id="from_name" name="from_name" class="form-control"
+                                    placeholder="Enter your name" required />
                                 <div class="invalid-feedback">Please enter your name</div>
                             </div>
+
+                            <!-- Email Field -->
                             <div class="col-md-6">
-                                <input type="email" class="form-control" id="email" placeholder="Your Email" required />
+                                <label for="from_email" class="form-label">Your Email <span
+                                        class="required">*</span></label>
+                                <input type="email" id="from_email" name="email" class="form-control"
+                                    placeholder="Enter your email" required />
                                 <div class="invalid-feedback">Please enter a valid email address</div>
                             </div>
-                            <div class="col-12">
-                                <input type="text" class="form-control" id="company"
-                                    placeholder="Company Name (Optional)" />
+
+                            <!-- Phone Field -->
+                            <div class="col-md-6">
+                                <label for="phone" class="form-label">Phone Number <span
+                                        class="required">*</span></label>
+                                <input type="tel" id="phone" name="phone" class="form-control"
+                                    placeholder="Enter 10-digit number" maxlength="10" pattern="[0-9]{10}" required />
+                                <div class="invalid-feedback">Please enter a valid 10-digit phone number</div>
                             </div>
+
+                            <!-- Company Field -->
+                            <div class="col-md-6">
+                                <label for="company" class="form-label">Company Name</label>
+                                <input type="text" id="company" name="company" class="form-control"
+                                    placeholder="Company name (optional)" />
+                            </div>
+
+                            <!-- Service Dropdown -->
                             <div class="col-12">
-                                <select class="form-select" id="service" required>
-                                    <option value="" disabled selected>Select Service Required</option>
-                                    <option value="automation">Automation Testing</option>
-                                    <option value="manual">Manual Testing</option>
-                                    <option value="performance">Performance Testing</option>
-                                    <option value="integration">Integration Testing</option>
-                                    <option value="mobile">Mobile App Testing</option>
-                                    <option value="ecommerce">E-commerce Testing</option>
-                                    <option value="security">Security Testing</option>
-                                    <option value="consultation">QA Consultation</option>
-                                    <option value="other">Other</option>
-                                </select>
+                                <label for="service" class="form-label">Service Required <span
+                                        class="required">*</span></label>
+                                <div class="custom-dropdown" id="service-dropdown">
+                                    <div class="dropdown-selected" onclick="toggleDropdown()">
+                                        <span class="selected-text" id="selected-text">
+                                            <i class="fas fa-hand-pointer"
+                                                style="color: var(--electric-blue); margin-right: 0.5rem;"></i>QA Testing
+                                        </span>
+                                        <i class="fas fa-chevron-down dropdown-arrow" id="dropdown-arrow"></i>
+                                    </div>
+                                    <div class="dropdown-options" id="service-options">
+                                        <div class="dropdown-option" onclick="selectOption('manual', 'QA Testing')">
+                                            <i class="fas fa-hand-pointer"></i> QA Testing
+                                        </div>
+                                        <div class="dropdown-option"
+                                            onclick="selectOption('automation', 'Automation Testing')">
+                                            <i class="fas fa-robot"></i> Automation Testing
+                                        </div>
+                                        <div class="dropdown-option"
+                                            onclick="selectOption('performance', 'Performance Testing')">
+                                            <i class="fas fa-tachometer-alt"></i> Performance Testing
+                                        </div>
+                                        <div class="dropdown-option"
+                                            onclick="selectOption('integration', 'Integration Testing')">
+                                            <i class="fas fa-plug"></i> Integration Testing
+                                        </div>
+                                        <div class="dropdown-option"
+                                            onclick="selectOption('mobile', 'Mobile App Testing')">
+                                            <i class="fas fa-mobile-alt"></i> Mobile App Testing
+                                        </div>
+                                        <div class="dropdown-option"
+                                            onclick="selectOption('ecommerce', 'E-commerce Testing')">
+                                            <i class="fas fa-shopping-cart"></i> E-commerce Testing
+                                        </div>
+                                        <div class="dropdown-option"
+                                            onclick="selectOption('security', 'Security Testing')">
+                                            <i class="fas fa-shield-alt"></i> Security Testing
+                                        </div>
+                                        <div class="dropdown-option"
+                                            onclick="selectOption('consultation', 'QA Consultation')">
+                                            <i class="fas fa-comments"></i> QA Consultation
+                                        </div>
+                                        <div class="dropdown-option" onclick="selectOption('other', 'Other')">
+                                            <i class="fas fa-ellipsis-h"></i> Other
+                                        </div>
+
+                                    </div>
+                                </div>
+                                <input type="hidden" id="service" name="service" value="manual" required />
                                 <div class="invalid-feedback">Please select a service</div>
-                            </div>
-                            <div class="col-12">
-                                <textarea class="form-control" id="message" rows="5"
-                                    placeholder="Tell me about your project requirements..." required></textarea>
-                                <div class="invalid-feedback">Please enter your message</div>
-                            </div>
-                            <div class="col-12 text-center">
-                                <button class="btn btn-primary rounded-pill px-5 py-3 mt-3 neon-btn" type="submit">Send
-                                    Message</button>
+                                <div class="col-12">
+                                    <label for="message" class="form-label">Message <span
+                                            class="required">*</span></label>
+                                    <textarea id="message" name="message" rows="4" class="form-control"
+                                        placeholder="Tell me about your project requirements..." maxlength="250"
+                                        required></textarea>
+                                    <div class="char-counter">
+                                        <small class="char-counter-text"><span id="char-count">0</span>/250
+                                            characters</small>
+                                    </div>
+                                    <div class="invalid-feedback">Please enter your message (max 250 characters)</div>
+                                </div>
+                                <div class="col-12 d-flex justify-content-center">
+                                </div>
+                                <div class="col-12">
+                                    <button type="submit" id="submit-btn" class="neon-btn mt-3" disabled>Send
+                                        Message</button>
+                                </div>
                             </div>
                         </div>
                     </form>
                 </div>
-                <form id="contact-form">
-                    <input type="text" name="from_name" placeholder="Your Name" required />
-                    <input type="email" name="from_email" placeholder="Your Email" required />
-                    <input type="text" name="company" placeholder="Company Name (Optional)" />
-                    <select name="service" required>
-                        <option value="" disabled selected>Select Service Required</option>
-                        <option value="automation">Automation Testing</option>
-                        <option value="manual">Manual Testing</option>
-                        <!-- other options -->
-                    </select>
-                    <textarea name="message" placeholder="Tell me about your project requirements..."
-                        required></textarea>
-                    <div class="g-recaptcha" data-sitekey="6LfuKZArAAAAAOBwH5kigFks_PvWaW8RtOPHWjuE"></div>
-                    <button type="submit" class="btn btn-primary neon-btn">Send Message</button>
-                </form>
             </div>
         </div>
     </section>
@@ -246,43 +818,252 @@
         </div>
     </footer>
     <!-- Footer Section End -->
-
-
-    <!-- Js Plugins -->
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
-    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/magnific-popup.js/1.1.0/jquery.magnific-popup.min.js"></script>
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/mixitup/3.3.1/mixitup.min.js"></script>
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/masonry/4.2.2/masonry.pkgd.min.js"></script>
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/SlickNav/1.0.10/jquery.slicknav.min.js"></script>
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/OwlCarousel2/2.3.4/owl.carousel.min.js"></script>
-    <script src="https://code.jquery.com/ui/1.13.2/jquery-ui.min.js"></script>
-    <script src="js/main.js"></script>
-    <script src="https://cdn.emailjs.com/sdk/3.2.0/email.min.js"></script>
     <script>
-        (function () {
-            emailjs.init("Zqy40wiHG0rYjuybC");
-        })();
-    </script>
-    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
-    <script>
+        // Simple Global Dropdown Functions
+        function toggleDropdown() {
+            const options = document.getElementById('service-options');
+            const arrow = document.getElementById('dropdown-arrow');
+            const selected = document.querySelector('.dropdown-selected');
+
+            if (options.classList.contains('show')) {
+                options.classList.remove('show');
+                selected.classList.remove('active');
+                arrow.style.transform = 'rotate(0deg)';
+            } else {
+                options.classList.add('show');
+                selected.classList.add('active');
+                arrow.style.transform = 'rotate(180deg)';
+                highlightSelected();
+            }
+        }
+
+        function selectOption(value, text) {
+            const selectedText = document.getElementById('selected-text');
+            const hiddenInput = document.getElementById('service');
+            const options = document.getElementById('service-options');
+            const selected = document.querySelector('.dropdown-selected');
+            const arrow = document.getElementById('dropdown-arrow');
+
+            // Find the clicked option to get its full HTML (including icon)
+            const clickedOption = event.target.closest('.dropdown-option');
+
+            if (value === '') {
+                selectedText.textContent = text;
+                selectedText.classList.add('placeholder');
+            } else {
+                selectedText.innerHTML = clickedOption.innerHTML;
+                selectedText.classList.remove('placeholder');
+            }
+
+            hiddenInput.value = value;
+
+            // Close dropdown
+            options.classList.remove('show');
+            selected.classList.remove('active');
+            arrow.style.transform = 'rotate(0deg)';
+
+            // Trigger form validation
+            checkFormValidity();
+        }
+
+        function highlightSelected() {
+            const hiddenInput = document.getElementById('service');
+            const currentValue = hiddenInput.value;
+            const allOptions = document.querySelectorAll('.dropdown-option');
+
+            allOptions.forEach(opt => {
+                opt.style.backgroundColor = '';
+                opt.style.color = '';
+            });
+
+            if (currentValue) {
+                allOptions.forEach(opt => {
+                    if (opt.getAttribute('onclick') && opt.getAttribute('onclick').includes(`'${currentValue}'`)) {
+                        opt.style.backgroundColor = 'rgba(0, 212, 255, 0.2)';
+                        opt.style.color = 'var(--primary-blue)';
+                    }
+                });
+            }
+        }
+
+        // Close dropdown when clicking outside
+        document.addEventListener('click', function (e) {
+            if (!e.target.closest('.custom-dropdown')) {
+                const options = document.getElementById('service-options');
+                const selected = document.querySelector('.dropdown-selected');
+                const arrow = document.getElementById('dropdown-arrow');
+
+                if (options) {
+                    options.classList.remove('show');
+                    selected.classList.remove('active');
+                    arrow.style.transform = 'rotate(0deg)';
+                }
+            }
+        });
+
+        // Add this to your dropdown initialization
+        function setDefaultDropdownValue() {
+            const selectedText = document.getElementById('selected-text');
+            const hiddenInput = document.getElementById('service');
+
+            if (selectedText && hiddenInput) {
+                // Set default to Manual Testing (or whichever is most common)
+                selectedText.innerHTML = '<i class="fas fa-hand-pointer" style="color: var(--electric-blue); margin-right: 0.5rem;"></i>QA Testing';
+                selectedText.classList.remove('placeholder');
+                hiddenInput.value = 'manual';
+            }
+        }
+
+        // Call this function when page loads
+        document.addEventListener('DOMContentLoaded', function () {
+            setDefaultDropdownValue();
+            checkFormValidity(); // This will enable the submit button
+        });
+
+        // Rest of your form functionality
         (function () {
             'use strict';
 
-            const forms = document.querySelectorAll('.needs-validation');
+            const form = document.getElementById('contact-form');
+            const submitBtn = document.getElementById('submit-btn');
+            const messageField = document.getElementById('message');
+            const charCount = document.getElementById('char-count');
 
-            Array.from(forms).forEach(function (form) {
-                form.addEventListener('submit', function (event) {
-                    if (!form.checkValidity()) {
-                        event.preventDefault();
-                        event.stopPropagation();
+            if (form.dataset.listenerAdded) return;
+            form.dataset.listenerAdded = 'true';
+
+            // Character counter
+            if (messageField && charCount) {
+                messageField.addEventListener('input', function () {
+                    const currentLength = this.value.length;
+                    charCount.textContent = currentLength;
+                    charCount.style.color = currentLength > 250 ? '#ff4f6e' : currentLength > 200 ? '#ffa500' : '#7a9db3';
+                });
+            }
+
+            // Phone validation
+            const phoneField = document.getElementById('phone');
+            if (phoneField) {
+                phoneField.addEventListener('input', function () {
+                    this.value = this.value.replace(/[^0-9]/g, '');
+                });
+            }
+
+            // Form validation
+            window.checkFormValidity = function () {
+                const requiredFields = form.querySelectorAll('[required]');
+                let allValid = true;
+
+                requiredFields.forEach(field => {
+                    if (!field.value.trim()) allValid = false;
+                    if (field.type === 'tel' && field.value.length !== 10) allValid = false;
+                    if (field.type === 'email' && !field.checkValidity()) allValid = false;
+                });
+
+                if (submitBtn) submitBtn.disabled = !allValid;
+            }
+
+            form.addEventListener('input', checkFormValidity);
+            form.addEventListener('change', checkFormValidity);
+
+            // Function to reset dropdown to initial state
+            function resetDropdown() {
+                const selectedText = document.getElementById('selected-text');
+                const hiddenInput = document.getElementById('service');
+                const dropdown = document.getElementById('service-dropdown');
+                const options = document.getElementById('service-options');
+                const selected = document.querySelector('.dropdown-selected');
+                const arrow = document.getElementById('dropdown-arrow');
+
+                if (selectedText && hiddenInput) {
+                    // CHANGED: Reset to default value instead of placeholder
+                    selectedText.innerHTML = '<i class="fas fa-hand-pointer" style="color: var(--electric-blue); margin-right: 0.5rem;"></i>QA Testing';
+                    selectedText.classList.remove('placeholder'); // Remove placeholder class
+
+                    // Set default value instead of empty
+                    hiddenInput.value = 'manual';
+
+                    // Remove any validation classes
+                    if (dropdown) {
+                        dropdown.classList.remove('valid', 'invalid');
                     }
 
+                    // Close dropdown if open
+                    if (options && selected && arrow) {
+                        options.classList.remove('show');
+                        selected.classList.remove('active');
+                        arrow.style.transform = 'rotate(0deg)';
+                    }
+
+                    // Remove touched attribute
+                    hiddenInput.removeAttribute('data-touched');
+                }
+            }
+
+            // Toast function
+            function showToast(message, type = 'success') {
+                let container = document.getElementById('toast-container');
+                if (!container) {
+                    container = document.createElement('div');
+                    container.id = 'toast-container';
+                    container.style.cssText = 'position: fixed; bottom: 20px; right: 20px; z-index: 9999;';
+                    document.body.appendChild(container);
+                }
+
+                const toast = document.createElement('div');
+                const bgColor = type === 'success' ? '#00d4ff' : '#ff4f6e';
+                toast.style.cssText = `background: ${bgColor}; color: #000a19; padding: 1rem 1.5rem; border-radius: 0.5rem; margin-top: 0.5rem; box-shadow: 0 4px 12px rgba(0, 0, 0, 0.3); font-family: 'Rajdhani', sans-serif; font-weight: 600; cursor: pointer; max-width: 300px;`;
+                toast.innerHTML = `<div style="display: flex; align-items: center; justify-content: space-between;"><span>${message}</span><span style="margin-left: 1rem; font-size: 1.2rem;">&times;</span></div>`;
+
+                container.appendChild(toast);
+                setTimeout(() => toast.remove(), 7000);
+                toast.addEventListener('click', () => toast.remove());
+            }
+
+            // Form submission
+            form.addEventListener('submit', function (event) {
+                event.preventDefault();
+                if (!form.checkValidity()) {
                     form.classList.add('was-validated');
-                }, false);
+                    return;
+                }
+
+                const originalText = submitBtn.textContent;
+                submitBtn.textContent = 'Sending...';
+                submitBtn.disabled = true;
+
+                fetch(form.action, {
+                    method: 'POST',
+                    body: new FormData(form),
+                    headers: { 'Accept': 'application/json' }
+                })
+                    .then(response => response.ok ? response.json().catch(() => ({ ok: true })) : Promise.reject())
+                    .then(() => {
+                        showToast('✅ Message sent successfully! I\'ll get back to you within 24 hours.', 'success');
+                        form.reset();
+                        form.classList.remove('was-validated');
+                        if (charCount) charCount.textContent = '0';
+
+                        // ADDED: Reset dropdown after successful submission
+                        resetDropdown();
+
+                        if (typeof grecaptcha !== 'undefined') {
+                            grecaptcha.reset();
+                        }
+                    })
+                    .catch(() => showToast('❌ Failed to send message. Please try again.', 'error'))
+                    .finally(() => {
+                        setTimeout(() => {
+                            submitBtn.textContent = originalText;
+                            checkFormValidity();
+                        }, 500);
+                    });
             });
+
+            checkFormValidity();
         })();
     </script>
+
 </body>
 
 </html>
