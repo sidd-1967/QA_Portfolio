@@ -1,88 +1,68 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="robots" content="noindex">
     <title>Coming Soon - Siddhesh QA Portfolio</title>
-    
-    <!-- Fonts -->
-    <link href="https://fonts.googleapis.com/css2?family=Orbitron:wght@400;500;600;700;900&display=swap" rel="stylesheet">
-    <link href="https://fonts.googleapis.com/css2?family=Rajdhani:wght@300;400;500;600;700&display=swap" rel="stylesheet">
-    
-    <!-- Font Awesome -->
+
+    <link href="https://fonts.googleapis.com/css2?family=Orbitron:wght@400;600;700&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
-    
-    <!-- Custom CSS -->
     <link rel="stylesheet" href="css/coming-soon.css">
 </head>
+
 <body>
-    <!-- Coming Soon Container -->
     <div class="coming-soon-container">
-        <!-- Background Matrix Animation -->
-        <canvas id="matrix-canvas"></canvas>
-        
-        <!-- Background Overlay -->
-        <div class="overlay"></div>
-        
-        <!-- Content -->
+        <div class="grid-background"></div>
         <div class="content">
-            <!-- Logo -->
-            <div class="logo-section">
-                <img src="img/siddhesh-qa-logo.png" alt="Siddhesh QA" class="logo">
-                <h1 class="brand-name">SIDDHESH QA</h1>
+            <div class="logo">
+                <h1>SIDDHESH<span class="highlight">.QA</span></h1>
             </div>
-            
-            <!-- GIF Section -->
-            <div class="gif-section">
-                <img src="img/coming-soon.gif" alt="Coming Soon Animation" class="coming-soon-gif">
+
+            <div class="mobile-content">
+                <div class="message">
+                    <h2>Mobile/Tablet Experience Coming Soon</h2>
+                    <p class="sub-text">Please visit on desktop for the full portfolio experience</p>
+                </div>
             </div>
-            
-            <!-- Text Section -->
-            <div class="text-section">
-                <h2 class="main-heading">Desktop Experience Coming Soon</h2>
-                <p class="sub-text">
-                    I'm putting the finishing touches on an incredible desktop experience for my QA portfolio. 
-                    <br>The full website will be optimized for larger screens very soon!
+
+            <div class="desktop-content">
+                <div class="message">
+                    <h2>Redirecting to Desktop Portfolio...</h2>
+                    <p class="sub-text">If not redirected automatically, <a href="index.html">click here</a></p>
+                </div>
+            </div>
+
+            <div class="footer">
+                <p>Copyright &copy;
+                    <script>document.write(new Date().getFullYear());</script> Siddhesh D. Govalkar - QA Engineer
+                    Portfolio
                 </p>
-                
-                <div class="features-list">
-                    <div class="feature">
-                        <i class="fas fa-rocket"></i>
-                        <span>Enhanced UI/UX Design</span>
-                    </div>
-                    <div class="feature">
-                        <i class="fas fa-cogs"></i>
-                        <span>Advanced Animations</span>
-                    </div>
-                    <div class="feature">
-                        <i class="fas fa-mobile-alt"></i>
-                        <span>Responsive Optimization</span>
-                    </div>
-                </div>
-                
-                <div class="mobile-redirect">
-                    <p class="mobile-text">
-                        <i class="fas fa-mobile-alt"></i>
-                        Want to explore now? Visit on your mobile device for the full experience!
-                    </p>
-                </div>
-                
-                <!-- Social Links -->
-                <div class="social-links">
-                    <a href="#" target="_blank"><i class="fab fa-linkedin"></i></a>
-                    <a href="#" target="_blank"><i class="fab fa-github"></i></a>
-                    <a href="mailto:siddhesh.govalkar@email.com"><i class="fas fa-envelope"></i></a>
-                </div>
-            </div>
-            
-            <!-- Footer -->
-            <div class="footer-section">
-                <p>&copy; 2025 Siddhesh D. Govalkar - QA Engineer Portfolio</p>
             </div>
         </div>
     </div>
-    
-    <!-- JavaScript -->
-    <script src="js/coming-soon.js"></script>
+
+    <script>
+        function autoRedirect() {
+            const screenWidth = window.innerWidth;
+
+            if (screenWidth >= 1024) {
+                console.log('Desktop detected at ' + screenWidth + 'px, redirecting...');
+                window.location.replace('index.html');
+            } else {
+                console.log('Mobile/tablet detected at ' + screenWidth + 'px');
+            }
+        }
+
+        autoRedirect();
+
+        let resizeTimer;
+        window.addEventListener('resize', function () {
+            clearTimeout(resizeTimer);
+            resizeTimer = setTimeout(autoRedirect, 250);
+        });
+    </script>
 </body>
+
 </html>

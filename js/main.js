@@ -160,8 +160,8 @@ $(document).ready(function () {
         e.preventDefault();
 
         var link = document.createElement('a');
-        link.href = 'assets/Siddhesh_Govalkar_QA_Resume.pdf';
-        link.download = 'Siddhesh_Govalkar_QA_Resume.pdf';
+        link.href = 'assets/Siddhesh_Govalkar_QA_Engineer_Resume.pdf';
+        link.download = 'Siddhesh_Govalkar_QA_Engineer_Resume.pdf';
         document.body.appendChild(link);
         link.click();
         document.body.removeChild(link);
