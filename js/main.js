@@ -730,9 +730,13 @@ document.getElementById('contact-form').addEventListener('submit', function (eve
         });
 });
 
-emailjs.sendForm('service_bf2f4fb', 'PortfolioContactForm', '#contact-form')
-    .then(() => {
-        alert('Message sent successfully!');
-    }, (err) => {
-        alert('Failed to send message: ' + JSON.stringify(err));
-    });
+document.getElementById('contact-form').addEventListener('submit', function (event) {
+    event.preventDefault();
+    emailjs.sendForm('service_bf2f4fb', 'PortfolioContactForm', this)
+        .then(() => {
+            alert('Message sent successfully!');
+            this.reset();
+        }, (err) => {
+            alert('Failed to send message, please try again:\n' + JSON.stringify(err));
+        });
+});
