@@ -1,0 +1,335 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="description" content="Siddhesh D. Govalkar QA Portfolio - Testing Projects">
+    <meta name="keywords" content="QA Portfolio, Testing Projects, Automation Testing, Manual Testing">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Portfolio - Siddhesh D. Govalkar</title>
+
+    <!-- Fonts -->
+    <link
+        href="https://fonts.googleapis.com/css2?family=Orbitron:wght@700;900&family=Rajdhani:wght@400;600&display=swap"
+        rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Play:wght@400;700&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Josefin+Sans:wght@300;400;500;600;700&display=swap"
+        rel="stylesheet">
+
+    <!-- Bootstrap 5 & Icons -->
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css" rel="stylesheet">
+    <link rel="stylesheet" href="css/style.css" />
+    <link rel="stylesheet" href="css/portfolio.css" />
+</head>
+
+<body>
+    <!-- Page Preloder -->
+    <div id="preloder">
+        <div class="loader"></div>
+    </div>
+
+    <!-- Header Section Begin -->
+    <header class="header">
+        <div class="container">
+            <div class="row align-items-center">
+                <div class="col-lg-3 col-md-6 col-6">
+                    <div class="header__logo">
+                        <a href="./index.html">
+                            <img src="./img/logo_one.png" alt="Siddhesh Logo" class="logo-image">
+                        </a>
+                    </div>
+                </div>
+                <div class="col-lg-6 d-none d-lg-block">
+                    <div class="header__nav__option">
+                        <nav class="header__nav__menu">
+                            <ul class="d-flex justify-content-center align-items-center mb-0">
+                                <li><a href="./index.html">Home</a></li>
+                                <li><a href="./about.html">About</a></li>
+                                <li class="active"><a href="./portfolio.html">Portfolio</a></li>
+                                <li><a href="./contact.html">Contact</a></li>
+                            </ul>
+                        </nav>
+                    </div>
+                </div>
+                <div class="col-lg-3 col-md-6 col-6">
+                    <div class="header__nav__social">
+                        <a href="#" target="_blank"><i class="fab fa-linkedin"></i></a>
+                        <a href="#" target="_blank"><i class="fab fa-github"></i></a>
+                        <a href="mailto:siddhesh.govalkar@email.com"><i class="fas fa-envelope"></i></a>
+                    </div>
+                </div>
+            </div>
+            <!-- Mobile Menu Toggle -->
+            <div class="d-lg-none">
+                <div id="mobile-menu-wrap"></div>
+            </div>
+        </div>
+    </header>
+    <!-- Header End -->
+    <main>
+        <!-- Portfolio Section -->
+        <section class="portfolio py-5">
+            <div class="container">
+                <div class="section-title text-center mb-5">
+                    <span>My Work</span>
+                    <h2>Portfolio</h2>
+                </div>
+                <!-- Portfolio Card Grid -->
+                <div class="row portfolio__gallery g-4">
+                    <article class="col-md-6 col-lg-4 portfolio__item automation ecommerce">
+                        <div class="portfolio__card p-4 h-100 d-flex flex-column">
+                            <img src="img/projects/maanch_logo.png" alt="Maanch Tracker" class="portfolio__image" />
+                            <div class="d-flex justify-content-between align-items-center mb-2">
+                                <h5 class="portfolio__title mb-0">Maanch Engagement Tracker</h5>
+                                <span class="portfolio__date text-secondary small">Jan 2023 - Present</span>
+                            </div>
+                            <p class="portfolio__summary mb-3">
+                                Led end-to-end automation testing of a retail platform using Selenium and TestNG.
+                            </p>
+                            <div class="portfolio__tech mb-3">
+                                <span class="badge bg-primary me-2 mb-1">Automation</span>
+                                <span class="badge bg-info me-2 mb-1">TestNG</span>
+                                <span class="badge bg-info me-2 mb-1">Selenium</span>
+                                <span class="badge bg-info me-2 mb-1">Jenkins</span>
+                                <span class="badge bg-info me-2 mb-1">API</span>
+                            </div>
+                            <div class="portfolio__links mb-3">
+                                <a href="https://liveproject.example.com" target="_blank" rel="noopener"
+                                    title="Live Demo"><i class="fas fa-external-link-alt fa-lg"></i></a>
+                                <a href="https://github.com/username/maanch" target="_blank" rel="noopener"
+                                    title="Source Code"><i class="fab fa-github fa-lg"></i></a>
+                            </div>
+                            <ul class="portfolio__impact mb-0 mt-auto">
+                                <li>Reduced regression time by 50% via automation.</li>
+                                <li>Achieved 95% UI coverage.</li>
+                                <li>Integrated CI/CD pipelines with Jenkins.</li>
+                            </ul>
+                        </div>
+                    </article>
+
+                    <article class="col-md-6 col-lg-4 portfolio__item manual performance">
+                        <div class="portfolio__card p-4 h-100 d-flex flex-column">
+                            <img src="img/projects/maanch_logo.png" alt="Project 2" class="portfolio__image" />
+                            <div class="d-flex justify-content-between align-items-center mb-2">
+                                <h5 class="portfolio__title mb-0">Sample Manual Testing Project</h5>
+                                <span class="portfolio__date text-secondary small">May 2022 - Dec 2022</span>
+                            </div>
+                            <p class="portfolio__summary mb-3">
+                                Executed manual and exploratory test cycles for large financial dashboard, focusing
+                                on cross-browser issues.
+                            </p>
+                            <div class="portfolio__tech mb-3">
+                                <span class="badge bg-primary me-2 mb-1">Manual</span>
+                                <span class="badge bg-info me-2 mb-1">Regression</span>
+                                <span class="badge bg-info me-2 mb-1">Performance</span>
+                            </div>
+                            <div class="portfolio__links mb-3">
+                                <a href="https://..." target="_blank"><i class="fas fa-external-link-alt fa-lg"></i></a>
+                            </div>
+                            <ul class="portfolio__impact mb-0 mt-auto">
+                                <li>Found 5 critical bugs pre-launch.</li>
+                                <li>Reduced critical UAT bugs by 75%.</li>
+                                <li>Improved reporting quality for stakeholders.</li>
+                            </ul>
+                        </div>
+                    </article>
+
+                    <article class="col-md-6 col-lg-4 portfolio__item manual performance">
+                        <div class="portfolio__card p-4 h-100 d-flex flex-column">
+                            <img src="img/projects/maanch_logo.png" alt="Project 2" class="portfolio__image" />
+                            <div class="d-flex justify-content-between align-items-center mb-2">
+                                <h5 class="portfolio__title mb-0">Sample Manual Testing Project</h5>
+                                <span class="portfolio__date text-secondary small">May 2022 - Dec 2022</span>
+                            </div>
+                            <p class="portfolio__summary mb-3">
+                                Executed manual and exploratory test cycles for large financial dashboard, focusing
+                                on cross-browser issues.
+                            </p>
+                            <div class="portfolio__tech mb-3">
+                                <span class="badge bg-primary me-2 mb-1">Manual</span>
+                                <span class="badge bg-info me-2 mb-1">Regression</span>
+                                <span class="badge bg-info me-2 mb-1">Performance</span>
+                            </div>
+                            <div class="portfolio__links mb-3">
+                                <a href="https://..." target="_blank"><i class="fas fa-external-link-alt fa-lg"></i></a>
+                            </div>
+                            <ul class="portfolio__impact mb-0 mt-auto">
+                                <li>Found 5 critical bugs pre-launch.</li>
+                                <li>Reduced critical UAT bugs by 75%.</li>
+                                <li>Improved reporting quality for stakeholders.</li>
+                            </ul>
+                        </div>
+                    </article>
+
+                    <article class="col-md-6 col-lg-4 portfolio__item manual performance">
+                        <div class="portfolio__card p-4 h-100 d-flex flex-column">
+                            <img src="img/projects/maanch_logo.png" alt="Project 2" class="portfolio__image" />
+                            <div class="d-flex justify-content-between align-items-center mb-2">
+                                <h5 class="portfolio__title mb-0">Sample Manual Testing Project</h5>
+                                <span class="portfolio__date text-secondary small">May 2022 - Dec 2022</span>
+                            </div>
+                            <p class="portfolio__summary mb-3">
+                                Executed manual and exploratory test cycles for large financial dashboard, focusing
+                                on cross-browser issues.
+                            </p>
+                            <div class="portfolio__tech mb-3">
+                                <span class="badge bg-primary me-2 mb-1">Manual</span>
+                                <span class="badge bg-info me-2 mb-1">Regression</span>
+                                <span class="badge bg-info me-2 mb-1">Performance</span>
+                            </div>
+                            <div class="portfolio__links mb-3">
+                                <a href="https://..." target="_blank"><i class="fas fa-external-link-alt fa-lg"></i></a>
+                            </div>
+                            <ul class="portfolio__impact mb-0 mt-auto">
+                                <li>Found 5 critical bugs pre-launch.</li>
+                                <li>Reduced critical UAT bugs by 75%.</li>
+                                <li>Improved reporting quality for stakeholders.</li>
+                            </ul>
+                        </div>
+                    </article>
+
+                    <article class="col-md-6 col-lg-4 portfolio__item manual performance">
+                        <div class="portfolio__card p-4 h-100 d-flex flex-column">
+                            <img src="img/projects/maanch_logo.png" alt="Project 2" class="portfolio__image" />
+                            <div class="d-flex justify-content-between align-items-center mb-2">
+                                <h5 class="portfolio__title mb-0">Sample Manual Testing Project</h5>
+                                <span class="portfolio__date text-secondary small">May 2022 - Dec 2022</span>
+                            </div>
+                            <p class="portfolio__summary mb-3">
+                                Executed manual and exploratory test cycles for large financial dashboard, focusing
+                                on cross-browser issues.
+                            </p>
+                            <div class="portfolio__tech mb-3">
+                                <span class="badge bg-primary me-2 mb-1">Manual</span>
+                                <span class="badge bg-info me-2 mb-1">Regression</span>
+                                <span class="badge bg-info me-2 mb-1">Performance</span>
+                            </div>
+                            <div class="portfolio__links mb-3">
+                                <a href="https://..." target="_blank"><i class="fas fa-external-link-alt fa-lg"></i></a>
+                            </div>
+                            <ul class="portfolio__impact mb-0 mt-auto">
+                                <li>Found 5 critical bugs pre-launch.</li>
+                                <li>Reduced critical UAT bugs by 75%.</li>
+                                <li>Improved reporting quality for stakeholders.</li>
+                            </ul>
+                        </div>
+                    </article>
+                </div>
+            </div>
+        </section>
+    </main>
+
+    <!-- Call To Action Section Begin -->
+    <section class="callto">
+        <div class="container">
+            <div class="callto__text">
+                <h2>Ready to ensure your software quality?</h2>
+                <p>Let's discuss how my QA expertise can help deliver reliable, high-quality software solutions for
+                    your
+                    projects.</p>
+                <div class="callto__buttons">
+                    <a href="./contact.html" class="primary-btn">Get In Touch</a>
+                    <a href="assets/Siddhesh_Govalkar_QA_Resume.pdf" class="btn-secondary">
+                        <span>Download Resume</span>
+                        <i class="fas fa-download"></i>
+                    </a>
+                </div>
+            </div>
+        </div>
+    </section>
+    <!-- Call To Action Section End -->
+
+    <!-- Footer Section Begin -->
+    <footer class="footer">
+        <div class="container">
+            <div class="footer__top">
+                <div class="row">
+                    <div class="col-lg-6 col-md-6">
+                        <div class="footer__top__logo">
+                            <a href="./index.html">
+                                <img src="img/logo_one.png" alt="Siddhesh QA" class="footer-logo-image">
+                            </a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="footer__option">
+                <div class="row">
+                    <div class="col-lg-4 col-md-6 col-sm-6">
+                        <div class="footer__option__item">
+                            <h5>About</h5>
+                            <p>QA Engineer with 3+ years of experience in manual and automation testing,
+                                specializing in
+                                delivering high-quality software solutions.</p>
+                            <a href="./about.html" class="read__more">Read more <span class="arrow_right"></span></a>
+                        </div>
+                    </div>
+                    <div class="col-lg-2 col-md-3 col-sm-3">
+                        <div class="footer__option__item">
+                            <h5>Services</h5>
+                            <ul>
+                                <li><a href="#">Automation Testing</a></li>
+                                <li><a href="#">Manual Testing</a></li>
+                                <li><a href="#">Performance Testing</a></li>
+                                <li><a href="#">API Testing</a></li>
+                            </ul>
+                        </div>
+                    </div>
+                    <div class="col-lg-2 col-md-3 col-sm-3">
+                        <div class="footer__option__item">
+                            <h5>Portfolio</h5>
+                            <ul>
+                                <li><a href="#">Web Applications</a></li>
+                                <li><a href="#">E-commerce</a></li>
+                                <li><a href="#">Financial Services</a></li>
+                                <li><a href="#">Healthcare Apps</a></li>
+                            </ul>
+                        </div>
+                    </div>
+                    <div class="col-lg-4 col-md-12">
+                        <div class="footer__option__item">
+                            <h5>Contact</h5>
+                            <p>Mumbai, Maharashtra, India</p>
+                            <p>Phone: +91 [Your Phone Number]</p>
+                            <p>Email: siddhesh.govalkar@email.com</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="footer__copyright">
+                <div class="row align-items-center">
+                    <div class="col-lg-6 col-md-6">
+                        <p class="footer__copyright__text">Copyright &copy;
+                            <script>
+                                document.write(new Date().getFullYear());
+                            </script>
+                            Siddhesh D. Govalkar - QA Engineer Portfolio
+                        </p>
+                    </div>
+                    <div class="col-lg-6 col-md-6">
+                        <div class="footer__copyright__social">
+                            <a href="#" target="_blank"><i class="fab fa-linkedin"></i></a>
+                            <a href="#" target="_blank"><i class="fab fa-github"></i></a>
+                            <a href="mailto:siddhesh.govalkar@email.com"><i class="fas fa-envelope"></i></a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </footer>
+    <!-- Footer Section End -->
+    </div>
+
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/magnific-popup.js/1.1.0/jquery.magnific-popup.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/mixitup/3.3.1/mixitup.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/masonry/4.2.2/masonry.pkgd.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/SlickNav/1.0.10/jquery.slicknav.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/OwlCarousel2/2.3.4/owl.carousel.min.js"></script>
+    <script src="https://code.jquery.com/ui/1.13.2/jquery-ui.min.js"></script>
+    <script src="js/main.js"></script>
+</body>
+
+</html>
