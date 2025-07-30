@@ -718,20 +718,20 @@ document.body.appendChild(cursorDot);
 
 // Follow mouse movement
 document.addEventListener('mousemove', (e) => {
-  cursorDot.style.left = e.clientX + 'px';
-  cursorDot.style.top = e.clientY + 'px';
+    cursorDot.style.left = e.clientX + 'px';
+    cursorDot.style.top = e.clientY + 'px';
 });
 
 // Custom Cursor Implementation - Single instance
-(function() {
+(function () {
     'use strict';
-    
+
     // Remove any existing cursor elements
     const existingCursor = document.querySelector('.cursor-dot');
     if (existingCursor) {
         existingCursor.remove();
     }
-    
+
     // Create new cursor dot
     const cursorDot = document.createElement('div');
     cursorDot.classList.add('cursor-dot');
@@ -757,10 +757,10 @@ document.addEventListener('mousemove', (e) => {
 
     // Handle hover states with event delegation
     document.addEventListener('mouseover', (e) => {
-        const isInteractive = pointerSelectors.some(selector => 
+        const isInteractive = pointerSelectors.some(selector =>
             e.target.matches(selector) || e.target.closest(selector)
         );
-        
+
         if (isInteractive && !e.target.matches(':disabled')) {
             cursorDot.classList.add('pointer');
             cursorDot.classList.remove('not-allowed');
@@ -771,12 +771,644 @@ document.addEventListener('mousemove', (e) => {
     });
 
     document.addEventListener('mouseout', (e) => {
-        const isInteractive = pointerSelectors.some(selector => 
+        const isInteractive = pointerSelectors.some(selector =>
             e.target.matches(selector) || e.target.closest(selector)
         );
-        
+
         if (isInteractive) {
             cursorDot.classList.remove('pointer', 'not-allowed');
         }
     });
 })();
+
+// PORTFOLIO PANEL
+
+let scrollPosition = 0;
+let currentProject = null;
+let currentImageIndex = 0;
+let autoScrollInterval = null;
+
+// ALL PROJECT DATA IN ONE PLACE - Easy to maintain!
+const projects = {
+    1: {
+        // Card display
+        image: "img/projects/maanch_logo.png",
+        title: "Maanch Engagement Tracker",
+        date: "Jan 2023 - Present",
+        summary: "Led end-to-end automation testing of a retail platform using Selenium and TestNG.",
+        technologies: ["Automation", "TestNG", "Selenium", "Jenkins", "API"],
+
+        // Panel details
+        description: "Led comprehensive end-to-end automation testing for a retail engagement platform. Implemented robust test frameworks using Selenium WebDriver and TestNG, focusing on user interaction tracking, data analytics, and performance optimization.Led comprehensive end-to-end automation testing for a retail engagement platform. Led comprehensive end-to-end automation testing for a retail engagement platform. Led comprehensive end-to-end automation testing for a retail engagement platform. ",
+        achievements: [
+            "Reduced regression testing time by 50% through comprehensive automation suite",
+            "Achieved 95% UI test coverage across all major user workflows",
+            "Integrated CI/CD pipelines with Jenkins for continuous testing",
+            "Implemented API testing framework reducing manual testing effort by 60%"
+        ],
+        images: [
+            "img/projects/maanch_logo.png",
+            "img/projects/carrental6.webp",
+            "img/projects/bmt.webp",
+            "img/projects/TechnoMarket4.webp"
+        ]
+    },
+
+    2: {
+        image: "img/projects/financial_dashboard.png",
+        title: "Financial Dashboard Testing",
+        date: "May 2022 - Dec 2022",
+        summary: "Executed manual and exploratory test cycles for large financial dashboard, focusing on cross-browser issues.",
+        technologies: ["Manual", "Regression", "Performance", "Cross-browser"],
+
+        description: "Executed comprehensive manual and exploratory testing cycles for a large-scale financial dashboard application. Focused on cross-browser compatibility, data accuracy, and user experience optimization.Led comprehensive end-to-end automation testing for a retail engagement platform. Led comprehensive end-to-end automation testing for a retail engagement platform. ",
+        achievements: [
+            "Identified and reported 5 critical security vulnerabilities before production",
+            "Reduced critical UAT bugs by 75% through thorough pre-production testing",
+            "Improved stakeholder reporting quality with detailed test documentation",
+            "Enhanced cross-browser compatibility across 8 different browser versions"
+        ],
+        images: [
+            "img/projects/maanch_logo.png",
+            "img/projects/carrental6.webp",
+            "img/projects/bmt.webp",
+            "img/projects/TechnoMarket4.webp"
+        ]
+    },
+
+    3: {
+        image: "img/projects/ecommerce_platform.png",
+        title: "E-commerce Platform Testing",
+        date: "Jun 2021 - Dec 2021",
+        summary: "Comprehensive testing of online shopping platform with focus on payment gateway and user experience.",
+        technologies: ["API", "Security", "Performance", "Mobile"],
+
+        description: "Led comprehensive testing efforts for a major e-commerce platform, focusing on payment gateway integration, mobile responsiveness, and security testing.Led comprehensive end-to-end automation testing for a retail engagement platform. Led comprehensive end-to-end automation testing for a retail engagement platform. ",
+        achievements: [
+            "Tested and validated 15+ payment gateway integrations",
+            "Ensured mobile compatibility across iOS and Android devices",
+            "Identified critical security vulnerabilities in user authentication",
+            "Improved checkout process conversion rate by 25%"
+        ],
+        images: [
+            "img/projects/maanch_logo.png",
+            "img/projects/carrental6.webp",
+            "img/projects/bmt.webp",
+            "img/projects/TechnoMarket4.webp"
+        ]
+    },
+
+    4: {
+        image: "img/projects/financial_dashboard.png",
+        title: "Financial Dashboard Testing",
+        date: "May 2022 - Dec 2022",
+        summary: "Executed manual and exploratory test cycles for large financial dashboard, focusing on cross-browser issues.",
+        technologies: ["Manual", "Regression", "Performance", "Cross-browser"],
+
+        description: "Executed comprehensive manual and exploratory testing cycles for a large-scale financial dashboard application. Focused on cross-browser compatibility, data accuracy, and user experience optimization.Led comprehensive end-to-end automation testing for a retail engagement platform. Led comprehensive end-to-end automation testing for a retail engagement platform. Led comprehensive end-to-end automation testing for a retail engagement platform. ",
+        achievements: [
+            "Identified and reported 5 critical security vulnerabilities before production",
+            "Reduced critical UAT bugs by 75% through thorough pre-production testing",
+            "Improved stakeholder reporting quality with detailed test documentation",
+            "Enhanced cross-browser compatibility across 8 different browser versions"
+        ],
+        images: [
+            "img/projects/maanch_logo.png",
+            "img/projects/carrental6.webp",
+            "img/projects/bmt.webp",
+            "img/projects/TechnoMarket4.webp"
+        ]
+    },
+
+    5: {
+        image: "img/projects/ecommerce_platform.png",
+        title: "E-commerce Platform Testing",
+        date: "Jun 2021 - Dec 2021",
+        summary: "Comprehensive testing of online shopping platform with focus on payment gateway and user experience.",
+        technologies: ["API", "Security", "Performance", "Mobile"],
+
+        description: "Led comprehensive testing efforts for a major e-commerce platform, focusing on payment gateway integration, mobile responsiveness, and security testingLed comprehensive end-to-end automation testing for a retail engagement platform. Led comprehensive end-to-end automation testing for a retail engagement platform. Led comprehensive end-to-end automation testing for a retail engagement platform. Led comprehensive end-to-end automation testing for a retail engagement platform. .",
+        achievements: [
+            "Tested and validated 15+ payment gateway integrations",
+            "Ensured mobile compatibility across iOS and Android devices",
+            "Identified critical security vulnerabilities in user authentication",
+            "Improved checkout process conversion rate by 25%"
+        ],
+        images: [
+            "img/projects/maanch_logo.png",
+            "img/projects/carrental6.webp",
+            "img/projects/bmt.webp",
+            "img/projects/TechnoMarket4.webp"
+        ]
+    }
+};
+
+// Generate portfolio cards from data
+function createPortfolioCards() {
+    const container = document.getElementById('portfolio-grid');
+    if (!container) return;
+
+    container.innerHTML = '';
+
+    Object.keys(projects).forEach(id => {
+        const project = projects[id];
+
+        // Get the first image from the images array for card display
+        const firstImage = (project.images && project.images.length > 0)
+            ? project.images[0]
+            : project.image;
+
+        const cardHTML = `
+            <div class="portfolio-card" onclick="openProjectPanel(${id})">
+                <div class="card-image-wrapper">
+                    <img src="${firstImage}" alt="${project.title}" class="card-image"/>
+                </div>
+                <div class="card-content">
+                    <div class="card-header">
+                        <h5>${project.title}</h5>
+                        <div class="project-date">${project.date}</div>
+                    </div>
+                    <p class="card-description">${project.summary}</p>
+                    <div class="card-footer">
+                        <span class="read-more">Click to view details</span>
+                        <i class="arrow-icon fas fa-arrow-right"></i>
+                    </div>
+                </div>
+            </div>
+        `;
+
+        container.innerHTML += cardHTML;
+    });
+}
+
+// Scrollbar width helper
+function getScrollbarWidth() {
+    if (window.innerWidth === document.documentElement.clientWidth) {
+        return 0; 
+    }
+
+    const outer = document.createElement('div');
+    outer.style.visibility = 'hidden';
+    outer.style.overflow = 'scroll';
+    outer.style.msOverflowStyle = 'scrollbar';
+    outer.style.position = 'absolute';
+    outer.style.top = '-9999px';
+    document.body.appendChild(outer);
+
+    const inner = document.createElement('div');
+    outer.appendChild(inner);
+
+    const scrollbarWidth = outer.offsetWidth - inner.offsetWidth;
+    document.body.removeChild(outer);
+
+    return Math.max(0, scrollbarWidth);
+}
+
+// Open project panel
+function openProjectPanel(projectId) {
+    const project = projects[projectId];
+    if (!project) return;
+
+    currentProject = projectId;
+    scrollPosition = window.pageYOffset;
+
+    document.getElementById('panel-title').textContent = project.title;
+    document.getElementById('panel-date').textContent = project.date;
+    document.getElementById('panel-description').textContent = project.description;
+
+    document.getElementById('panel-tech').innerHTML =
+        project.technologies.map(tech => `<span class="tech-tag">${tech}</span>`).join('');
+
+    document.getElementById('panel-impact').innerHTML =
+        project.achievements.map(achievement => `<li>${achievement}</li>`).join('');
+
+    setupCarousel(project.images);
+
+    document.documentElement.style.setProperty('--scroll-position', `-${scrollPosition}px`);
+    document.body.classList.add('panel-open');
+    document.getElementById('project-panel').classList.add('active');
+    document.getElementById('panel-backdrop').classList.add('active');
+}
+
+// close panel function
+function closeProjectPanel() {
+    if (autoScrollInterval) {
+        clearInterval(autoScrollInterval);
+        autoScrollInterval = null;
+    }
+
+    const body = document.body;
+    const targetScrollPosition = scrollPosition;
+
+    document.getElementById('project-panel').classList.remove('active');
+    document.getElementById('panel-backdrop').classList.remove('active');
+
+    setTimeout(() => {
+        body.classList.remove('panel-open');
+        body.style.position = '';
+        body.style.top = '';
+        body.style.left = '';
+        body.style.right = '';
+        body.style.overflow = '';
+        body.style.paddingRight = ''; 
+
+        window.scrollTo({
+            top: targetScrollPosition,
+            left: 0,
+            behavior: 'instant'
+        });
+
+        console.log('Scroll restored to:', window.pageYOffset); 
+
+    }, 50);
+
+    currentProject = null;
+}
+
+// Function to clear stuck hover effects
+function clearHoverStates() {
+    const cards = document.querySelectorAll('.portfolio-card');
+    cards.forEach(card => {
+        card.classList.remove('hover');
+        card.style.transform = '';
+        card.offsetHeight; 
+    });
+
+    document.body.style.pointerEvents = 'none';
+    setTimeout(() => {
+        document.body.style.pointerEvents = '';
+    }, 10);
+}
+
+// Setup carousel
+function setupCarousel(images) {
+    const carouselImage = document.getElementById('carousel-image');
+    const indicatorsContainer = document.getElementById('carousel-indicators');
+
+    console.log('Setting up carousel with images:', images);
+
+    if (!carouselImage || !indicatorsContainer) {
+        console.error('Carousel elements not found!');
+        return;
+    }
+
+    if (!images || images.length === 0) {
+        console.error('No images provided to carousel');
+        return;
+    }
+
+    // Set first image
+    carouselImage.src = images[0];
+    currentImageIndex = 0;
+
+    // Clear any existing auto-scroll
+    if (autoScrollInterval) {
+        clearInterval(autoScrollInterval);
+        autoScrollInterval = null;
+    }
+
+    indicatorsContainer.innerHTML = '';
+    indicatorsContainer.onclick = null; 
+
+    images.forEach((img, idx) => {
+        const dot = document.createElement('div');
+        dot.className = 'indicator-dot' + (idx === 0 ? ' active' : '');
+        dot.setAttribute('data-index', idx);
+        dot.title = `Image ${idx + 1}`;
+        indicatorsContainer.appendChild(dot);
+    });
+
+    indicatorsContainer.addEventListener('click', function (e) {
+        e.preventDefault();
+        e.stopPropagation();
+
+        if (e.target && e.target.classList.contains('indicator-dot')) {
+            const index = parseInt(e.target.getAttribute('data-index'));
+
+            if (!isNaN(index)) {
+                if (autoScrollInterval) {
+                    clearInterval(autoScrollInterval);
+                    autoScrollInterval = null;
+                }
+                goToImage(index);
+                setTimeout(() => {
+                    if (images.length > 1) {
+                        startAutoScroll(images);
+                    }
+                }, 3000);
+            }
+        }
+    });
+
+    const carouselControls = document.querySelector('.carousel-controls');
+    if (carouselControls) {
+        if (images.length > 1) {
+            carouselControls.style.display = 'flex';
+        } else {
+            carouselControls.style.display = 'none';
+        }
+    }
+
+    if (images.length > 1) {
+        setTimeout(() => {
+            startAutoScroll(images);
+        }, 1000);
+    }
+}
+
+// Start auto-scroll functionality
+function startAutoScroll(images) {
+    if (autoScrollInterval) {
+        clearInterval(autoScrollInterval);
+    }
+
+    autoScrollInterval = setInterval(() => {
+        nextImage(images);
+    }, 4000);
+}
+
+// Reset auto-scroll timer (when user manually clicks)
+function resetAutoScrollTimer(images) {
+    if (autoScrollInterval) {
+        clearInterval(autoScrollInterval);
+    }
+
+    setTimeout(() => {
+        if (images.length > 1) {
+            startAutoScroll(images);
+        }
+    }, 2000);
+}
+
+// Navigate to next image (for auto-scroll)
+function nextImage(images) {
+    if (!images || images.length === 0) return;
+
+    currentImageIndex = (currentImageIndex + 1) % images.length;
+    goToImage(currentImageIndex);
+}
+
+// Navigate to image
+function goToImage(index) {
+    if (!currentProject) return;
+
+    const project = projects[currentProject];
+    if (!project) return;
+
+    const images = project.images;
+    if (!images || images.length === 0) return;
+
+    currentImageIndex = index;
+
+    const carouselImage = document.getElementById('carousel-image');
+    if (carouselImage) {
+        carouselImage.src = images[index];
+    }
+
+    const indicators = document.querySelectorAll('.indicator-dot');
+    indicators.forEach((dot, idx) => {
+        dot.classList.toggle('active', idx === index);
+    });
+}
+
+// Event listeners
+document.addEventListener('keydown', function (e) {
+    if (e.key === 'Escape' && currentProject) {
+        closeProjectPanel();
+    }
+});
+
+document.addEventListener('DOMContentLoaded', function () {
+    createPortfolioCards();
+
+    // Prevent panel clicks from closing
+    const panelContent = document.querySelector('.panel-content');
+    if (panelContent) {
+        panelContent.addEventListener('click', function (e) {
+            e.stopPropagation();
+        });
+    }
+});
+
+// Enhanced portfolio functions with lazy loading
+let observerOptions = {
+    root: null,
+    rootMargin: '50px',
+    threshold: 0.1
+};
+
+let imageObserver = null;
+
+// Helper function to truncate text
+function truncateText(text, maxLength) {
+    if (text.length <= maxLength) {
+        return text;
+    }
+    return text.substring(0, maxLength) + '...';
+}
+
+// Create placeholder cards first
+function createPlaceholderCards() {
+    const container = document.getElementById('portfolio-grid');
+    if (!container) return;
+
+    const projectCount = Object.keys(projects).length;
+    container.innerHTML = '';
+
+    for (let i = 0; i < projectCount; i++) {
+        const placeholder = document.createElement('div');
+        placeholder.className = 'card-placeholder';
+        placeholder.setAttribute('data-project-id', Object.keys(projects)[i]);
+        container.appendChild(placeholder);
+    }
+    container.style.display = 'grid';
+    setupLazyLoading();
+}
+
+// Setup lazy loading with Intersection Observer
+function setupLazyLoading() {
+    if ('IntersectionObserver' in window) {
+        imageObserver = new IntersectionObserver((entries) => {
+            entries.forEach(entry => {
+                if (entry.isIntersecting) {
+                    const placeholder = entry.target;
+                    const projectId = placeholder.getAttribute('data-project-id');
+                    loadProjectCard(projectId, placeholder);
+                    imageObserver.unobserve(placeholder);
+                }
+            });
+        }, observerOptions);
+        document.querySelectorAll('.card-placeholder').forEach(placeholder => {
+            imageObserver.observe(placeholder);
+        });
+    } else {
+        loadAllCards();
+    }
+}
+
+// Load individual project card
+function loadProjectCard(projectId, placeholder) {
+    const project = projects[projectId];
+    if (!project || !placeholder) return;
+
+    const firstImage = (project.images && project.images.length > 0)
+        ? project.images[0]
+        : project.image;
+
+    const truncatedSummary = truncateText(project.summary, 70);
+
+    placeholder.className = 'portfolio-card';
+    placeholder.onclick = () => openProjectPanel(projectId);
+    placeholder.innerHTML = `
+        <div class="card-image-wrapper">
+            <img src="${firstImage}" alt="${project.title}" class="card-image" loading="lazy"/>
+        </div>
+        <div class="card-content">
+            <div class="card-header">
+                <h5>${project.title}</h5>
+                <div class="project-date">${project.date}</div>
+            </div>
+            <p class="card-description">${truncatedSummary}</p>
+            <div class="tech-tags">
+                ${project.technologies.map(tech => `<span class="tech-tag">${tech}</span>`).join('')}
+            </div>
+            <div class="card-footer">
+                <span class="read-more">Click to view details</span>
+                <i class="arrow-icon fas fa-arrow-right"></i>
+            </div>
+        </div>
+    `;
+
+    placeholder.style.opacity = '0';
+    setTimeout(() => {
+        placeholder.style.transition = 'opacity 0.5s ease';
+        placeholder.style.opacity = '1';
+    }, 100);
+}
+
+// Enhanced setup lazy loading with better error handling
+function setupLazyLoading() {
+    if ('IntersectionObserver' in window) {
+        imageObserver = new IntersectionObserver((entries) => {
+            entries.forEach(entry => {
+                if (entry.isIntersecting) {
+                    const placeholder = entry.target;
+                    const projectId = placeholder.getAttribute('data-project-id');
+
+                    if (placeholder && projectId) {
+                        loadProjectCard(projectId, placeholder);
+                        imageObserver.unobserve(placeholder);
+                    }
+                }
+            });
+        }, observerOptions);
+
+        const placeholders = document.querySelectorAll('.card-placeholder');
+        if (placeholders.length > 0) {
+            placeholders.forEach(placeholder => {
+                if (placeholder) {
+                    imageObserver.observe(placeholder);
+                }
+            });
+        } else {
+            console.warn('No placeholders found for lazy loading');
+            loadAllCards();
+        }
+    } else {
+        console.log('IntersectionObserver not supported, loading all cards');
+        loadAllCards();
+    }
+}
+
+// Fallback: Load all cards at once
+function loadAllCards() {
+    const container = document.getElementById('portfolio-grid');
+    if (!container) return;
+
+    container.innerHTML = '';
+
+    Object.keys(projects).forEach(id => {
+        const project = projects[id];
+
+        const firstImage = (project.images && project.images.length > 0)
+            ? project.images[0]
+            : project.image;
+
+        const truncatedSummary = truncateText(project.summary, 70);
+
+        const cardHTML = `
+            <div class="portfolio-card" onclick="openProjectPanel(${id})">
+                <div class="card-image-wrapper">
+                    <img src="${firstImage}" alt="${project.title}" class="card-image" loading="lazy"/>
+                </div>
+                <div class="card-content">
+                    <div class="card-header">
+                        <h5>${project.title}</h5>
+                        <div class="project-date">${project.date}</div>
+                    </div>
+                    <p class="card-description">${truncatedSummary}</p>
+                    <div class="card-footer">
+                        <span class="read-more">Click to view details</span>
+                        <i class="arrow-icon fas fa-arrow-right"></i>
+                    </div>
+                </div>
+            </div>
+        `;
+        container.innerHTML += cardHTML;
+    });
+}
+
+function createPortfolioCards() {
+    showLoader();
+    setTimeout(() => {
+        createPlaceholderCards();
+        setTimeout(() => {
+            hideLoader();
+        }, 500);
+
+    }, 800);
+}
+
+// Show loader
+function showLoader() {
+    const loader = document.getElementById('portfolio-loader');
+    const grid = document.getElementById('portfolio-grid');
+
+    if (loader) loader.style.display = 'flex';
+    if (grid) grid.style.display = 'none';
+}
+
+// Hide loader and show grid
+function hideLoader() {
+    const loader = document.getElementById('portfolio-loader');
+    const grid = document.getElementById('portfolio-grid');
+    const container = document.querySelector('.portfolio-grid-container');
+
+    if (loader && grid && container) {
+        loader.style.opacity = '0';
+
+        setTimeout(() => {
+            loader.style.display = 'none';
+            container.classList.add('cards-loaded');
+            container.style.minHeight = 'auto';
+            grid.style.display = 'grid';
+
+            setTimeout(() => {
+                grid.classList.add('loaded');
+            }, 50);
+
+        }, 300);
+    }
+}
+
+// Update DOMContentLoaded event
+document.addEventListener('DOMContentLoaded', function () {
+    createPortfolioCards();
+    const panelContent = document.querySelector('.panel-content');
+    if (panelContent) {
+        panelContent.addEventListener('click', function (e) {
+            e.stopPropagation();
+        });
+    }
+});
+

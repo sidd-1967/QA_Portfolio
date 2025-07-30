@@ -70,157 +70,76 @@
         </div>
     </header>
     <!-- Header End -->
+
     <main>
         <!-- Portfolio Section -->
-        <section class="portfolio py-5">
+        <section class="portfolio-cyber py-5">
             <div class="container">
-                <div class="section-title text-center mb-5">
-                    <span>My Work</span>
-                    <h2>Portfolio</h2>
+                <div class="text-center mb-5">
+                    <span class="portfolio-tag">MY WORK</span>
+                    <h2 class="portfolio-title">Portfolio</h2>
+                    <p class="portfolio-description">
+                        Discover my journey in quality assurance through real-world projects featuring
+                        automation frameworks, exploratory testing, and cross-platform validation.
+                    </p>
                 </div>
-                <!-- Portfolio Card Grid -->
-                <div class="row portfolio__gallery g-4">
-                    <article class="col-md-6 col-lg-4 portfolio__item automation ecommerce">
-                        <div class="portfolio__card p-4 h-100 d-flex flex-column">
-                            <img src="img/projects/maanch_logo.png" alt="Maanch Tracker" class="portfolio__image" />
-                            <div class="d-flex justify-content-between align-items-center mb-2">
-                                <h5 class="portfolio__title mb-0">Maanch Engagement Tracker</h5>
-                                <span class="portfolio__date text-secondary small">Jan 2023 - Present</span>
-                            </div>
-                            <p class="portfolio__summary mb-3">
-                                Led end-to-end automation testing of a retail platform using Selenium and TestNG.
-                            </p>
-                            <div class="portfolio__tech mb-3">
-                                <span class="badge bg-primary me-2 mb-1">Automation</span>
-                                <span class="badge bg-info me-2 mb-1">TestNG</span>
-                                <span class="badge bg-info me-2 mb-1">Selenium</span>
-                                <span class="badge bg-info me-2 mb-1">Jenkins</span>
-                                <span class="badge bg-info me-2 mb-1">API</span>
-                            </div>
-                            <div class="portfolio__links mb-3">
-                                <a href="https://liveproject.example.com" target="_blank" rel="noopener"
-                                    title="Live Demo"><i class="fas fa-external-link-alt fa-lg"></i></a>
-                                <a href="https://github.com/username/maanch" target="_blank" rel="noopener"
-                                    title="Source Code"><i class="fab fa-github fa-lg"></i></a>
-                            </div>
-                            <ul class="portfolio__impact mb-0 mt-auto">
-                                <li>Reduced regression time by 50% via automation.</li>
-                                <li>Achieved 95% UI coverage.</li>
-                                <li>Integrated CI/CD pipelines with Jenkins.</li>
-                            </ul>
-                        </div>
-                    </article>
 
-                    <article class="col-md-6 col-lg-4 portfolio__item manual performance">
-                        <div class="portfolio__card p-4 h-100 d-flex flex-column">
-                            <img src="img/projects/maanch_logo.png" alt="Project 2" class="portfolio__image" />
-                            <div class="d-flex justify-content-between align-items-center mb-2">
-                                <h5 class="portfolio__title mb-0">Sample Manual Testing Project</h5>
-                                <span class="portfolio__date text-secondary small">May 2022 - Dec 2022</span>
-                            </div>
-                            <p class="portfolio__summary mb-3">
-                                Executed manual and exploratory test cycles for large financial dashboard, focusing
-                                on cross-browser issues.
-                            </p>
-                            <div class="portfolio__tech mb-3">
-                                <span class="badge bg-primary me-2 mb-1">Manual</span>
-                                <span class="badge bg-info me-2 mb-1">Regression</span>
-                                <span class="badge bg-info me-2 mb-1">Performance</span>
-                            </div>
-                            <div class="portfolio__links mb-3">
-                                <a href="https://..." target="_blank"><i class="fas fa-external-link-alt fa-lg"></i></a>
-                            </div>
-                            <ul class="portfolio__impact mb-0 mt-auto">
-                                <li>Found 5 critical bugs pre-launch.</li>
-                                <li>Reduced critical UAT bugs by 75%.</li>
-                                <li>Improved reporting quality for stakeholders.</li>
-                            </ul>
+                <!-- Portfolio Grid with Loader -->
+                <div class="portfolio-grid-container">
+                    <!-- Loader -->
+                    <div id="portfolio-loader" class="portfolio-loader">
+                        <div class="cyberpunk-loader">
+                            <div class="loader-ring"></div>
+                            <div class="loader-ring"></div>
+                            <div class="loader-ring"></div>
+                            <div class="loader-text">Loading Projects...</div>
                         </div>
-                    </article>
+                    </div>
 
-                    <article class="col-md-6 col-lg-4 portfolio__item manual performance">
-                        <div class="portfolio__card p-4 h-100 d-flex flex-column">
-                            <img src="img/projects/maanch_logo.png" alt="Project 2" class="portfolio__image" />
-                            <div class="d-flex justify-content-between align-items-center mb-2">
-                                <h5 class="portfolio__title mb-0">Sample Manual Testing Project</h5>
-                                <span class="portfolio__date text-secondary small">May 2022 - Dec 2022</span>
-                            </div>
-                            <p class="portfolio__summary mb-3">
-                                Executed manual and exploratory test cycles for large financial dashboard, focusing
-                                on cross-browser issues.
-                            </p>
-                            <div class="portfolio__tech mb-3">
-                                <span class="badge bg-primary me-2 mb-1">Manual</span>
-                                <span class="badge bg-info me-2 mb-1">Regression</span>
-                                <span class="badge bg-info me-2 mb-1">Performance</span>
-                            </div>
-                            <div class="portfolio__links mb-3">
-                                <a href="https://..." target="_blank"><i class="fas fa-external-link-alt fa-lg"></i></a>
-                            </div>
-                            <ul class="portfolio__impact mb-0 mt-auto">
-                                <li>Found 5 critical bugs pre-launch.</li>
-                                <li>Reduced critical UAT bugs by 75%.</li>
-                                <li>Improved reporting quality for stakeholders.</li>
-                            </ul>
-                        </div>
-                    </article>
+                    <!-- Portfolio Card Grid - JavaScript will populate this -->
+                    <div class="portfolio-grid" id="portfolio-grid">
+                    </div>
+                </div>
+        </section>
 
-                    <article class="col-md-6 col-lg-4 portfolio__item manual performance">
-                        <div class="portfolio__card p-4 h-100 d-flex flex-column">
-                            <img src="img/projects/maanch_logo.png" alt="Project 2" class="portfolio__image" />
-                            <div class="d-flex justify-content-between align-items-center mb-2">
-                                <h5 class="portfolio__title mb-0">Sample Manual Testing Project</h5>
-                                <span class="portfolio__date text-secondary small">May 2022 - Dec 2022</span>
-                            </div>
-                            <p class="portfolio__summary mb-3">
-                                Executed manual and exploratory test cycles for large financial dashboard, focusing
-                                on cross-browser issues.
-                            </p>
-                            <div class="portfolio__tech mb-3">
-                                <span class="badge bg-primary me-2 mb-1">Manual</span>
-                                <span class="badge bg-info me-2 mb-1">Regression</span>
-                                <span class="badge bg-info me-2 mb-1">Performance</span>
-                            </div>
-                            <div class="portfolio__links mb-3">
-                                <a href="https://..." target="_blank"><i class="fas fa-external-link-alt fa-lg"></i></a>
-                            </div>
-                            <ul class="portfolio__impact mb-0 mt-auto">
-                                <li>Found 5 critical bugs pre-launch.</li>
-                                <li>Reduced critical UAT bugs by 75%.</li>
-                                <li>Improved reporting quality for stakeholders.</li>
-                            </ul>
-                        </div>
-                    </article>
+        <div id="project-panel" class="project-panel">
+            <div class="panel-content">
+                <button class="panel-close" onclick="closeProjectPanel()">
+                    <i class="fas fa-times"></i>
+                </button>
 
-                    <article class="col-md-6 col-lg-4 portfolio__item manual performance">
-                        <div class="portfolio__card p-4 h-100 d-flex flex-column">
-                            <img src="img/projects/maanch_logo.png" alt="Project 2" class="portfolio__image" />
-                            <div class="d-flex justify-content-between align-items-center mb-2">
-                                <h5 class="portfolio__title mb-0">Sample Manual Testing Project</h5>
-                                <span class="portfolio__date text-secondary small">May 2022 - Dec 2022</span>
-                            </div>
-                            <p class="portfolio__summary mb-3">
-                                Executed manual and exploratory test cycles for large financial dashboard, focusing
-                                on cross-browser issues.
-                            </p>
-                            <div class="portfolio__tech mb-3">
-                                <span class="badge bg-primary me-2 mb-1">Manual</span>
-                                <span class="badge bg-info me-2 mb-1">Regression</span>
-                                <span class="badge bg-info me-2 mb-1">Performance</span>
-                            </div>
-                            <div class="portfolio__links mb-3">
-                                <a href="https://..." target="_blank"><i class="fas fa-external-link-alt fa-lg"></i></a>
-                            </div>
-                            <ul class="portfolio__impact mb-0 mt-auto">
-                                <li>Found 5 critical bugs pre-launch.</li>
-                                <li>Reduced critical UAT bugs by 75%.</li>
-                                <li>Improved reporting quality for stakeholders.</li>
-                            </ul>
+                <div class="panel-images">
+                    <div class="image-carousel">
+                        <div class="carousel-container">
+                            <img id="carousel-image" src="" alt="Project Image" class="carousel-main-image" />
                         </div>
-                    </article>
+                        <div class="carousel-controls">
+                            <div class="carousel-indicators" id="carousel-indicators"></div>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="panel-details">
+                    <div class="detail-header">
+                        <h3 id="panel-title">Project Title</h3>
+                        <span id="panel-date" class="detail-date">Date Range</span>
+                    </div>
+                    <div class="detail-tech" id="panel-tech"></div>
+                    <div class="detail-description">
+                        <h6>Project Overview</h6>
+                        <p id="panel-description">Description...</p>
+                    </div>
+                    <div class="detail-impact">
+                        <h6>Key Achievements</h6>
+                        <ul id="panel-impact"></ul>
+                    </div>
                 </div>
             </div>
+        </div>
+
+        <div id="panel-backdrop" class="panel-backdrop" onclick="closeProjectPanel()"></div>
         </section>
+
     </main>
 
     <!-- Call To Action Section Begin -->
