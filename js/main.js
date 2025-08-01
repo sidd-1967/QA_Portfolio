@@ -1269,9 +1269,6 @@ function loadProjectCard(projectId, placeholder) {
                 <div class="project-date">${project.date}</div>
             </div>
             <p class="card-description">${truncatedSummary}</p>
-            <div class="tech-tags">
-                ${project.technologies.map(tech => `<span class="tech-tag">${tech}</span>`).join('')}
-            </div>
             <div class="card-footer">
                 <span class="read-more">Click to view details</span>
                 <i class="arrow-icon fas fa-arrow-right"></i>

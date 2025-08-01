@@ -93,7 +93,7 @@
     <!-- Header End -->
 
     <!-- CONTACT SECTION -->
-    <section class="contact">
+    <!-- <section class="contact">
         <div class="container">
             <div class="section-title text-center">
                 <span>Let's Work Together</span>
@@ -101,7 +101,6 @@
             </div>
 
             <div class="row mt-5">
-                <!-- Contact Info - Left Side -->
                 <div class="col-md-6">
                     <div class="contact__list">
                         <div class="contact__item">
@@ -128,13 +127,10 @@
                         </div>
                     </div>
                 </div>
-
-                <!-- Contact Form - Right Side -->
                 <div class="col-md-6">
                     <form id="contact-form" class="contact__form needs-validation"
                         action="https://formspree.io/f/xldlbkng" method="POST" novalidate>
                         <div class="row g-3">
-                            <!-- Name Field -->
                             <div class="col-md-6">
                                 <label for="from_name" class="form-label">Your Name <span
                                         class="required">*</span></label>
@@ -142,8 +138,6 @@
                                     placeholder="Enter your name" required />
                                 <div class="invalid-feedback">Please enter your name</div>
                             </div>
-
-                            <!-- Email Field -->
                             <div class="col-md-6">
                                 <label for="from_email" class="form-label">Your Email <span
                                         class="required">*</span></label>
@@ -151,8 +145,6 @@
                                     placeholder="Enter your email" required />
                                 <div class="invalid-feedback">Please enter a valid email address</div>
                             </div>
-
-                            <!-- Phone Field -->
                             <div class="col-md-6">
                                 <label for="phone" class="form-label">Phone Number <span
                                         class="required">*</span></label>
@@ -160,15 +152,11 @@
                                     placeholder="Enter 10-digit number" maxlength="10" pattern="[0-9]{10}" required />
                                 <div class="invalid-feedback">Please enter a valid 10-digit phone number</div>
                             </div>
-
-                            <!-- Company Field -->
                             <div class="col-md-6">
                                 <label for="company" class="form-label">Company Name</label>
                                 <input type="text" id="company" name="company" class="form-control"
                                     placeholder="Company name (optional)" />
                             </div>
-
-                            <!-- Service Dropdown -->
                             <div class="col-12">
                                 <label for="service" class="form-label">Service Required <span
                                         class="required">*</span></label>
@@ -216,7 +204,6 @@
                                         <div class="dropdown-option" onclick="selectOption('other', 'Other')">
                                             <i class="fas fa-ellipsis-h"></i> Other
                                         </div>
-
                                     </div>
                                 </div>
                                 <input type="hidden" id="service" name="service" value="manual" required />
@@ -245,7 +232,195 @@
                 </div>
             </div>
         </div>
-    </section>
+    </section> -->
+
+
+
+        <!-- Main Content -->
+    <main>
+        <!-- Single Contact Section -->
+        <section class="contact py-5">
+            <div class="container">
+                <!-- Section Header -->
+                <div class="text-center mb-5">
+                    <span class="section-title"><span>LET'S WORK TOGETHER</span></span>
+                    <h2 class="section-title">Get In Touch</h2>
+                    <p class="contact-subtitle">
+                        Ready to collaborate on your next QA project? Let's connect and discuss how I can help ensure 
+                        your software meets the highest quality standards through comprehensive testing strategies.
+                    </p>
+                </div>
+
+                <!-- Main Contact Content - Single Row -->
+                <div class="contact-main-wrapper">
+                    <div class="row g-4">
+                        <!-- Left Column - Current Status with Contact Info -->
+                        <div class="col-lg-6">
+                            <div class="availability-expertise-section">
+                                <div class="availability-card">
+                                    <h4 class="section-subtitle">Current Status</h4>
+                                    <div class="status-indicator">
+                                        <span class="status-dot available"></span>
+                                        <span>Available for new projects</span>
+                                    </div>
+                                    <p class="availability-desc">Open to both contract and full-time opportunities in QA testing, automation, and quality assurance consulting.</p>
+                                    
+
+                                    <!-- Compact Contact Info Inside Current Status -->
+                                    <div class="compact-contact-info">
+                                        <h6 class="contact-info-title">Get In Touch</h6>
+                                        <div class="contact-info-items">
+                                            <div class="compact-contact-item">
+                                                <i class="fas fa-map-marker-alt"></i>
+                                                <span>Mumbai, Maharashtra</span>
+                                            </div>
+                                            <div class="compact-contact-item">
+                                                <i class="fas fa-phone"></i>
+                                                <span>+91 [Your Phone]</span>
+                                            </div>
+                                            <div class="compact-contact-item">
+                                                <i class="fas fa-envelope"></i>
+                                                <span>siddhesh.govalkar@email.com</span>
+                                            </div>
+                                        </div>
+                                    </div>
+
+                                    <div class="response-info">
+                                        <h6>Response Time</h6>
+                                        <p>I typically respond within 24 hours during business days.</p>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+
+                        <!-- Right Column - Contact Form -->
+                        <div class="col-lg-6">
+                            <div class="contact-form-section">
+                                <form class="contact__form" novalidate>
+                                    <!-- Title moved inside form -->
+                                    <h4 class="section-subtitle form-title-inside">Send Me a Message</h4>
+                                    
+                                    <div class="row g-3">
+                                        <div class="col-md-6">
+                                            <label for="name" class="form-label">
+                                                Your Name <span class="required">*</span>
+                                            </label>
+                                            <input type="text" class="form-control" id="name" name="name"
+                                                placeholder="Enter your full name" required>
+                                            <div class="invalid-feedback">
+                                                Please enter your name
+                                            </div>
+                                        </div>
+                                        <div class="col-md-6">
+                                            <label for="email" class="form-label">
+                                                Your Email <span class="required">*</span>
+                                            </label>
+                                            <input type="email" class="form-control" id="email" name="email"
+                                                placeholder="your.email@example.com" required>
+                                            <div class="invalid-feedback">
+                                                Please enter a valid email address
+                                            </div>
+                                        </div>
+                                        <div class="col-md-6">
+                                            <label for="phone" class="form-label">
+                                                Phone Number <span class="required">*</span>
+                                            </label>
+                                            <input type="tel" class="form-control" id="phone" name="phone"
+                                                placeholder="+91 98765 43210" pattern="[0-9]{10}" required>
+                                            <div class="invalid-feedback">
+                                                Please enter a valid 10-digit phone number
+                                            </div>
+                                        </div>
+                                        <div class="col-md-6">
+                                            <label for="company" class="form-label">Company Name</label>
+                                            <input type="text" class="form-control" id="company" name="company"
+                                                placeholder="Your company (optional)">
+                                        </div>
+                                        <div class="col-12">
+                                            <label for="service" class="form-label">
+                                                Service Required <span class="required">*</span>
+                                            </label>
+                                            <div class="custom-dropdown" id="service-dropdown">
+                                                <div class="dropdown-selected" id="service-selected">
+                                                    <span class="selected-text placeholder">Select a service</span>
+                                                    <i class="dropdown-arrow fas fa-chevron-down"></i>
+                                                </div>
+                                                <div class="dropdown-options" id="service-options">
+                                                    <div class="dropdown-option" data-value="">
+                                                        <span>Select a service</span>
+                                                    </div>
+                                                    <div class="dropdown-option" data-value="qa-testing">
+                                                        <i class="fas fa-bug"></i>
+                                                        <span>QA Testing</span>
+                                                    </div>
+                                                    <div class="dropdown-option" data-value="automation-testing">
+                                                        <i class="fas fa-robot"></i>
+                                                        <span>Automation Testing</span>
+                                                    </div>
+                                                    <div class="dropdown-option" data-value="performance-testing">
+                                                        <i class="fas fa-tachometer-alt"></i>
+                                                        <span>Performance Testing</span>
+                                                    </div>
+                                                    <div class="dropdown-option" data-value="integration-testing">
+                                                        <i class="fas fa-plug"></i>
+                                                        <span>Integration Testing</span>
+                                                    </div>
+                                                    <div class="dropdown-option" data-value="mobile-testing">
+                                                        <i class="fas fa-mobile-alt"></i>
+                                                        <span>Mobile App Testing</span>
+                                                    </div>
+                                                    <div class="dropdown-option" data-value="ecommerce-testing">
+                                                        <i class="fas fa-shopping-cart"></i>
+                                                        <span>E-commerce Testing</span>
+                                                    </div>
+                                                    <div class="dropdown-option" data-value="security-testing">
+                                                        <i class="fas fa-shield-alt"></i>
+                                                        <span>Security Testing</span>
+                                                    </div>
+                                                    <div class="dropdown-option" data-value="qa-consultation">
+                                                        <i class="fas fa-comments"></i>
+                                                        <span>QA Consultation</span>
+                                                    </div>
+                                                    <div class="dropdown-option" data-value="other">
+                                                        <i class="fas fa-ellipsis-h"></i>
+                                                        <span>Other</span>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                            <input type="hidden" id="service" name="service" required>
+                                            <div class="invalid-feedback">
+                                                Please select a service
+                                            </div>
+                                        </div>
+                                        <div class="col-12">
+                                            <label for="message" class="form-label">
+                                                Message <span class="required">*</span>
+                                            </label>
+                                            <textarea class="form-control" id="message" name="message" rows="4"
+                                                placeholder="Tell me about your project requirements..." maxlength="250"
+                                                required></textarea>
+                                            <div class="char-counter">
+                                                <small><span id="char-count">0</span>/250 characters</small>
+                                            </div>
+                                            <div class="invalid-feedback">
+                                                Please enter your message (max 250 characters)
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="text-center mt-4">
+                                        <button type="submit" class="neon-btn">
+                                            <i class="fas fa-paper-plane me-2"></i>Send Message
+                                        </button>
+                                    </div>
+                                </form>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+    </main>
+
 
     <!-- Footer Section Begin -->
     <footer class="footer">
@@ -325,6 +500,7 @@
         </div>
     </footer>
     <!-- Footer Section End -->
+
     <script>
         // Simple Global Dropdown Functions
         function toggleDropdown() {
