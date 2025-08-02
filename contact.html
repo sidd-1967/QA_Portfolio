@@ -84,7 +84,6 @@
                     </div>
                 </div>
             </div>
-            <!-- Mobile Menu Toggle -->
             <div class="d-lg-none">
                 <div id="mobile-menu-wrap"></div>
             </div>
@@ -92,169 +91,21 @@
     </header>
     <!-- Header End -->
 
-    <!-- CONTACT SECTION -->
-    <!-- <section class="contact">
-        <div class="container">
-            <div class="section-title text-center">
-                <span>Let's Work Together</span>
-                <h2>Get In Touch</h2>
-            </div>
-
-            <div class="row mt-5">
-                <div class="col-md-6">
-                    <div class="contact__list">
-                        <div class="contact__item">
-                            <div class="contact__item__icon"><i class="fas fa-map-marker-alt"></i></div>
-                            <div class="contact__item__text">
-                                <h5>Location</h5>
-                                <p>Mumbai, Maharashtra, India</p>
-                            </div>
-                        </div>
-                        <div class="contact__item">
-                            <div class="contact__item__icon"><i class="fas fa-phone"></i></div>
-                            <div class="contact__item__text">
-                                <h5>Phone</h5>
-                                <p>+91 [Your Phone Number]</p>
-                            </div>
-                        </div>
-                        <div class="contact__item">
-                            <div class="contact__item__icon"><i class="fas fa-envelope"></i></div>
-                            <div class="contact__item__text">
-                                <h5>Email</h5>
-                                <p><a href="mailto:siddhesh.govalkar@email.com"
-                                        class="text-info text-decoration-none">siddhesh.govalkar@email.com</a></p>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-                <div class="col-md-6">
-                    <form id="contact-form" class="contact__form needs-validation"
-                        action="https://formspree.io/f/xldlbkng" method="POST" novalidate>
-                        <div class="row g-3">
-                            <div class="col-md-6">
-                                <label for="from_name" class="form-label">Your Name <span
-                                        class="required">*</span></label>
-                                <input type="text" id="from_name" name="from_name" class="form-control"
-                                    placeholder="Enter your name" required />
-                                <div class="invalid-feedback">Please enter your name</div>
-                            </div>
-                            <div class="col-md-6">
-                                <label for="from_email" class="form-label">Your Email <span
-                                        class="required">*</span></label>
-                                <input type="email" id="from_email" name="email" class="form-control"
-                                    placeholder="Enter your email" required />
-                                <div class="invalid-feedback">Please enter a valid email address</div>
-                            </div>
-                            <div class="col-md-6">
-                                <label for="phone" class="form-label">Phone Number <span
-                                        class="required">*</span></label>
-                                <input type="tel" id="phone" name="phone" class="form-control"
-                                    placeholder="Enter 10-digit number" maxlength="10" pattern="[0-9]{10}" required />
-                                <div class="invalid-feedback">Please enter a valid 10-digit phone number</div>
-                            </div>
-                            <div class="col-md-6">
-                                <label for="company" class="form-label">Company Name</label>
-                                <input type="text" id="company" name="company" class="form-control"
-                                    placeholder="Company name (optional)" />
-                            </div>
-                            <div class="col-12">
-                                <label for="service" class="form-label">Service Required <span
-                                        class="required">*</span></label>
-                                <div class="custom-dropdown" id="service-dropdown">
-                                    <div class="dropdown-selected" onclick="toggleDropdown()">
-                                        <span class="selected-text" id="selected-text">
-                                            <i class="fas fa-hand-pointer"
-                                                style="color: var(--electric-blue); margin-right: 0.5rem;"></i>QA
-                                            Testing
-                                        </span>
-                                        <i class="fas fa-chevron-down dropdown-arrow" id="dropdown-arrow"></i>
-                                    </div>
-                                    <div class="dropdown-options" id="service-options">
-                                        <div class="dropdown-option" onclick="selectOption('manual', 'QA Testing')">
-                                            <i class="fas fa-hand-pointer"></i> QA Testing
-                                        </div>
-                                        <div class="dropdown-option"
-                                            onclick="selectOption('automation', 'Automation Testing')">
-                                            <i class="fas fa-robot"></i> Automation Testing
-                                        </div>
-                                        <div class="dropdown-option"
-                                            onclick="selectOption('performance', 'Performance Testing')">
-                                            <i class="fas fa-tachometer-alt"></i> Performance Testing
-                                        </div>
-                                        <div class="dropdown-option"
-                                            onclick="selectOption('integration', 'Integration Testing')">
-                                            <i class="fas fa-plug"></i> Integration Testing
-                                        </div>
-                                        <div class="dropdown-option"
-                                            onclick="selectOption('mobile', 'Mobile App Testing')">
-                                            <i class="fas fa-mobile-alt"></i> Mobile App Testing
-                                        </div>
-                                        <div class="dropdown-option"
-                                            onclick="selectOption('ecommerce', 'E-commerce Testing')">
-                                            <i class="fas fa-shopping-cart"></i> E-commerce Testing
-                                        </div>
-                                        <div class="dropdown-option"
-                                            onclick="selectOption('security', 'Security Testing')">
-                                            <i class="fas fa-shield-alt"></i> Security Testing
-                                        </div>
-                                        <div class="dropdown-option"
-                                            onclick="selectOption('consultation', 'QA Consultation')">
-                                            <i class="fas fa-comments"></i> QA Consultation
-                                        </div>
-                                        <div class="dropdown-option" onclick="selectOption('other', 'Other')">
-                                            <i class="fas fa-ellipsis-h"></i> Other
-                                        </div>
-                                    </div>
-                                </div>
-                                <input type="hidden" id="service" name="service" value="manual" required />
-                                <div class="invalid-feedback">Please select a service</div>
-                                <div class="col-12">
-                                    <label for="message" class="form-label">Message <span
-                                            class="required">*</span></label>
-                                    <textarea id="message" name="message" rows="4" class="form-control"
-                                        placeholder="Tell me about your project requirements..." maxlength="250"
-                                        required></textarea>
-                                    <div class="char-counter">
-                                        <small class="char-counter-text"><span id="char-count">0</span>/250
-                                            characters</small>
-                                    </div>
-                                    <div class="invalid-feedback">Please enter your message (max 250 characters)</div>
-                                </div>
-                                <div class="col-12 d-flex justify-content-center">
-                                </div>
-                                <div class="col-12">
-                                    <button type="submit" id="submit-btn" class="neon-btn mt-3" disabled>Send
-                                        Message</button>
-                                </div>
-                            </div>
-                        </div>
-                    </form>
-                </div>
-            </div>
-        </div>
-    </section> -->
-
-
-
-        <!-- Main Content -->
+    <!-- Main Content -->
     <main>
-        <!-- Single Contact Section -->
         <section class="contact py-5">
             <div class="container">
-                <!-- Section Header -->
                 <div class="text-center mb-5">
                     <span class="section-title"><span>LET'S WORK TOGETHER</span></span>
                     <h2 class="section-title">Get In Touch</h2>
                     <p class="contact-subtitle">
-                        Ready to collaborate on your next QA project? Let's connect and discuss how I can help ensure 
+                        Ready to collaborate on your next QA project? Let's connect and discuss how I can help ensure
                         your software meets the highest quality standards through comprehensive testing strategies.
                     </p>
                 </div>
 
-                <!-- Main Contact Content - Single Row -->
                 <div class="contact-main-wrapper">
                     <div class="row g-4">
-                        <!-- Left Column - Current Status with Contact Info -->
                         <div class="col-lg-6">
                             <div class="availability-expertise-section">
                                 <div class="availability-card">
@@ -263,24 +114,22 @@
                                         <span class="status-dot available"></span>
                                         <span>Available for new projects</span>
                                     </div>
-                                    <p class="availability-desc">Open to both contract and full-time opportunities in QA testing, automation, and quality assurance consulting.</p>
-                                    
-
-                                    <!-- Compact Contact Info Inside Current Status -->
+                                    <p class="availability-desc">Open to both contract and full-time opportunities in QA
+                                        testing, automation, and quality assurance consulting.</p>
                                     <div class="compact-contact-info">
-                                        <h6 class="contact-info-title">Get In Touch</h6>
                                         <div class="contact-info-items">
                                             <div class="compact-contact-item">
                                                 <i class="fas fa-map-marker-alt"></i>
                                                 <span>Mumbai, Maharashtra</span>
                                             </div>
-                                            <div class="compact-contact-item">
+                                            <div class="compact-contact-item clickable-contact">
                                                 <i class="fas fa-phone"></i>
-                                                <span>+91 [Your Phone]</span>
+                                                <a href="tel:+919876543210">+91 98765 43210</a>
                                             </div>
-                                            <div class="compact-contact-item">
+                                            <div class="compact-contact-item clickable-contact">
                                                 <i class="fas fa-envelope"></i>
-                                                <span>siddhesh.govalkar@email.com</span>
+                                                <a
+                                                    href="mailto:siddhesh.govalkar@email.com">siddhesh.govalkar@email.com</a>
                                             </div>
                                         </div>
                                     </div>
@@ -293,13 +142,11 @@
                             </div>
                         </div>
 
-                        <!-- Right Column - Contact Form -->
                         <div class="col-lg-6">
                             <div class="contact-form-section">
-                                <form class="contact__form" novalidate>
-                                    <!-- Title moved inside form -->
+                                <form class="contact__form" id="contact-form" action="https://formspree.io/f/xldlbkng"
+                                    method="POST" novalidate>
                                     <h4 class="section-subtitle form-title-inside">Send Me a Message</h4>
-                                    
                                     <div class="row g-3">
                                         <div class="col-md-6">
                                             <label for="name" class="form-label">
@@ -341,76 +188,76 @@
                                                 Service Required <span class="required">*</span>
                                             </label>
                                             <div class="custom-dropdown" id="service-dropdown">
-                                                <div class="dropdown-selected" id="service-selected">
-                                                    <span class="selected-text placeholder">Select a service</span>
-                                                    <i class="dropdown-arrow fas fa-chevron-down"></i>
+                                                <div class="dropdown-selected" onclick="toggleDropdown()">
+                                                    <span class="selected-text" id="selected-text">
+                                                        <i class="fas fa-hand-pointer"
+                                                            style="color: var(--electric-blue); margin-right: 0.5rem;"></i>QA
+                                                        Testing
+                                                    </span>
+                                                    <i class="fas fa-chevron-down dropdown-arrow"
+                                                        id="dropdown-arrow"></i>
                                                 </div>
                                                 <div class="dropdown-options" id="service-options">
-                                                    <div class="dropdown-option" data-value="">
-                                                        <span>Select a service</span>
+                                                    <div class="dropdown-option"
+                                                        onclick="selectOption('manual', 'QA Testing')">
+                                                        <i class="fas fa-hand-pointer"></i> QA Testing
                                                     </div>
-                                                    <div class="dropdown-option" data-value="qa-testing">
-                                                        <i class="fas fa-bug"></i>
-                                                        <span>QA Testing</span>
+                                                    <div class="dropdown-option"
+                                                        onclick="selectOption('automation', 'Automation Testing')">
+                                                        <i class="fas fa-robot"></i> Automation Testing
                                                     </div>
-                                                    <div class="dropdown-option" data-value="automation-testing">
-                                                        <i class="fas fa-robot"></i>
-                                                        <span>Automation Testing</span>
+                                                    <div class="dropdown-option"
+                                                        onclick="selectOption('performance', 'Performance Testing')">
+                                                        <i class="fas fa-tachometer-alt"></i> Performance Testing
                                                     </div>
-                                                    <div class="dropdown-option" data-value="performance-testing">
-                                                        <i class="fas fa-tachometer-alt"></i>
-                                                        <span>Performance Testing</span>
+                                                    <div class="dropdown-option"
+                                                        onclick="selectOption('integration', 'Integration Testing')">
+                                                        <i class="fas fa-plug"></i> Integration Testing
                                                     </div>
-                                                    <div class="dropdown-option" data-value="integration-testing">
-                                                        <i class="fas fa-plug"></i>
-                                                        <span>Integration Testing</span>
+                                                    <div class="dropdown-option"
+                                                        onclick="selectOption('mobile', 'Mobile App Testing')">
+                                                        <i class="fas fa-mobile-alt"></i> Mobile App Testing
                                                     </div>
-                                                    <div class="dropdown-option" data-value="mobile-testing">
-                                                        <i class="fas fa-mobile-alt"></i>
-                                                        <span>Mobile App Testing</span>
+                                                    <div class="dropdown-option"
+                                                        onclick="selectOption('ecommerce', 'E-commerce Testing')">
+                                                        <i class="fas fa-shopping-cart"></i> E-commerce Testing
                                                     </div>
-                                                    <div class="dropdown-option" data-value="ecommerce-testing">
-                                                        <i class="fas fa-shopping-cart"></i>
-                                                        <span>E-commerce Testing</span>
+                                                    <div class="dropdown-option"
+                                                        onclick="selectOption('security', 'Security Testing')">
+                                                        <i class="fas fa-shield-alt"></i> Security Testing
                                                     </div>
-                                                    <div class="dropdown-option" data-value="security-testing">
-                                                        <i class="fas fa-shield-alt"></i>
-                                                        <span>Security Testing</span>
+                                                    <div class="dropdown-option"
+                                                        onclick="selectOption('consultation', 'QA Consultation')">
+                                                        <i class="fas fa-comments"></i> QA Consultation
                                                     </div>
-                                                    <div class="dropdown-option" data-value="qa-consultation">
-                                                        <i class="fas fa-comments"></i>
-                                                        <span>QA Consultation</span>
-                                                    </div>
-                                                    <div class="dropdown-option" data-value="other">
-                                                        <i class="fas fa-ellipsis-h"></i>
-                                                        <span>Other</span>
+                                                    <div class="dropdown-option"
+                                                        onclick="selectOption('other', 'Other')">
+                                                        <i class="fas fa-ellipsis-h"></i> Other
                                                     </div>
                                                 </div>
                                             </div>
-                                            <input type="hidden" id="service" name="service" required>
-                                            <div class="invalid-feedback">
-                                                Please select a service
-                                            </div>
+                                            <input type="hidden" id="service" name="service" value="manual" required />
+                                            <div class="invalid-feedback">Please select a service</div>
                                         </div>
                                         <div class="col-12">
                                             <label for="message" class="form-label">
                                                 Message <span class="required">*</span>
                                             </label>
-                                            <textarea class="form-control" id="message" name="message" rows="4"
+                                            <textarea id="message" name="message" rows="4" class="form-control"
                                                 placeholder="Tell me about your project requirements..." maxlength="250"
                                                 required></textarea>
                                             <div class="char-counter">
-                                                <small><span id="char-count">0</span>/250 characters</small>
+                                                <small class="char-counter-text"><span id="char-count">0</span>/250
+                                                    characters</small>
                                             </div>
-                                            <div class="invalid-feedback">
-                                                Please enter your message (max 250 characters)
+                                            <div class="invalid-feedback">Please enter your message (max 250 characters)
                                             </div>
                                         </div>
-                                    </div>
-                                    <div class="text-center mt-4">
-                                        <button type="submit" class="neon-btn">
-                                            <i class="fas fa-paper-plane me-2"></i>Send Message
-                                        </button>
+                                        <div class="col-12 text-center">
+                                            <button type="submit" id="submit-btn" class="neon-btn mt-3" disabled>
+                                                <i class="fas fa-paper-plane me-2"></i>Send Message
+                                            </button>
+                                        </div>
                                     </div>
                                 </form>
                             </div>
@@ -421,67 +268,13 @@
         </section>
     </main>
 
-
     <!-- Footer Section Begin -->
     <footer class="footer">
         <div class="container">
-            <div class="footer__top">
-                <div class="row">
-                    <div class="col-lg-6 col-md-6">
-                        <div class="footer__top__logo">
-                            <a href="./index.html">
-                                <img src="img/logo_one.png" alt="Siddhesh QA" class="footer-logo-image">
-                            </a>
-                        </div>
-                    </div>
-                </div>
-            </div>
-            <div class="footer__option">
-                <div class="row">
-                    <div class="col-lg-4 col-md-6 col-sm-6">
-                        <div class="footer__option__item">
-                            <h5>About</h5>
-                            <p>QA Engineer with 3+ years of experience in manual and automation testing, specializing in
-                                delivering high-quality software solutions.</p>
-                            <a href="./about.html" class="read__more">Read more <span class="arrow_right"></span></a>
-                        </div>
-                    </div>
-                    <div class="col-lg-2 col-md-3 col-sm-3">
-                        <div class="footer__option__item">
-                            <h5>Services</h5>
-                            <ul>
-                                <li><a href="#">Automation Testing</a></li>
-                                <li><a href="#">Manual Testing</a></li>
-                                <li><a href="#">Performance Testing</a></li>
-                                <li><a href="#">API Testing</a></li>
-                            </ul>
-                        </div>
-                    </div>
-                    <div class="col-lg-2 col-md-3 col-sm-3">
-                        <div class="footer__option__item">
-                            <h5>Portfolio</h5>
-                            <ul>
-                                <li><a href="#">Web Applications</a></li>
-                                <li><a href="#">E-commerce</a></li>
-                                <li><a href="#">Financial Services</a></li>
-                                <li><a href="#">Healthcare Apps</a></li>
-                            </ul>
-                        </div>
-                    </div>
-                    <div class="col-lg-4 col-md-12">
-                        <div class="footer__option__item">
-                            <h5>Contact</h5>
-                            <p>Mumbai, Maharashtra, India</p>
-                            <p>Phone: +91 [Your Phone Number]</p>
-                            <p>Email: siddhesh.govalkar@email.com</p>
-                        </div>
-                    </div>
-                </div>
-            </div>
             <div class="footer__copyright">
                 <div class="row align-items-center">
                     <div class="col-lg-6 col-md-6">
-                        <p class="footer__copyright__text">Copyright &copy;
+                        <p class="footer__copyright__text">Copyright ©
                             <script>
                                 document.write(new Date().getFullYear());
                             </script>
@@ -490,9 +283,10 @@
                     </div>
                     <div class="col-lg-6 col-md-6">
                         <div class="footer__copyright__social">
-                            <a href="#" target="_blank"><i class="fab fa-linkedin"></i></a>
-                            <a href="#" target="_blank"><i class="fab fa-github"></i></a>
-                            <a href="mailto:siddhesh.govalkar@email.com"><i class="fas fa-envelope"></i></a>
+                            <a href="#" target="_blank" style="cursor: none;"><i class="fab fa-linkedin"></i></a>
+                            <a href="#" target="_blank" style="cursor: none;"><i class="fab fa-github"></i></a>
+                            <a href="mailto:siddheshgovalkar1967@gmail.com" style="cursor: none;"><i
+                                    class="fas fa-envelope"></i></a>
                         </div>
                     </div>
                 </div>
@@ -502,21 +296,22 @@
     <!-- Footer Section End -->
 
     <script>
-        // Simple Global Dropdown Functions
         function toggleDropdown() {
             const options = document.getElementById('service-options');
             const arrow = document.getElementById('dropdown-arrow');
             const selected = document.querySelector('.dropdown-selected');
 
-            if (options.classList.contains('show')) {
-                options.classList.remove('show');
-                selected.classList.remove('active');
-                arrow.style.transform = 'rotate(0deg)';
-            } else {
-                options.classList.add('show');
-                selected.classList.add('active');
-                arrow.style.transform = 'rotate(180deg)';
-                highlightSelected();
+            if (options && arrow && selected) {
+                if (options.classList.contains('show')) {
+                    options.classList.remove('show');
+                    selected.classList.remove('active');
+                    arrow.style.transform = 'rotate(0deg)';
+                } else {
+                    options.classList.add('show');
+                    selected.classList.add('active');
+                    arrow.style.transform = 'rotate(180deg)';
+                    highlightSelected();
+                }
             }
         }
 
@@ -527,7 +322,8 @@
             const selected = document.querySelector('.dropdown-selected');
             const arrow = document.getElementById('dropdown-arrow');
 
-            // Find the clicked option to get its full HTML (including icon)
+            if (!selectedText || !hiddenInput) return;
+
             const clickedOption = event.target.closest('.dropdown-option');
 
             if (value === '') {
@@ -540,18 +336,18 @@
 
             hiddenInput.value = value;
 
-            // Close dropdown
-            options.classList.remove('show');
-            selected.classList.remove('active');
-            arrow.style.transform = 'rotate(0deg)';
+            if (options && selected && arrow) {
+                options.classList.remove('show');
+                selected.classList.remove('active');
+                arrow.style.transform = 'rotate(0deg)';
+            }
 
-            // Trigger form validation
             checkFormValidity();
         }
 
         function highlightSelected() {
             const hiddenInput = document.getElementById('service');
-            const currentValue = hiddenInput.value;
+            const currentValue = hiddenInput ? hiddenInput.value : '';
             const allOptions = document.querySelectorAll('.dropdown-option');
 
             allOptions.forEach(opt => {
@@ -561,7 +357,8 @@
 
             if (currentValue) {
                 allOptions.forEach(opt => {
-                    if (opt.getAttribute('onclick') && opt.getAttribute('onclick').includes(`'${currentValue}'`)) {
+                    const onclick = opt.getAttribute('onclick');
+                    if (onclick && onclick.includes(`'${currentValue}'`)) {
                         opt.style.backgroundColor = 'rgba(0, 212, 255, 0.2)';
                         opt.style.color = 'var(--primary-blue)';
                     }
@@ -569,14 +366,13 @@
             }
         }
 
-        // Close dropdown when clicking outside
         document.addEventListener('click', function (e) {
             if (!e.target.closest('.custom-dropdown')) {
                 const options = document.getElementById('service-options');
                 const selected = document.querySelector('.dropdown-selected');
                 const arrow = document.getElementById('dropdown-arrow');
 
-                if (options) {
+                if (options && selected && arrow) {
                     options.classList.remove('show');
                     selected.classList.remove('active');
                     arrow.style.transform = 'rotate(0deg)';
@@ -584,106 +380,84 @@
             }
         });
 
-        // Add this to your dropdown initialization
         function setDefaultDropdownValue() {
             const selectedText = document.getElementById('selected-text');
             const hiddenInput = document.getElementById('service');
 
             if (selectedText && hiddenInput) {
-                // Set default to Manual Testing (or whichever is most common)
                 selectedText.innerHTML = '<i class="fas fa-hand-pointer" style="color: var(--electric-blue); margin-right: 0.5rem;"></i>QA Testing';
                 selectedText.classList.remove('placeholder');
                 hiddenInput.value = 'manual';
             }
         }
 
-        // Call this function when page loads
+        function checkFormValidity() {
+            const form = document.getElementById('contact-form');
+            const submitBtn = document.getElementById('submit-btn');
+
+            if (!form || !submitBtn) return;
+
+            const requiredFields = form.querySelectorAll('[required]');
+            let allValid = true;
+
+            requiredFields.forEach(field => {
+                if (!field.value.trim()) {
+                    allValid = false;
+                }
+                if (field.type === 'tel' && field.value.length !== 10) {
+                    allValid = false;
+                }
+                if (field.type === 'email' && !field.checkValidity()) {
+                    allValid = false;
+                }
+            });
+
+            submitBtn.disabled = !allValid;
+        }
+
         document.addEventListener('DOMContentLoaded', function () {
-            setDefaultDropdownValue();
-            checkFormValidity(); // This will enable the submit button
-        });
-
-        // Rest of your form functionality
-        (function () {
-            'use strict';
-
             const form = document.getElementById('contact-form');
             const submitBtn = document.getElementById('submit-btn');
             const messageField = document.getElementById('message');
             const charCount = document.getElementById('char-count');
+            const phoneField = document.getElementById('phone');
 
-            if (form.dataset.listenerAdded) return;
-            form.dataset.listenerAdded = 'true';
+            setDefaultDropdownValue();
 
-            // Character counter
+            if (!form) {
+                console.error('Contact form not found');
+                return;
+            }
+
             if (messageField && charCount) {
                 messageField.addEventListener('input', function () {
                     const currentLength = this.value.length;
                     charCount.textContent = currentLength;
-                    charCount.style.color = currentLength > 250 ? '#ff4f6e' : currentLength > 200 ? '#ffa500' : '#7a9db3';
+
+                    if (currentLength > 250) {
+                        charCount.style.color = '#ff4f6e';
+                    } else if (currentLength > 200) {
+                        charCount.style.color = '#ffa500';
+                    } else {
+                        charCount.style.color = '#7a9db3';
+                    }
+
+                    checkFormValidity();
                 });
             }
 
-            // Phone validation
-            const phoneField = document.getElementById('phone');
             if (phoneField) {
                 phoneField.addEventListener('input', function () {
                     this.value = this.value.replace(/[^0-9]/g, '');
+                    checkFormValidity();
                 });
-            }
-
-            // Form validation
-            window.checkFormValidity = function () {
-                const requiredFields = form.querySelectorAll('[required]');
-                let allValid = true;
-
-                requiredFields.forEach(field => {
-                    if (!field.value.trim()) allValid = false;
-                    if (field.type === 'tel' && field.value.length !== 10) allValid = false;
-                    if (field.type === 'email' && !field.checkValidity()) allValid = false;
-                });
-
-                if (submitBtn) submitBtn.disabled = !allValid;
             }
 
             form.addEventListener('input', checkFormValidity);
             form.addEventListener('change', checkFormValidity);
 
-            // Function to reset dropdown to initial state
-            function resetDropdown() {
-                const selectedText = document.getElementById('selected-text');
-                const hiddenInput = document.getElementById('service');
-                const dropdown = document.getElementById('service-dropdown');
-                const options = document.getElementById('service-options');
-                const selected = document.querySelector('.dropdown-selected');
-                const arrow = document.getElementById('dropdown-arrow');
+            checkFormValidity();
 
-                if (selectedText && hiddenInput) {
-                    // CHANGED: Reset to default value instead of placeholder
-                    selectedText.innerHTML = '<i class="fas fa-hand-pointer" style="color: var(--electric-blue); margin-right: 0.5rem;"></i>QA Testing';
-                    selectedText.classList.remove('placeholder'); // Remove placeholder class
-
-                    // Set default value instead of empty
-                    hiddenInput.value = 'manual';
-
-                    // Remove any validation classes
-                    if (dropdown) {
-                        dropdown.classList.remove('valid', 'invalid');
-                    }
-
-                    // Close dropdown if open
-                    if (options && selected && arrow) {
-                        options.classList.remove('show');
-                        selected.classList.remove('active');
-                        arrow.style.transform = 'rotate(0deg)';
-                    }
-
-                    // Remove touched attribute
-                    hiddenInput.removeAttribute('data-touched');
-                }
-            }
-
-            // Toast function
             function showToast(message, type = 'success') {
                 let container = document.getElementById('toast-container');
                 if (!container) {
@@ -695,7 +469,7 @@
 
                 const toast = document.createElement('div');
                 const bgColor = type === 'success' ? '#00d4ff' : '#ff4f6e';
-                toast.style.cssText = `background: ${bgColor}; color: #000a19; padding: 1rem 1.5rem; border-radius: 0.5rem; margin-top: 0.5rem; box-shadow: 0 4px 12px rgba(0, 0, 0, 0.3); font-family: 'Rajdhani', sans-serif; font-weight: 600; cursor: pointer; max-width: 300px;`;
+                toast.style.cssText = `background: ${bgColor}; color: #000a19; padding: 1rem 1.5rem; border-radius: 0.5rem; margin-top: 0.5rem; box-shadow: 0 4px 12px rgba(0, 0, 0, 0.3); font-family: 'Exo 2', sans-serif; font-weight: 600; cursor: pointer; max-width: 300px;`;
                 toast.innerHTML = `<div style="display: flex; align-items: center; justify-content: space-between;"><span>${message}</span><span style="margin-left: 1rem; font-size: 1.2rem;">&times;</span></div>`;
 
                 container.appendChild(toast);
@@ -703,48 +477,79 @@
                 toast.addEventListener('click', () => toast.remove());
             }
 
-            // Form submission
+            function resetDropdown() {
+                const selectedText = document.getElementById('selected-text');
+                const hiddenInput = document.getElementById('service');
+                const dropdown = document.getElementById('service-dropdown');
+                const options = document.getElementById('service-options');
+                const selected = document.querySelector('.dropdown-selected');
+                const arrow = document.getElementById('dropdown-arrow');
+
+                if (selectedText && hiddenInput) {
+                    selectedText.innerHTML = '<i class="fas fa-hand-pointer" style="color: var(--electric-blue); margin-right: 0.5rem;"></i>QA Testing';
+                    selectedText.classList.remove('placeholder');
+                    hiddenInput.value = 'manual';
+
+                    if (dropdown) {
+                        dropdown.classList.remove('valid', 'invalid');
+                    }
+
+                    if (options && selected && arrow) {
+                        options.classList.remove('show');
+                        selected.classList.remove('active');
+                        arrow.style.transform = 'rotate(0deg)';
+                    }
+
+                    hiddenInput.removeAttribute('data-touched');
+                }
+            }
+
             form.addEventListener('submit', function (event) {
                 event.preventDefault();
+
                 if (!form.checkValidity()) {
                     form.classList.add('was-validated');
                     return;
                 }
 
-                const originalText = submitBtn.textContent;
-                submitBtn.textContent = 'Sending...';
+                const originalText = submitBtn.innerHTML;
+                submitBtn.innerHTML = '<i class="fas fa-spinner fa-spin me-2"></i>Sending...';
                 submitBtn.disabled = true;
+
+                const formData = new FormData(form);
 
                 fetch(form.action, {
                     method: 'POST',
-                    body: new FormData(form),
-                    headers: { 'Accept': 'application/json' }
+                    body: formData,
+                    headers: {
+                        'Accept': 'application/json'
+                    }
                 })
-                    .then(response => response.ok ? response.json().catch(() => ({ ok: true })) : Promise.reject())
+                    .then(response => {
+                        if (response.ok) {
+                            return response.json().catch(() => ({ ok: true }));
+                        } else {
+                            return Promise.reject('Form submission failed');
+                        }
+                    })
                     .then(() => {
                         showToast('✅ Message sent successfully! I\'ll get back to you within 24 hours.', 'success');
                         form.reset();
                         form.classList.remove('was-validated');
                         if (charCount) charCount.textContent = '0';
-
-                        // ADDED: Reset dropdown after successful submission
                         resetDropdown();
-
-                        if (typeof grecaptcha !== 'undefined') {
-                            grecaptcha.reset();
-                        }
                     })
-                    .catch(() => showToast('❌ Failed to send message. Please try again.', 'error'))
+                    .catch(() => {
+                        showToast('❌ Failed to send message. Please try again.', 'error');
+                    })
                     .finally(() => {
                         setTimeout(() => {
-                            submitBtn.textContent = originalText;
+                            submitBtn.innerHTML = originalText;
                             checkFormValidity();
-                        }, 500);
+                        }, 1000);
                     });
             });
-
-            checkFormValidity();
-        })();
+        });
     </script>
 
 </body>
