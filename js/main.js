@@ -788,120 +788,276 @@ let currentProject = null;
 let currentImageIndex = 0;
 let autoScrollInterval = null;
 
-// ALL PROJECT DATA IN ONE PLACE - Easy to maintain!
 const projects = {
+    // CURRENT COMPANY PROJECTS
     1: {
-        // Card display
         image: "img/projects/maanch_logo.png",
         title: "Maanch Engagement Tracker",
-        date: "Jan 2023 - Present",
-        summary: "Led end-to-end automation testing of a retail platform using Selenium and TestNG.",
-        technologies: ["Automation", "TestNG", "Selenium", "Jenkins", "API"],
+        date: "Mar 2024 - Present",
+        summary: "Capture the full breadth of your stewardship work",
+        technologies: ["Analytics Testing", "Dashboard Testing", "Reporting Testing", "Integration Testing", "Performance Testing"],
 
-        // Panel details
-        description: "Led comprehensive end-to-end automation testing for a retail engagement platform. Implemented robust test frameworks using Selenium WebDriver and TestNG, focusing on user interaction tracking, data analytics, and performance optimization.Led comprehensive end-to-end automation testing for a retail engagement platform. Led comprehensive end-to-end automation testing for a retail engagement platform. Led comprehensive end-to-end automation testing for a retail engagement platform. ",
+        description: "Organise your stewardship activities and deliver long-term value to clients, drive positive change in investee companies and mitigate risk with our cloud-based solution.",
         achievements: [
-            "Reduced regression testing time by 50% through comprehensive automation suite",
-            "Achieved 95% UI test coverage across all major user workflows",
-            "Integrated CI/CD pipelines with Jenkins for continuous testing",
-            "Implemented API testing framework reducing manual testing effort by 60%"
+            "Validated analytics accuracy across 15+ engagement metrics",
+            "Tested dashboard performance for real-time data visualization",
+            "Achieved 40% improvement in report generation speed",
+            "Enhanced user experience through comprehensive UI/UX testing"
         ],
         images: [
-            "img/projects/maanch_logo.png",
-            "img/projects/carrental6.webp",
-            "img/projects/bmt.webp",
-            "img/projects/TechnoMarket4.webp"
+            "img/projects/maanchlogo.png",
+            "img/projects/maanchlogo2.webp",
+            "img/projects/maanchlogo3.webp",
+            "img/projects/maanchlogo4.webp",
         ]
     },
 
     2: {
-        image: "img/projects/financial_dashboard.png",
-        title: "Financial Dashboard Testing",
-        date: "May 2022 - Dec 2022",
-        summary: "Executed manual and exploratory test cycles for large financial dashboard, focusing on cross-browser issues.",
-        technologies: ["Manual", "Regression", "Performance", "Cross-browser"],
+        image: "img/projects/worktops_logo.png",
+        title: "House of Worktops",
+        date: "Sep 2023 - Nov 2023",
+        summary: "UK-based custom worktop design and manufacturing platform specializing in premium kitchen surfaces",
+        technologies: ["E-commerce Testing", "Customization Engine", "Material Calculator", "Order Management", "3D Visualization"],
 
-        description: "Executed comprehensive manual and exploratory testing cycles for a large-scale financial dashboard application. Focused on cross-browser compatibility, data accuracy, and user experience optimization.Led comprehensive end-to-end automation testing for a retail engagement platform. Led comprehensive end-to-end automation testing for a retail engagement platform. ",
+        description: "Testing of specialized manufacturing e-commerce platform offering bespoke worktop solutions with advanced customization tools, material selection, and integrated manufacturing workflow management.",
         achievements: [
-            "Identified and reported 5 critical security vulnerabilities before production",
-            "Reduced critical UAT bugs by 75% through thorough pre-production testing",
-            "Improved stakeholder reporting quality with detailed test documentation",
-            "Enhanced cross-browser compatibility across 8 different browser versions"
+            "Validated 3D design customization tools with 95% customer satisfaction",
+            "Tested material calculator ensuring 100% pricing accuracy across premium materials",
+            "Optimized custom order workflow reducing manufacturing errors by 60%",
+            "Enhanced visualization system improving customer decision-making by 45%"
         ],
         images: [
-            "img/projects/maanch_logo.png",
-            "img/projects/carrental6.webp",
-            "img/projects/bmt.webp",
-            "img/projects/TechnoMarket4.webp"
+            "img/projects/howlogo.png",
+            "img/projects/howlogo2.png",
+            "img/projects/howlogo3.png",
+            "img/projects/howlogo4.png"
         ]
     },
 
     3: {
-        image: "img/projects/ecommerce_platform.png",
-        title: "E-commerce Platform Testing",
-        date: "Jun 2021 - Dec 2021",
-        summary: "Comprehensive testing of online shopping platform with focus on payment gateway and user experience.",
-        technologies: ["API", "Security", "Performance", "Mobile"],
+        image: "img/projects/hwgroup_logo.png",
+        title: "HWGroup",
+        date: "Nov 2023 - Jan 2024",
+        summary: "Corporate group management and business intelligence platform",
+        technologies: ["Enterprise Testing", "Business Intelligence", "Multi-tenant Architecture", "Financial Reporting", "Dashboard Testing"],
 
-        description: "Led comprehensive testing efforts for a major e-commerce platform, focusing on payment gateway integration, mobile responsiveness, and security testing.Led comprehensive end-to-end automation testing for a retail engagement platform. Led comprehensive end-to-end automation testing for a retail engagement platform. ",
+        description: "Testing of comprehensive corporate management system handling multiple business units, complex financial reporting, and business intelligence analytics across organizational hierarchies.",
         achievements: [
-            "Tested and validated 15+ payment gateway integrations",
-            "Ensured mobile compatibility across iOS and Android devices",
-            "Identified critical security vulnerabilities in user authentication",
-            "Improved checkout process conversion rate by 25%"
+            "Validated multi-tenant architecture supporting 100+ business units",
+            "Tested financial reporting system ensuring 100% data accuracy across modules",
+            "Optimized BI dashboard performance improving load times by 50%",
+            "Enhanced cross-departmental workflow integration reducing processing delays by 40%"
         ],
         images: [
-            "img/projects/maanch_logo.png",
-            "img/projects/carrental6.webp",
-            "img/projects/bmt.webp",
-            "img/projects/TechnoMarket4.webp"
+            "img/projects/hwgroup_logo.png",
+            "img/projects/hwgroup_logo2.png",
+            "img/projects/hwgroup_logo3.png",
+            "img/projects/hwgroup_logo4.png"
         ]
     },
 
     4: {
-        image: "img/projects/financial_dashboard.png",
-        title: "Financial Dashboard Testing",
-        date: "May 2022 - Dec 2022",
-        summary: "Executed manual and exploratory test cycles for large financial dashboard, focusing on cross-browser issues.",
-        technologies: ["Manual", "Regression", "Performance", "Cross-browser"],
+        image: "img/projects/redpack_logo.png",
+        title: "Redpack",
+        date: "Oct 2023 - Dec 2023",
+        summary: "UK-based logistics and package delivery management platform",
+        technologies: ["Logistics Platform", "GPS Tracking", "Route Optimization", "Delivery Confirmation", "Real-time Updates"],
 
-        description: "Executed comprehensive manual and exploratory testing cycles for a large-scale financial dashboard application. Focused on cross-browser compatibility, data accuracy, and user experience optimization.Led comprehensive end-to-end automation testing for a retail engagement platform. Led comprehensive end-to-end automation testing for a retail engagement platform. Led comprehensive end-to-end automation testing for a retail engagement platform. ",
+        description: "End-to-end testing of comprehensive delivery management system featuring package tracking, route optimization, real-time GPS monitoring, and automated delivery confirmation systems.",
         achievements: [
-            "Identified and reported 5 critical security vulnerabilities before production",
-            "Reduced critical UAT bugs by 75% through thorough pre-production testing",
-            "Improved stakeholder reporting quality with detailed test documentation",
-            "Enhanced cross-browser compatibility across 8 different browser versions"
+            "Validated GPS tracking system achieving 99.7% location accuracy",
+            "Tested route optimization algorithms reducing delivery time by 35%",
+            "Optimized delivery confirmation system achieving 98% success rate",
+            "Enhanced real-time tracking reducing customer inquiries by 50%"
         ],
         images: [
-            "img/projects/maanch_logo.png",
-            "img/projects/carrental6.webp",
-            "img/projects/bmt.webp",
-            "img/projects/TechnoMarket4.webp"
+            "img/projects/redpack_logo.png",
+            "img/projects/redpack_logo2.png",
+            "img/projects/redpack_logo3.png",
+            "img/projects/redpack_logo4.png"
         ]
     },
 
+    // PREVIOUS COMPANY PROJECT
     5: {
-        image: "img/projects/ecommerce_platform.png",
-        title: "E-commerce Platform Testing",
-        date: "Jun 2021 - Dec 2021",
-        summary: "Comprehensive testing of online shopping platform with focus on payment gateway and user experience.",
-        technologies: ["API", "Security", "Performance", "Mobile"],
+        image: "img/projects/dgnote_logo.png",
+        title: "DgNote",
+        date: "Aug 2023 - Oct 2023",
+        summary: "Digital insurance platform specializing in commercial and retail insurance with focus on marine insurance",
+        technologies: ["Insurance Platform", "Claims Processing", "Risk Assessment", "API Integration", "Regulatory Compliance"],
 
-        description: "Led comprehensive testing efforts for a major e-commerce platform, focusing on payment gateway integration, mobile responsiveness, and security testingLed comprehensive end-to-end automation testing for a retail engagement platform. Led comprehensive end-to-end automation testing for a retail engagement platform. Led comprehensive end-to-end automation testing for a retail engagement platform. Led comprehensive end-to-end automation testing for a retail engagement platform. .",
+        description: "Testing of cutting-edge insurance technology platform offering instant quotes, seamless claims processing, and comprehensive risk management. Platform features 24x7 cloud access, UPI/Net Banking integration, and expert team support for commercial insurance needs.",
         achievements: [
-            "Tested and validated 15+ payment gateway integrations",
-            "Ensured mobile compatibility across iOS and Android devices",
-            "Identified critical security vulnerabilities in user authentication",
-            "Improved checkout process conversion rate by 25%"
+            "Validated instant quote generation system with 99.8% accuracy",
+            "Tested claims processing workflow reducing resolution time by 40%",
+            "Ensured regulatory compliance across commercial and retail insurance segments",
+            "Optimized premium calculation engine achieving lowest market rates"
         ],
         images: [
-            "img/projects/maanch_logo.png",
-            "img/projects/carrental6.webp",
-            "img/projects/bmt.webp",
-            "img/projects/TechnoMarket4.webp"
+            "img/projects/dgnote_logo.webp",
+            "img/projects/dgnote_logo2.png",
+            "img/projects/dgnote_logo3.png",
+            "img/projects/dgnote_logo4.png"
+        ]
+    },
+
+    // INTERNSHIP COMPANY PROJECTS
+    6: {
+        image: "img/projects/icici_logo.png",
+        title: "ICICI Careers",
+        date: "Jun 2023 - Aug 2023",
+        summary: "Comprehensive career management platform for one of India's leading banks offering job applications, tracking, and onboarding",
+        technologies: ["Enterprise Career Platform", "Mobile App Testing", "Application Tracking", "Onboarding System", "Notification System"],
+
+        description: "Testing of sophisticated career management system handling recruitment for various banking roles including relationship managers, credit managers, and specialized positions. Platform includes iUniverse mobile app with 100K+ downloads for seamless job application experience.",
+        achievements: [
+            "Validated application processing for 160+ diverse banking job categories",
+            "Tested onboarding facilitation system achieving 95% completion rate",
+            "Optimized mobile app performance supporting 100K+ downloads",
+            "Enhanced notification system ensuring timely candidate communication"
+        ],
+        images: [
+            "img/projects/icici_logo.webp",
+            "img/projects/icici_logo2.png",
+            "img/projects/icici_logo3.png",
+            "img/projects/icici_logo4.png"
+        ]
+    },
+
+    7: {
+        image: "img/projects/bmt_logo.png",
+        title: "BookMyTurf",
+        date: "Jan 2023 - Present",
+        summary: "Cricket and sports facility booking platform connecting ground owners with teams",
+        technologies: ["Mobile Testing", "Payment Gateway", "Location-based Testing", "Cross-platform Testing", "Real-time Booking"],
+
+        description: "Comprehensive testing of sports facility booking application enabling cricket teams to book grounds online with real-time availability, transparent pricing, and seamless reservation management. Platform includes team formation, tournament organization, and coaching slot reservations.",
+        achievements: [
+            "Validated real-time slot availability across 50+ cricket grounds with 99.5% accuracy",
+            "Tested booking flow ensuring frictionless experience for 5K+ app downloads",
+            "Enhanced cross-platform reliability for time-based booking actions",
+            "Optimized payment processing achieving 98% transaction success rate"
+        ],
+        images: [
+            "img/projects/bmt_logo.webp",
+            "img/projects/bmt_logo2.png",
+            "img/projects/bmt_logo3.png",
+            "img/projects/bmt_logo4.png"
+        ]
+    },
+
+    8: {
+        image: "img/projects/hrx_logo.png",
+        title: "HRX Brand",
+        date: "May 2023 - Sep 2023",
+        summary: "Fitness and lifestyle brand by Hrithik Roshan offering sports equipment, nutrition products, and wellness solutions",
+        technologies: ["E-commerce Testing", "Fitness App Testing", "Nutrition Platform", "Brand Integration", "Multi-channel Testing"],
+
+        description: "Comprehensive testing of fitness ecosystem combining e-commerce platform with offline stores and nutrition services. Platform integrates with EatFit for healthy food options and maintains presence across multiple retail channels.",
+        achievements: [
+            "Tested multi-channel integration across online platform and physical stores",
+            "Validated nutrition tracking and fitness goal management with 95% accuracy",
+            "Optimized product recommendation engine improving customer engagement by 50%",
+            "Ensured seamless brand experience across 100+ retail partners nationwide"
+        ],
+        images: [
+            "img/projects/hrx_logo.png",
+            "img/projects/hrx_logo2.png",
+            "img/projects/hrx_logo3.png",
+            "img/projects/hrx_logo4.png"
+        ]
+    },
+
+    9: {
+        image: "img/projects/dogkart_logo.png",
+        title: "DogKart",
+        date: "Mar 2023 - Nov 2023",
+        summary: "India's comprehensive online pet store offering premium pet food, accessories, supplements, and grooming products",
+        technologies: ["E-commerce Testing", "Inventory Management", "Product Catalog", "Mobile Commerce", "Payment Gateway"],
+
+        description: "Extensive testing of pet care marketplace featuring premium brands like Orijen, Acana, and Ruffwear. Platform includes product catalog management, expert consultation services, and comprehensive pet care resources with veterinarian support.",
+        achievements: [
+            "Validated inventory sync across 500+ premium pet products with zero discrepancies",
+            "Tested expert consultation system ensuring accurate veterinary guidance delivery",
+            "Optimized product search and categorization improving user experience by 35%",
+            "Enhanced mobile commerce functionality achieving 40% increase in mobile conversions"
+        ],
+        images: [
+            "img/projects/dogkart_logo.png",
+            "img/projects/dogkart_logo2.png",
+            "img/projects/dogkart_logo3.png",
+            "img/projects/dogkart_logo4.png"
+        ]
+    },
+
+    10: {
+        image: "img/projects/homecliq_logo.png",
+        title: "HomeCliq",
+        date: "Apr 2023 - Oct 2023",
+        summary: "Real estate advisory platform providing comprehensive home buying support from purchase to interior design",
+        technologies: ["PropTech Testing", "Real Estate Integration", "Advisory Platform", "Multi-vendor Testing", "Document Management"],
+
+        description: "Quality assurance for real estate technology platform partnering with premium developers like Godrej, Hiranandani, and Lodha. Services include property advisory, home loan facilitation, and interior design coordination through integrated channel partner network.",
+        achievements: [
+            "Validated integration with 10+ premium real estate developers ensuring seamless data flow",
+            "Tested end-to-end advisory process from property search to final possession",
+            "Achieved 98% accuracy in property matching based on client requirements",
+            "Optimized document management system reducing processing time by 45%"
+        ],
+        images: [
+            "img/projects/homecliq_logo.png",
+            "img/projects/homecliq_dashboard.png",
+            "img/projects/homecliq_search.png",
+            "img/projects/homecliq_advisory.png"
+        ]
+    },
+
+    11: {
+        image: "img/projects/caregiver_logo.png",
+        title: "Caregiver Saathi",
+        date: "Feb 2023 - Dec 2023",
+        summary: "Comprehensive caregiver support and wellness ecosystem for families managing chronic/terminal illnesses",
+        technologies: ["Healthcare Testing", "Privacy Compliance", "Mobile App Testing", "Community Platform", "Content Management"],
+
+        description: "End-to-end quality assurance for holistic caregiver support platform offering workshops, counseling, support groups, learning interventions, and employee well-being programs. Platform serves caregivers navigating terminal illness and chronic conditions with validated content and curated services.",
+        achievements: [
+            "Ensured 100% compliance with healthcare privacy regulations and sensitive data handling",
+            "Validated multi-program functionality across workshops, counseling, and support groups",
+            "Tested community platform supporting 3,587+ followers and growing caregiver network",
+            "Achieved 95% user satisfaction in accessing emotional support and practical resources"
+        ],
+        images: [
+            "img/projects/caregiver_logo.png",
+            "img/projects/caregiver_logo2.png",
+            "img/projects/caregiver_logo3.png",
+            "img/projects/caregiver_logo4.png"
+        ]
+    },
+
+    12: {
+        image: "img/projects/nhrdn_logo.png",
+        title: "National HRD Network",
+        date: "Jul 2023 - Sep 2023",
+        summary: "Professional association platform for HR development through education, training, research, and experience sharing",
+        technologies: ["Learning Management", "Chapter Management", "Event Management", "Member Portal", "Content Delivery"],
+
+        description: "Quality assurance for comprehensive HR professional network managing 30+ chapters with 9,800+ members nationwide. Platform facilitates webinars, seminars, workshops, and knowledge sharing initiatives for HR community development.",
+        achievements: [
+            "Tested chapter coordination system managing 30+ regional chapters efficiently",
+            "Validated member management platform supporting 9,800+ HR professionals",
+            "Optimized event management system handling 100+ annual workshops and seminars",
+            "Enhanced knowledge sharing platform improving resource accessibility by 60%"
+        ],
+        images: [
+            "img/projects/nhrdn_logo.png",
+            "img/projects/nhrdn_logo2.png",
+            "img/projects/nhrdn_logo3.png",
+            "img/projects/nhrdn_logo4.png"
         ]
     }
 };
+
+
 
 // Generate portfolio cards from data
 function createPortfolioCards() {
@@ -944,7 +1100,7 @@ function createPortfolioCards() {
 // Scrollbar width helper
 function getScrollbarWidth() {
     if (window.innerWidth === document.documentElement.clientWidth) {
-        return 0; 
+        return 0;
     }
 
     const outer = document.createElement('div');
@@ -1010,7 +1166,7 @@ function closeProjectPanel() {
         body.style.left = '';
         body.style.right = '';
         body.style.overflow = '';
-        body.style.paddingRight = ''; 
+        body.style.paddingRight = '';
 
         window.scrollTo({
             top: targetScrollPosition,
@@ -1018,7 +1174,7 @@ function closeProjectPanel() {
             behavior: 'instant'
         });
 
-        console.log('Scroll restored to:', window.pageYOffset); 
+        console.log('Scroll restored to:', window.pageYOffset);
 
     }, 50);
 
@@ -1031,7 +1187,7 @@ function clearHoverStates() {
     cards.forEach(card => {
         card.classList.remove('hover');
         card.style.transform = '';
-        card.offsetHeight; 
+        card.offsetHeight;
     });
 
     document.body.style.pointerEvents = 'none';
@@ -1068,7 +1224,7 @@ function setupCarousel(images) {
     }
 
     indicatorsContainer.innerHTML = '';
-    indicatorsContainer.onclick = null; 
+    indicatorsContainer.onclick = null;
 
     images.forEach((img, idx) => {
         const dot = document.createElement('div');
