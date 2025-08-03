@@ -880,7 +880,7 @@ const projects = {
 
     // PREVIOUS COMPANY PROJECT
     5: {
-        image: "img/projects/dgnote_logo.png",
+        image: "img/projects/DgNote_Logo.webp",
         title: "DgNote",
         date: "Aug 2023 - Oct 2023",
         summary: "Digital insurance platform specializing in commercial and retail insurance with focus on marine insurance",
@@ -894,10 +894,10 @@ const projects = {
             "Optimized premium calculation engine achieving lowest market rates"
         ],
         images: [
-            "img/projects/dgnote_logo.webp",
-            "img/projects/dgnote_logo2.png",
-            "img/projects/dgnote_logo3.png",
-            "img/projects/dgnote_logo4.png"
+            "img/projects/DgNote_Logo.webp",
+            "img/projects/Dgnote_Logo2.png",
+            "img/projects/Dgnote_Logo3.png",
+            "img/projects/Dgnote_Logo4.png"
         ]
     },
 
