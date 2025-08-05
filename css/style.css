@@ -4727,9 +4727,25 @@ footer.footer a:hover {
     border-radius: 50%;
     pointer-events: none;
     z-index: 10000;
-    transition: all 0.2s ease;
-    transform: translate(-50%, -50%);
-    box-shadow: 0 0 10px rgba(0, 212, 255, 0.6);
+    
+    transform: translate3d(-50%, -50%, 0);
+    will-change: transform;
+    backface-visibility: hidden;
+    perspective: 1000px;
+    transition: width 0.1s ease, height 0.1s ease;
+    box-shadow: 0 0 8px rgba(0, 212, 255, 0.5);
+    transform-style: preserve-3d;
+}
+
+@supports (-webkit-appearance: none) and (not (-moz-appearance: none)) {
+    .cursor-dot {
+        --x: 0px;
+        --y: 0px;
+        transform: translate3d(var(--x), var(--y), 0) !important;
+        transition: none !important;
+        background: #00d4ff !important; /* Solid color for Chrome */
+        box-shadow: 0 0 4px rgba(0, 212, 255, 0.3) !important;
+    }
 }
 
 .cursor-dot.pointer {

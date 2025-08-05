@@ -1591,3 +1591,76 @@ document.addEventListener('DOMContentLoaded', function () {
     }
 });
 
+// Chrome-specific performance detection and fallback
+// document.addEventListener('DOMContentLoaded', () => {
+//     const isChrome = /Chrome/.test(navigator.userAgent) && !/Edg/.test(navigator.userAgent);
+    
+//     if (isChrome) {
+//         console.log('Chrome detected - Using optimized cursor mode');
+        
+//         // Chrome-specific implementation with minimal DOM manipulation
+//         let cursor = document.querySelector('.cursor-dot');
+//         let isMoving = false;
+        
+//         // Use direct style manipulation instead of classes
+//         document.addEventListener('mousemove', (e) => {
+//             // Use left/top instead of transform for Chrome
+//             cursor.style.left = (e.clientX - 7.5) + 'px';
+//             cursor.style.top = (e.clientY - 7.5) + 'px';
+//         }, { passive: true });
+        
+//     } else {
+//         // Use your existing smooth implementation for other browsers
+//         initializeFullCursor();
+//     }
+// });
+
+// Simplified cursor with Chrome-specific workaround
+document.addEventListener('DOMContentLoaded', () => {
+    const cursor = document.querySelector('.cursor-dot');
+    if (!cursor) return;
+    
+    cursor.style.opacity = '1';
+    
+    const isChrome = /Chrome/.test(navigator.userAgent) && !/Edg/.test(navigator.userAgent);
+    
+    if (isChrome) {
+        console.log('Chrome detected - Using ultra-minimal mode');
+        
+        // Skip requestAnimationFrame - direct updates with throttling
+        let lastUpdate = 0;
+        
+        document.addEventListener('mousemove', (e) => {
+            const now = Date.now();
+            if (now - lastUpdate < 10) return; // 100fps throttle
+            lastUpdate = now;
+            
+            // Use CSS custom properties for Chrome (sometimes faster)
+            cursor.style.setProperty('--x', (e.clientX - 7.5) + 'px');
+            cursor.style.setProperty('--y', (e.clientY - 7.5) + 'px');
+        }, { passive: true });
+        
+    } else {
+        // Keep your existing smooth implementation for other browsers
+        document.addEventListener('mousemove', (e) => {
+            cursor.style.transform = `translate(${e.clientX - 7.5}px, ${e.clientY - 7.5}px)`;
+        });
+        
+        const interactiveElements = 'a, button, input, textarea, select, [role="button"], .btn, .interactive';
+        
+        document.addEventListener('mouseenter', (e) => {
+            if (e.target.matches(interactiveElements)) {
+                cursor.classList.add('pointer');
+            }
+        }, true);
+        
+        document.addEventListener('mouseleave', (e) => {
+            if (e.target.matches(interactiveElements)) {
+                cursor.classList.remove('pointer');
+            }
+        }, true);
+    }
+    
+    document.addEventListener('mouseleave', () => cursor.style.opacity = '0');
+    document.addEventListener('mouseenter', () => cursor.style.opacity = '1');
+});
