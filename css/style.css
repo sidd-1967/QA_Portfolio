@@ -3518,14 +3518,67 @@ ul.mb-0 {
     position: relative;
     height: 220px;
     overflow: hidden;
+    background: linear-gradient(135deg, rgba(0, 17, 34, 0.6), rgba(0, 34, 68, 0.4));
+    border-radius: 15px 15px 0 0;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.card-image-wrapper::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    filter: blur(14px);
+    opacity: 0.3;
+    z-index: 1;
+    border-radius: 15px 15px 0 0;
+    pointer-events: none;
+    background-position: center;
+    background-repeat: no-repeat;
+    background-size: cover;
 }
 
 .card-image {
-    width: 100%;
-    height: 100%;
-    object-fit: fill;
-    transition: transform 0.3s ease;
+    position: relative;
+    max-width: 90%;
+    max-height: 90%;
+    object-fit: contain;
+    object-position: center;
+    z-index: 2;
+    border-radius: 0 0 6px 6px;
+    transition: filter 0.3s ease, transform 0.3s ease;
+    filter: brightness(0.85); 
 }
+
+.portfolio-card::before {
+    display: none !important;
+}
+
+.portfolio-card:hover {
+    transform: translateY(-3px);
+    border-color: var(--primary-blue);
+    box-shadow: 0 0 20px rgba(0, 212, 255, 0.3);
+}
+
+.portfolio-card:hover .card-image {
+    filter: brightness(1.0); 
+    transform: scale(1.05);
+    border-bottom-color: var(--electric-blue);
+}
+
+.portfolio-card a:hover {
+    text-decoration: none !important;
+}
+
+
+
+
+
+
 
 .card-overlay {
     display: none !important;
@@ -3546,6 +3599,7 @@ ul.mb-0 {
     flex-direction: column;
     height: 100%;
     padding: 2.5rem;
+    border-top: 2px solid var(--primary-blue);
 }
 
 .card-header {
@@ -3859,6 +3913,7 @@ body.panel-open {
     -webkit-overflow-scrolling: touch;
     scrollbar-width: thin;
     scrollbar-color: var(--primary-blue) rgba(0, 17, 34, 0.3);
+    border-top: 2px solid var(--primary-blue);
 }
 
 .project-panel .panel-details::-webkit-scrollbar {

@@ -1140,6 +1140,18 @@ function openProjectPanel(projectId) {
 
     setupCarousel(project.images);
 
+    // Reset panel scroll position to top
+    const panelDetailsSection = document.querySelector('.panel-details');
+    if (panelDetailsSection) {
+        panelDetailsSection.scrollTop = 0;
+    }
+
+    // Alternative: Reset entire panel scroll
+    const projectPanel = document.getElementById('project-panel');
+    if (projectPanel) {
+        projectPanel.scrollTop = 0;
+    }
+
     document.documentElement.style.setProperty('--scroll-position', `-${scrollPosition}px`);
     document.body.classList.add('panel-open');
     document.getElementById('project-panel').classList.add('active');
@@ -1156,10 +1168,23 @@ function closeProjectPanel() {
     const body = document.body;
     const targetScrollPosition = scrollPosition;
 
+    // Start closing animation
     document.getElementById('project-panel').classList.remove('active');
     document.getElementById('panel-backdrop').classList.remove('active');
 
+    // Wait for panel to completely slide out, then reset
     setTimeout(() => {
+        // Reset scroll when panel is fully hidden
+        const panelDetailsSection = document.querySelector('.panel-details');
+        if (panelDetailsSection) {
+            panelDetailsSection.scrollTop = 0;
+        }
+
+        const projectPanel = document.getElementById('project-panel');
+        if (projectPanel) {
+            projectPanel.scrollTop = 0;
+        }
+
         body.classList.remove('panel-open');
         body.style.position = '';
         body.style.top = '';
@@ -1176,10 +1201,11 @@ function closeProjectPanel() {
 
         console.log('Scroll restored to:', window.pageYOffset);
 
-    }, 50);
+    }, 500); // Wait for full slide-out animation 
 
     currentProject = null;
 }
+
 
 // Function to clear stuck hover effects
 function clearHoverStates() {
