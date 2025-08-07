@@ -1,5 +1,3 @@
-// QA Portfolio Specific JavaScript
-
 // Document ready function - consolidating all jQuery code
 $(document).ready(function () {
 
@@ -1591,30 +1589,6 @@ document.addEventListener('DOMContentLoaded', function () {
     }
 });
 
-// Chrome-specific performance detection and fallback
-// document.addEventListener('DOMContentLoaded', () => {
-//     const isChrome = /Chrome/.test(navigator.userAgent) && !/Edg/.test(navigator.userAgent);
-    
-//     if (isChrome) {
-//         console.log('Chrome detected - Using optimized cursor mode');
-        
-//         // Chrome-specific implementation with minimal DOM manipulation
-//         let cursor = document.querySelector('.cursor-dot');
-//         let isMoving = false;
-        
-//         // Use direct style manipulation instead of classes
-//         document.addEventListener('mousemove', (e) => {
-//             // Use left/top instead of transform for Chrome
-//             cursor.style.left = (e.clientX - 7.5) + 'px';
-//             cursor.style.top = (e.clientY - 7.5) + 'px';
-//         }, { passive: true });
-        
-//     } else {
-//         // Use your existing smooth implementation for other browsers
-//         initializeFullCursor();
-//     }
-// });
-
 // Simplified cursor with Chrome-specific workaround
 document.addEventListener('DOMContentLoaded', () => {
     const cursor = document.querySelector('.cursor-dot');
@@ -1663,4 +1637,53 @@ document.addEventListener('DOMContentLoaded', () => {
     
     document.addEventListener('mouseleave', () => cursor.style.opacity = '0');
     document.addEventListener('mouseenter', () => cursor.style.opacity = '1');
+});
+
+
+// Mobile Menu Toggle Functionality
+document.addEventListener('DOMContentLoaded', () => {
+    const hamburgerBtn = document.getElementById('hamburger-btn');
+    const mobileOverlay = document.getElementById('mobile-overlay');
+    const mobileNavLinks = document.querySelectorAll('.mobile-nav-link');
+    
+    // Toggle mobile menu
+    hamburgerBtn.addEventListener('click', () => {
+        hamburgerBtn.classList.toggle('active');
+        mobileOverlay.classList.toggle('active');
+        
+        // Prevent body scroll when menu is open
+        if (mobileOverlay.classList.contains('active')) {
+            document.body.style.overflow = 'hidden';
+        } else {
+            document.body.style.overflow = '';
+        }
+    });
+    
+    // Close menu when clicking on overlay
+    mobileOverlay.addEventListener('click', (e) => {
+        if (e.target === mobileOverlay) {
+            closeMenu();
+        }
+    });
+    
+    // Close menu when clicking on nav links
+    mobileNavLinks.forEach(link => {
+        link.addEventListener('click', () => {
+            closeMenu();
+        });
+    });
+    
+    // Close menu function
+    function closeMenu() {
+        hamburgerBtn.classList.remove('active');
+        mobileOverlay.classList.remove('active');
+        document.body.style.overflow = '';
+    }
+    
+    // Close menu on ESC key
+    document.addEventListener('keydown', (e) => {
+        if (e.key === 'Escape' && mobileOverlay.classList.contains('active')) {
+            closeMenu();
+        }
+    });
 });
