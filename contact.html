@@ -60,17 +60,20 @@
     <script src="https://cdnjs.cloudflare.com/ajax/libs/SlickNav/1.0.10/jquery.slicknav.min.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/OwlCarousel2/2.3.4/owl.carousel.min.js"></script>
     <script src="https://code.jquery.com/ui/1.13.2/jquery-ui.min.js"></script>
+    <script>
+        window.onRecaptchaLoad = function () {
+            console.log('reCAPTCHA loaded successfully');
+        };
+    </script>
+    <script src="https://www.google.com/recaptcha/api.js?render=6Le84aYrAAAAAFy9eNfTE7xDiaIX48z10286hgIC&onload=onRecaptchaLoad" async defer></script>
     <script src="js/main.js"></script>
 
 </head>
 
 <body>
-    <!-- Page Preloder -->
     <div id="preloder">
         <div class="loader"></div>
     </div>
-
-    <!-- Header Section Begin -->
     <header class="header">
         <div class="container">
             <div class="row align-items-center">
@@ -131,9 +134,6 @@
             </div>
         </div>
     </header>
-    <!-- Header End -->
-
-    <!-- Main Content -->
     <main>
         <section class="contact py-5">
             <div class="container">
@@ -145,7 +145,6 @@
                         your software meets the highest quality standards through comprehensive testing strategies.
                     </p>
                 </div>
-
                 <div class="contact-main-wrapper">
                     <div class="row g-4">
                         <div class="col-lg-6">
@@ -176,7 +175,6 @@
                                             </div>
                                         </div>
                                     </div>
-
                                     <div class="response-info">
                                         <h6>Response Time</h6>
                                         <p>I typically respond within 24 hours during business days.</p>
@@ -184,7 +182,6 @@
                                 </div>
                             </div>
                         </div>
-
                         <div class="col-lg-6">
                             <div class="contact-form-section">
                                 <form class="contact__form" id="contact-form" action="https://formspree.io/f/xldlbkng"
@@ -302,8 +299,6 @@
             </div>
         </section>
     </main>
-
-    <!-- Footer Section Begin -->
     <footer class="footer">
         <div class="container">
             <div class="footer__copyright">
@@ -330,9 +325,248 @@
             </div>
         </div>
     </footer>
-    <!-- Footer Section End -->
-
     <script>
+        // Global variables
+        let recaptchaToken = null;
+        let recaptchaLoaded = false;
+
+        // Safe reCAPTCHA execution function
+        function safeRecaptchaExecute() {
+            if (typeof grecaptcha !== 'undefined' && grecaptcha.ready) {
+                grecaptcha.ready(function () {
+                    grecaptcha.execute('6Le84aYrAAAAAFy9eNfTE7xDiaIX48z10286hgIC', { action: 'contact_form' }).then(function (token) {
+                        recaptchaToken = token;
+                        recaptchaLoaded = true;
+                        checkFormValidity();
+                    }).catch(function (error) {
+                        recaptchaToken = null;
+                        recaptchaLoaded = false;
+                    });
+                });
+            } else {
+                setTimeout(safeRecaptchaExecute, 1000);
+            }
+        }
+
+        // Callback when reCAPTCHA loads
+        window.onRecaptchaLoad = function () {
+            recaptchaLoaded = true;
+            safeRecaptchaExecute();
+        };
+
+        // Initialize when DOM loads
+        document.addEventListener('DOMContentLoaded', function () {
+
+            // Initialize form
+            initializeForm();
+
+            // Try to generate token (with delay to ensure script loads)
+            setTimeout(function () {
+                if (!recaptchaToken) {
+                    safeRecaptchaExecute();
+                }
+            }, 2000);
+
+            // Regenerate token every 100 seconds
+            setInterval(function () {
+                if (recaptchaLoaded) {
+                    safeRecaptchaExecute();
+                }
+            }, 100000);
+        });
+
+        function generateRecaptchaToken() {
+            safeRecaptchaExecute();
+        }
+
+        function initializeForm() {
+            const form = document.getElementById('contact-form');
+            const submitBtn = document.getElementById('submit-btn');
+            const messageField = document.getElementById('message');
+            const charCount = document.getElementById('char-count');
+            const phoneField = document.getElementById('phone');
+
+            setDefaultDropdownValue();
+
+            if (!form) {
+                return;
+            }
+
+            // Character counter for message field
+            if (messageField && charCount) {
+                messageField.addEventListener('input', function () {
+                    const currentLength = this.value.length;
+                    charCount.textContent = currentLength;
+
+                    if (currentLength > 250) {
+                        charCount.style.color = '#ff4f6e';
+                    } else if (currentLength > 200) {
+                        charCount.style.color = '#ffa500';
+                    } else {
+                        charCount.style.color = '#7a9db3';
+                    }
+                    checkFormValidity();
+                });
+            }
+
+            // Phone field validation
+            if (phoneField) {
+                phoneField.addEventListener('input', function () {
+                    this.value = this.value.replace(/[^0-9]/g, '');
+                    checkFormValidity();
+                });
+            }
+
+            // Form validation listeners
+            form.addEventListener('input', checkFormValidity);
+            form.addEventListener('change', checkFormValidity);
+
+            // Initial form check with delay
+            setTimeout(checkFormValidity, 3000);
+
+            // Form submission with reCAPTCHA v3
+            form.addEventListener('submit', function (event) {
+                event.preventDefault();
+
+                if (!form.checkValidity()) {
+                    form.classList.add('was-validated');
+                    showToast('❌ Please fill in all required fields correctly.', 'error');
+                    return;
+                }
+
+                // Generate fresh token for submission
+                if (typeof grecaptcha !== 'undefined' && grecaptcha.ready) {
+                    grecaptcha.ready(function () {
+                        grecaptcha.execute('6Le84aYrAAAAAFy9eNfTE7xDiaIX48z10286hgIC', { action: 'contact_form_submit' }).then(function (token) {
+                            submitFormWithToken(token);
+                        });
+                    });
+                } else {
+                    showToast('❌ Something went wrong. Please try again.', 'error');
+                }
+            });
+        }
+
+        function submitFormWithToken(token) {
+            const form = document.getElementById('contact-form');
+            const submitBtn = document.getElementById('submit-btn');
+
+            if (!submitBtn) return;
+
+            const originalText = submitBtn.innerHTML;
+            submitBtn.innerHTML = '<i class="fas fa-spinner fa-spin me-2"></i>Sending...';
+            submitBtn.disabled = true;
+
+            const formData = new FormData(form);
+
+            // Add reCAPTCHA token to form data
+            formData.append('g-recaptcha-response', token);
+            formData.append('recaptcha-action', 'contact_form_submit');
+
+            // Submit form
+            fetch(form.action, {
+                method: 'POST',
+                body: formData,
+                headers: {
+                    'Accept': 'application/json'
+                }
+            })
+                .then(response => {
+                    if (response.ok) {
+                        return response.json().catch(() => ({ ok: true }));
+                    } else {
+                        return Promise.reject('Form submission failed');
+                    }
+                })
+                .then(() => {
+                    showToast('✅ Message sent successfully! I\'ll get back to you within 24 hours.', 'success');
+                    form.reset();
+                    form.classList.remove('was-validated');
+                    if (document.getElementById('char-count')) {
+                        document.getElementById('char-count').textContent = '0';
+                    }
+                    resetDropdown();
+
+                    // Generate new token after successful submission
+                    generateRecaptchaToken();
+                })
+                .catch((error) => {
+                    console.error('Form submission error:', error);
+                    showToast('❌ Failed to send message. Please try again.', 'error');
+                })
+                .finally(() => {
+                    setTimeout(() => {
+                        submitBtn.innerHTML = originalText;
+                        checkFormValidity();
+                    }, 1000);
+                });
+        }
+
+        function checkFormValidity() {
+            const form = document.getElementById('contact-form');
+            const submitBtn = document.getElementById('submit-btn');
+
+            if (!form || !submitBtn) return;
+
+            const requiredFields = form.querySelectorAll('[required]');
+            let allValid = true;
+
+            requiredFields.forEach(field => {
+                if (!field.value.trim()) {
+                    allValid = false;
+                }
+                if (field.type === 'tel' && field.value.length !== 10) {
+                    allValid = false;
+                }
+                if (field.type === 'email' && !field.checkValidity()) {
+                    allValid = false;
+                }
+            });
+
+            // Check if we have a valid reCAPTCHA token
+            const hasValidToken = recaptchaToken !== null && recaptchaToken !== undefined && recaptchaToken !== '';
+
+            // Enable button if form is valid and either has token or reCAPTCHA is loaded
+            const shouldEnable = allValid && (hasValidToken || recaptchaLoaded);
+            submitBtn.disabled = !shouldEnable;
+
+            // Visual feedback for reCAPTCHA status
+            if (!recaptchaLoaded) {
+                submitBtn.style.opacity = '0.6';
+                submitBtn.title = 'Loading security verification...';
+            } else if (!hasValidToken) {
+                submitBtn.style.opacity = '0.7';
+                submitBtn.title = 'Generating security token...';
+            } else if (allValid) {
+                submitBtn.style.opacity = '1';
+                submitBtn.title = 'Send your message';
+            } else {
+                submitBtn.style.opacity = '0.6';
+                submitBtn.title = 'Please fill all required fields';
+            }
+        }
+
+        // Toast notification function
+        function showToast(message, type = 'success') {
+            let container = document.getElementById('toast-container');
+            if (!container) {
+                container = document.createElement('div');
+                container.id = 'toast-container';
+                container.style.cssText = 'position: fixed; bottom: 20px; right: 20px; z-index: 9999;';
+                document.body.appendChild(container);
+            }
+
+            const toast = document.createElement('div');
+            const bgColor = type === 'success' ? '#00d4ff' : '#ff4f6e';
+            toast.style.cssText = `background: ${bgColor}; color: #000a19; padding: 1rem 1.5rem; border-radius: 0.5rem; margin-top: 0.5rem; box-shadow: 0 4px 12px rgba(0, 0, 0, 0.3); font-family: 'Exo 2', sans-serif; font-weight: 600; cursor: pointer; max-width: 300px; animation: slideIn 0.3s ease;`;
+            toast.innerHTML = `<div style="display: flex; align-items: center; justify-content: space-between;"><span>${message}</span><span style="margin-left: 1rem; font-size: 1.2rem;">&times;</span></div>`;
+
+            container.appendChild(toast);
+            setTimeout(() => toast.remove(), 7000);
+            toast.addEventListener('click', () => toast.remove());
+        }
+
+        // Dropdown functions
         function toggleDropdown() {
             const options = document.getElementById('service-options');
             const arrow = document.getElementById('dropdown-arrow');
@@ -403,6 +637,45 @@
             }
         }
 
+        function setDefaultDropdownValue() {
+            const selectedText = document.getElementById('selected-text');
+            const hiddenInput = document.getElementById('service');
+
+            if (selectedText && hiddenInput) {
+                selectedText.innerHTML = '<i class="fas fa-hand-pointer" style="color: var(--electric-blue); margin-right: 0.5rem;"></i>QA Testing';
+                selectedText.classList.remove('placeholder');
+                hiddenInput.value = 'manual';
+            }
+        }
+
+        function resetDropdown() {
+            const selectedText = document.getElementById('selected-text');
+            const hiddenInput = document.getElementById('service');
+            const dropdown = document.getElementById('service-dropdown');
+            const options = document.getElementById('service-options');
+            const selected = document.querySelector('.dropdown-selected');
+            const arrow = document.getElementById('dropdown-arrow');
+
+            if (selectedText && hiddenInput) {
+                selectedText.innerHTML = '<i class="fas fa-hand-pointer" style="color: var(--electric-blue); margin-right: 0.5rem;"></i>QA Testing';
+                selectedText.classList.remove('placeholder');
+                hiddenInput.value = 'manual';
+
+                if (dropdown) {
+                    dropdown.classList.remove('valid', 'invalid');
+                }
+
+                if (options && selected && arrow) {
+                    options.classList.remove('show');
+                    selected.classList.remove('active');
+                    arrow.style.transform = 'rotate(0deg)';
+                }
+
+                hiddenInput.removeAttribute('data-touched');
+            }
+        }
+
+        // Close dropdown when clicking outside
         document.addEventListener('click', function (e) {
             if (!e.target.closest('.custom-dropdown')) {
                 const options = document.getElementById('service-options');
@@ -416,178 +689,6 @@
                 }
             }
         });
-
-        function setDefaultDropdownValue() {
-            const selectedText = document.getElementById('selected-text');
-            const hiddenInput = document.getElementById('service');
-
-            if (selectedText && hiddenInput) {
-                selectedText.innerHTML = '<i class="fas fa-hand-pointer" style="color: var(--electric-blue); margin-right: 0.5rem;"></i>QA Testing';
-                selectedText.classList.remove('placeholder');
-                hiddenInput.value = 'manual';
-            }
-        }
-
-        function checkFormValidity() {
-            const form = document.getElementById('contact-form');
-            const submitBtn = document.getElementById('submit-btn');
-
-            if (!form || !submitBtn) return;
-
-            const requiredFields = form.querySelectorAll('[required]');
-            let allValid = true;
-
-            requiredFields.forEach(field => {
-                if (!field.value.trim()) {
-                    allValid = false;
-                }
-                if (field.type === 'tel' && field.value.length !== 10) {
-                    allValid = false;
-                }
-                if (field.type === 'email' && !field.checkValidity()) {
-                    allValid = false;
-                }
-            });
-
-            submitBtn.disabled = !allValid;
-        }
-
-        document.addEventListener('DOMContentLoaded', function () {
-            const form = document.getElementById('contact-form');
-            const submitBtn = document.getElementById('submit-btn');
-            const messageField = document.getElementById('message');
-            const charCount = document.getElementById('char-count');
-            const phoneField = document.getElementById('phone');
-
-            setDefaultDropdownValue();
-
-            if (!form) {
-                console.error('Contact form not found');
-                return;
-            }
-
-            if (messageField && charCount) {
-                messageField.addEventListener('input', function () {
-                    const currentLength = this.value.length;
-                    charCount.textContent = currentLength;
-
-                    if (currentLength > 250) {
-                        charCount.style.color = '#ff4f6e';
-                    } else if (currentLength > 200) {
-                        charCount.style.color = '#ffa500';
-                    } else {
-                        charCount.style.color = '#7a9db3';
-                    }
-
-                    checkFormValidity();
-                });
-            }
-
-            if (phoneField) {
-                phoneField.addEventListener('input', function () {
-                    this.value = this.value.replace(/[^0-9]/g, '');
-                    checkFormValidity();
-                });
-            }
-
-            form.addEventListener('input', checkFormValidity);
-            form.addEventListener('change', checkFormValidity);
-
-            checkFormValidity();
-
-            function showToast(message, type = 'success') {
-                let container = document.getElementById('toast-container');
-                if (!container) {
-                    container = document.createElement('div');
-                    container.id = 'toast-container';
-                    container.style.cssText = 'position: fixed; bottom: 20px; right: 20px; z-index: 9999;';
-                    document.body.appendChild(container);
-                }
-
-                const toast = document.createElement('div');
-                const bgColor = type === 'success' ? '#00d4ff' : '#ff4f6e';
-                toast.style.cssText = `background: ${bgColor}; color: #000a19; padding: 1rem 1.5rem; border-radius: 0.5rem; margin-top: 0.5rem; box-shadow: 0 4px 12px rgba(0, 0, 0, 0.3); font-family: 'Exo 2', sans-serif; font-weight: 600; cursor: pointer; max-width: 300px;`;
-                toast.innerHTML = `<div style="display: flex; align-items: center; justify-content: space-between;"><span>${message}</span><span style="margin-left: 1rem; font-size: 1.2rem;">&times;</span></div>`;
-
-                container.appendChild(toast);
-                setTimeout(() => toast.remove(), 7000);
-                toast.addEventListener('click', () => toast.remove());
-            }
-
-            function resetDropdown() {
-                const selectedText = document.getElementById('selected-text');
-                const hiddenInput = document.getElementById('service');
-                const dropdown = document.getElementById('service-dropdown');
-                const options = document.getElementById('service-options');
-                const selected = document.querySelector('.dropdown-selected');
-                const arrow = document.getElementById('dropdown-arrow');
-
-                if (selectedText && hiddenInput) {
-                    selectedText.innerHTML = '<i class="fas fa-hand-pointer" style="color: var(--electric-blue); margin-right: 0.5rem;"></i>QA Testing';
-                    selectedText.classList.remove('placeholder');
-                    hiddenInput.value = 'manual';
-
-                    if (dropdown) {
-                        dropdown.classList.remove('valid', 'invalid');
-                    }
-
-                    if (options && selected && arrow) {
-                        options.classList.remove('show');
-                        selected.classList.remove('active');
-                        arrow.style.transform = 'rotate(0deg)';
-                    }
-
-                    hiddenInput.removeAttribute('data-touched');
-                }
-            }
-
-            form.addEventListener('submit', function (event) {
-                event.preventDefault();
-
-                if (!form.checkValidity()) {
-                    form.classList.add('was-validated');
-                    return;
-                }
-
-                const originalText = submitBtn.innerHTML;
-                submitBtn.innerHTML = '<i class="fas fa-spinner fa-spin me-2"></i>Sending...';
-                submitBtn.disabled = true;
-
-                const formData = new FormData(form);
-
-                fetch(form.action, {
-                    method: 'POST',
-                    body: formData,
-                    headers: {
-                        'Accept': 'application/json'
-                    }
-                })
-                    .then(response => {
-                        if (response.ok) {
-                            return response.json().catch(() => ({ ok: true }));
-                        } else {
-                            return Promise.reject('Form submission failed');
-                        }
-                    })
-                    .then(() => {
-                        showToast('✅ Message sent successfully! I\'ll get back to you within 24 hours.', 'success');
-                        form.reset();
-                        form.classList.remove('was-validated');
-                        if (charCount) charCount.textContent = '0';
-                        resetDropdown();
-                    })
-                    .catch(() => {
-                        showToast('❌ Failed to send message. Please try again.', 'error');
-                    })
-                    .finally(() => {
-                        setTimeout(() => {
-                            submitBtn.innerHTML = originalText;
-                            checkFormValidity();
-                        }, 1000);
-                    });
-            });
-        });
     </script>
 </body>
-
 </html>

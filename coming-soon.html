@@ -22,21 +22,18 @@
             <div class="logo">
                 <h1>SIDDHESH<span class="highlight">.QA</span></h1>
             </div>
-
             <div class="mobile-content">
                 <div class="message">
                     <h2>Mobile/Tablet Experience Coming Soon</h2>
                     <p class="sub-text">Please visit on desktop for the full portfolio experience</p>
                 </div>
             </div>
-
             <div class="desktop-content">
                 <div class="message">
                     <h2>Redirecting to Desktop Portfolio...</h2>
                     <p class="sub-text">If not redirected automatically, <a href="index.html">click here</a></p>
                 </div>
             </div>
-
             <div class="footer">
                 <p>Copyright &copy;
                     <script>document.write(new Date().getFullYear());</script> Siddhesh D. Govalkar - QA Engineer
@@ -45,7 +42,6 @@
             </div>
         </div>
     </div>
-
     <script>
         function autoRedirect() {
             const screenWidth = window.innerWidth;
@@ -57,9 +53,7 @@
                 console.log('Mobile/tablet detected at ' + screenWidth + 'px');
             }
         }
-
         autoRedirect();
-
         let resizeTimer;
         window.addEventListener('resize', function () {
             clearTimeout(resizeTimer);
@@ -67,5 +61,4 @@
         });
     </script>
 </body>
-
 </html>
