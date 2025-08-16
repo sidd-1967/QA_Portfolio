@@ -378,277 +378,7 @@ $(document).ready(function () {
     // Initialize matrix effect
     matrixEffect();
 
-    // Enhanced Custom Cursor with Trail Effect
-    const CustomCursor = {
-        delay: 8,
-        _x: 0,
-        _y: 0,
-        endX: window.innerWidth / 2,
-        endY: window.innerHeight / 2,
-        cursorVisible: true,
-        cursorEnlarged: false,
-        isClicking: false, // Added click state tracking
-        $dot: null,
-        $outline: null,
-
-        init: function () {
-            if (window.innerWidth <= 768) return;
-
-            $('body').css('cursor', 'none');
-            $('a, button, .clickable').css('cursor', 'none');
-
-            this.createCursorElements();
-            this.setupEventListeners();
-            this.animateCursor();
-        },
-
-        createCursorElements: function () {
-            $('.cursor-dot, .cursor-dot-outline').remove();
-
-            this.$dot = $('<div class="cursor-dot"></div>');
-            this.$dot.css({
-                position: 'fixed',
-                top: '0',
-                left: '0',
-                width: '8px',
-                height: '8px',
-                background: 'var(--primary-blue)',
-                borderRadius: '50%',
-                pointerEvents: 'none',
-                zIndex: '9999',
-                boxShadow: '0 0 10px var(--primary-blue), 0 0 20px var(--primary-blue)',
-                transition: 'all 0.1s ease-out', // Changed to 'all' for smoother transitions
-                opacity: '0'
-            });
-
-            this.$outline = $('<div class="cursor-dot-outline"></div>');
-            this.$outline.css({
-                position: 'fixed',
-                top: '0',
-                left: '0',
-                width: '40px',
-                height: '40px',
-                border: '2px solid rgba(0, 212, 255, 0.5)',
-                borderRadius: '50%',
-                pointerEvents: 'none',
-                zIndex: '9998',
-                transition: 'all 0.1s ease-out', // Faster transition for click responsiveness
-                opacity: '0'
-            });
-
-            $('body').append(this.$dot).append(this.$outline);
-        },
-
-        createTrail: function (x, y) {
-            if (Math.random() > 0.7) {
-                const trail = $('<div class="cursor-trail"></div>');
-                trail.css({
-                    position: 'fixed',
-                    left: x - 2 + 'px',
-                    top: y - 2 + 'px',
-                    width: '4px',
-                    height: '4px',
-                    background: 'var(--primary-blue)',
-                    borderRadius: '50%',
-                    pointerEvents: 'none',
-                    zIndex: '9997',
-                    opacity: '0.7'
-                });
-                $('body').append(trail);
-
-                setTimeout(() => trail.remove(), 500);
-            }
-        },
-
-        setupEventListeners: function () {
-            const self = this;
-
-            $(document).on('mousemove', function (e) {
-                self.cursorVisible = true;
-                self.endX = e.clientX;
-                self.endY = e.clientY;
-                self.$dot.css('opacity', '1');
-                self.$outline.css('opacity', '1');
-
-                // Create trail effect
-                self.createTrail(e.clientX, e.clientY);
-            });
-
-            $(document).on('mouseenter', function () {
-                self.cursorVisible = true;
-                self.$dot.css('opacity', '1');
-                self.$outline.css('opacity', '1');
-            });
-
-            $(document).on('mouseleave', function () {
-                self.cursorVisible = false;
-                self.$dot.css('opacity', '0');
-                self.$outline.css('opacity', '0');
-            });
-
-            // Hover effects for interactive elements
-            $('a, button, .btn-primary, .btn-secondary, .services__item, .tool__category, .counter__item').on({
-                mouseenter: function () {
-                    if (!self.isClicking) { // Only apply hover effects if not clicking
-                        self.cursorEnlarged = true;
-                        self.$dot.css({
-                            width: '12px',
-                            height: '12px',
-                            background: '#00d4ff',
-                            boxShadow: '0 0 15px #00d4ff, 0 0 30px #00d4ff'
-                        });
-                        self.$outline.css({
-                            width: '50px',
-                            height: '50px',
-                            borderColor: '#00d4ff',
-                            borderWidth: '3px'
-                        });
-                    }
-                },
-                mouseleave: function () {
-                    if (!self.isClicking) { // Only reset if not clicking
-                        self.cursorEnlarged = false;
-                        self.$dot.css({
-                            width: '8px',
-                            height: '8px',
-                            background: 'var(--primary-blue)',
-                            boxShadow: '0 0 10px var(--primary-blue), 0 0 20px var(--primary-blue)'
-                        });
-                        self.$outline.css({
-                            width: '40px',
-                            height: '40px',
-                            borderColor: 'rgba(0, 212, 255, 0.5)',
-                            borderWidth: '2px'
-                        });
-                    }
-                }
-            });
-
-            // Special hover effects for logos
-            $('.timeline-logo, .header__logo').on({
-                mouseenter: function () {
-                    if (!self.isClicking) {
-                        self.$dot.css({
-                            background: '#00d4ff',
-                            boxShadow: '0 0 15px #00d4ff, 0 0 30px #00d4ff'
-                        });
-                        self.$outline.css({
-                            borderColor: '#00d4ff'
-                        });
-                    }
-                },
-                mouseleave: function () {
-                    if (!self.isClicking) {
-                        self.$dot.css({
-                            background: 'var(--primary-blue)',
-                            boxShadow: '0 0 10px var(--primary-blue), 0 0 20px var(--primary-blue)'
-                        });
-                        self.$outline.css({
-                            borderColor: 'rgba(0, 212, 255, 0.5)'
-                        });
-                    }
-                }
-            });
-
-            // Fixed Click Effects - No transform conflicts
-            $(document).on('mousedown', function () {
-                self.isClicking = true;
-
-                // Use width/height instead of transform scale to avoid conflicts
-                self.$dot.css({
-                    width: '4px',
-                    height: '4px',
-                    background: '#ffffff',
-                    boxShadow: '0 0 20px #ffffff, 0 0 40px #00d4ff'
-                });
-
-                self.$outline.css({
-                    width: '30px',
-                    height: '30px',
-                    borderColor: '#ffffff',
-                    borderWidth: '4px'
-                });
-            });
-
-            $(document).on('mouseup', function () {
-                self.isClicking = false;
-
-                // Reset to normal state
-                setTimeout(function () {
-                    if (self.cursorEnlarged) {
-                        // Reset to hover state if still hovering
-                        self.$dot.css({
-                            width: '12px',
-                            height: '12px',
-                            background: '#00d4ff',
-                            boxShadow: '0 0 15px #00d4ff, 0 0 30px #00d4ff'
-                        });
-                        self.$outline.css({
-                            width: '50px',
-                            height: '50px',
-                            borderColor: '#00d4ff',
-                            borderWidth: '3px'
-                        });
-                    } else {
-                        // Reset to normal state
-                        self.$dot.css({
-                            width: '8px',
-                            height: '8px',
-                            background: 'var(--primary-blue)',
-                            boxShadow: '0 0 10px var(--primary-blue), 0 0 20px var(--primary-blue)'
-                        });
-                        self.$outline.css({
-                            width: '40px',
-                            height: '40px',
-                            borderColor: 'rgba(0, 212, 255, 0.5)',
-                            borderWidth: '2px'
-                        });
-                    }
-                }, 50); // Small delay to prevent conflicts
-            });
-        },
-
-        animateCursor: function () {
-            const self = this;
-
-            function animate() {
-                // Smooth following effect for outline
-                self._x += (self.endX - self._x) / self.delay;
-                self._y += (self.endY - self._y) / self.delay;
-
-                // Calculate positions based on current sizes
-                const dotSize = parseInt(self.$dot.css('width')) / 2;
-                const outlineSize = parseInt(self.$outline.css('width')) / 2;
-
-                // Update positions without interfering with size changes
-                self.$outline.css({
-                    left: (self._x - outlineSize) + 'px',
-                    top: (self._y - outlineSize) + 'px'
-                });
-
-                self.$dot.css({
-                    left: (self.endX - dotSize) + 'px',
-                    top: (self.endY - dotSize) + 'px'
-                });
-
-                requestAnimationFrame(animate);
-            }
-
-            animate();
-        }
-    };
-
-    // Initialize custom cursor
-    CustomCursor.init();
-
-    $(window).on('resize', function () {
-        if (window.innerWidth <= 768) {
-            $('.cursor-dot, .cursor-dot-outline').remove();
-            $('body').css('cursor', 'auto');
-        } else {
-            CustomCursor.init();
-        }
-    });
+    
 });
 
 // Device Detection & Redirect for coming soon on tablet and mobile
@@ -676,27 +406,6 @@ $(document).ready(function () {
 // })();
 
 
-// Portfolio page Filter 
-document.addEventListener('DOMContentLoaded', () => {
-    const containerEl = document.querySelector('.portfolio__gallery');
-    const mixer = mixitup(containerEl, {
-        selectors: {
-            target: '.portfolio__item'
-        },
-        animation: {
-            duration: 300
-        }
-    });
-
-    const filterButtons = document.querySelectorAll('.portfolio__filter button');
-    filterButtons.forEach(button => {
-        button.addEventListener('click', function () {
-            filterButtons.forEach(btn => btn.classList.remove('active'));
-            this.classList.add('active');
-        });
-    });
-});
-
 // Preloader
 $(window).on('load', function () {
     $('#preloder').fadeOut('slow');
@@ -705,7 +414,7 @@ $(window).on('load', function () {
 // Error handling for missing images
 $(document).ready(function () {
     $('img').on('error', function () {
-        $(this).attr('src', 'img/placeholder.jpg');
+        $(this).attr('src', 'img/logo2.jpg');
     });
 });
 
@@ -789,7 +498,7 @@ let autoScrollInterval = null;
 const projects = {
     // CURRENT COMPANY PROJECTS
     1: {
-        image: "img/projects/maanch_logo.png",
+        image: "img/projects/maanch_logo.jpg",
         title: "Maanch Engagement Tracker",
         date: "Mar 2024 - Present",
         summary: "Capture the full breadth of your stewardship work",
@@ -803,15 +512,12 @@ const projects = {
             "Enhanced user experience through comprehensive UI/UX testing"
         ],
         images: [
-            "img/projects/maanchlogo.png",
-            "img/projects/maanchlogo2.webp",
-            "img/projects/maanchlogo3.webp",
-            "img/projects/maanchlogo4.webp",
+            "img/projects/maanch_logo.jpg"
         ]
     },
 
     2: {
-        image: "img/projects/worktops_logo.png",
+        image: "img/projects/worktops_logo.jpg",
         title: "House of Worktops",
         date: "Sep 2023 - Nov 2023",
         summary: "UK-based custom worktop design and manufacturing platform specializing in premium kitchen surfaces",
@@ -825,15 +531,12 @@ const projects = {
             "Enhanced visualization system improving customer decision-making by 45%"
         ],
         images: [
-            "img/projects/howlogo.png",
-            "img/projects/howlogo2.png",
-            "img/projects/howlogo3.png",
-            "img/projects/howlogo4.png"
+            "img/projects/worktops_logo.jpg"
         ]
     },
 
     3: {
-        image: "img/projects/hwgroup_logo.png",
+        image: "img/projects/hwgroup_logo.jpg",
         title: "HWGroup",
         date: "Nov 2023 - Jan 2024",
         summary: "Corporate group management and business intelligence platform",
@@ -847,10 +550,7 @@ const projects = {
             "Enhanced cross-departmental workflow integration reducing processing delays by 40%"
         ],
         images: [
-            "img/projects/hwgroup_logo.png",
-            "img/projects/hwgroup_logo2.png",
-            "img/projects/hwgroup_logo3.png",
-            "img/projects/hwgroup_logo4.png"
+            "img/projects/hwgroup_logo.jpg"
         ]
     },
 
@@ -869,16 +569,12 @@ const projects = {
             "Enhanced real-time tracking reducing customer inquiries by 50%"
         ],
         images: [
-            "img/projects/redpack_logo.png",
-            "img/projects/redpack_logo2.png",
-            "img/projects/redpack_logo3.png",
-            "img/projects/redpack_logo4.png"
+            "img/projects/redpack_logo.png"
         ]
     },
 
-    // PREVIOUS COMPANY PROJECT
     5: {
-        image: "img/projects/DgNote_Logo.webp",
+        image: "img/projects/DgNote_Logo.jpg",
         title: "DgNote",
         date: "Aug 2023 - Oct 2023",
         summary: "Digital insurance platform specializing in commercial and retail insurance with focus on marine insurance",
@@ -892,16 +588,12 @@ const projects = {
             "Optimized premium calculation engine achieving lowest market rates"
         ],
         images: [
-            "img/projects/DgNote_Logo.webp",
-            "img/projects/Dgnote_Logo2.png",
-            "img/projects/Dgnote_Logo3.png",
-            "img/projects/Dgnote_Logo4.png"
+            "img/projects/DgNote_Logo.jpg"
         ]
     },
 
-    // INTERNSHIP COMPANY PROJECTS
     6: {
-        image: "img/projects/icici_logo.png",
+        image: "img/projects/icici_logo.jpg",
         title: "ICICI Careers",
         date: "Jun 2023 - Aug 2023",
         summary: "Comprehensive career management platform for one of India's leading banks offering job applications, tracking, and onboarding",
@@ -915,15 +607,12 @@ const projects = {
             "Enhanced notification system ensuring timely candidate communication"
         ],
         images: [
-            "img/projects/icici_logo.webp",
-            "img/projects/icici_logo2.png",
-            "img/projects/icici_logo3.png",
-            "img/projects/icici_logo4.png"
+            "img/projects/icici_logo.jpg"
         ]
     },
 
     7: {
-        image: "img/projects/bmt_logo.png",
+        image: "img/projects/bmt_logo.jpg",
         title: "BookMyTurf",
         date: "Jan 2023 - Present",
         summary: "Cricket and sports facility booking platform connecting ground owners with teams",
@@ -937,15 +626,12 @@ const projects = {
             "Optimized payment processing achieving 98% transaction success rate"
         ],
         images: [
-            "img/projects/bmt_logo.webp",
-            "img/projects/bmt_logo2.png",
-            "img/projects/bmt_logo3.png",
-            "img/projects/bmt_logo4.png"
+            "img/projects/bmt_logo.jpg"
         ]
     },
 
     8: {
-        image: "img/projects/hrx_logo.png",
+        image: "img/projects/hrx_logo.jpg",
         title: "HRX Brand",
         date: "May 2023 - Sep 2023",
         summary: "Fitness and lifestyle brand by Hrithik Roshan offering sports equipment, nutrition products, and wellness solutions",
@@ -959,15 +645,12 @@ const projects = {
             "Ensured seamless brand experience across 100+ retail partners nationwide"
         ],
         images: [
-            "img/projects/hrx_logo.png",
-            "img/projects/hrx_logo2.png",
-            "img/projects/hrx_logo3.png",
-            "img/projects/hrx_logo4.png"
+            "img/projects/hrx_logo.jpg"
         ]
     },
 
     9: {
-        image: "img/projects/dogkart_logo.png",
+        image: "img/projects/dogkart_logo.jpg",
         title: "DogKart",
         date: "Mar 2023 - Nov 2023",
         summary: "India's comprehensive online pet store offering premium pet food, accessories, supplements, and grooming products",
@@ -981,15 +664,12 @@ const projects = {
             "Enhanced mobile commerce functionality achieving 40% increase in mobile conversions"
         ],
         images: [
-            "img/projects/dogkart_logo.png",
-            "img/projects/dogkart_logo2.png",
-            "img/projects/dogkart_logo3.png",
-            "img/projects/dogkart_logo4.png"
+            "img/projects/dogkart_logo.jpg"
         ]
     },
 
     10: {
-        image: "img/projects/homecliq_logo.png",
+        image: "img/projects/homecliq_logo.jpg",
         title: "HomeCliq",
         date: "Apr 2023 - Oct 2023",
         summary: "Real estate advisory platform providing comprehensive home buying support from purchase to interior design",
@@ -1003,15 +683,12 @@ const projects = {
             "Optimized document management system reducing processing time by 45%"
         ],
         images: [
-            "img/projects/homecliq_logo.png",
-            "img/projects/homecliq_dashboard.png",
-            "img/projects/homecliq_search.png",
-            "img/projects/homecliq_advisory.png"
+            "img/projects/homecliq_logo.jpg"
         ]
     },
 
     11: {
-        image: "img/projects/caregiver_logo.png",
+        image: "img/projects/caregiver_logo.jpg",
         title: "Caregiver Saathi",
         date: "Feb 2023 - Dec 2023",
         summary: "Comprehensive caregiver support and wellness ecosystem for families managing chronic/terminal illnesses",
@@ -1025,15 +702,12 @@ const projects = {
             "Achieved 95% user satisfaction in accessing emotional support and practical resources"
         ],
         images: [
-            "img/projects/caregiver_logo.png",
-            "img/projects/caregiver_logo2.png",
-            "img/projects/caregiver_logo3.png",
-            "img/projects/caregiver_logo4.png"
+            "img/projects/caregiver_logo.jpg"
         ]
     },
 
     12: {
-        image: "img/projects/nhrdn_logo.png",
+        image: "img/projects/nhrdn_logo.jpg",
         title: "National HRD Network",
         date: "Jul 2023 - Sep 2023",
         summary: "Professional association platform for HR development through education, training, research, and experience sharing",
@@ -1047,10 +721,7 @@ const projects = {
             "Enhanced knowledge sharing platform improving resource accessibility by 60%"
         ],
         images: [
-            "img/projects/nhrdn_logo.png",
-            "img/projects/nhrdn_logo2.png",
-            "img/projects/nhrdn_logo3.png",
-            "img/projects/nhrdn_logo4.png"
+            "img/projects/nhrdn_logo.jpg"
         ]
     }
 };
@@ -1136,7 +807,13 @@ function openProjectPanel(projectId) {
     document.getElementById('panel-impact').innerHTML =
         project.achievements.map(achievement => `<li>${achievement}</li>`).join('');
 
-    setupCarousel(project.images);
+    // Show only the first image - no carousel
+    const carouselImage = document.getElementById('carousel-image');
+    if (carouselImage && project.images && project.images.length > 0) {
+        carouselImage.src = project.images[0];
+    } else if (carouselImage) {
+        carouselImage.src = 'img/logo2.jpg';
+    }
 
     // Reset panel scroll position to top
     const panelDetailsSection = document.querySelector('.panel-details');
@@ -1144,7 +821,6 @@ function openProjectPanel(projectId) {
         panelDetailsSection.scrollTop = 0;
     }
 
-    // Alternative: Reset entire panel scroll
     const projectPanel = document.getElementById('project-panel');
     if (projectPanel) {
         projectPanel.scrollTop = 0;
@@ -1152,7 +828,7 @@ function openProjectPanel(projectId) {
 
     document.documentElement.style.setProperty('--scroll-position', `-${scrollPosition}px`);
     document.body.classList.add('panel-open');
-    document.getElementById('project-panel').classList.add('active');
+    projectPanel.classList.add('active');
     document.getElementById('panel-backdrop').classList.add('active');
 }
 
@@ -1173,10 +849,6 @@ function closeProjectPanel() {
     // Wait for panel to completely slide out, then reset
     setTimeout(() => {
         // Reset scroll when panel is fully hidden
-        const panelDetailsSection = document.querySelector('.panel-details');
-        if (panelDetailsSection) {
-            panelDetailsSection.scrollTop = 0;
-        }
 
         const projectPanel = document.getElementById('project-panel');
         if (projectPanel) {
@@ -1221,79 +893,19 @@ function clearHoverStates() {
 }
 
 // Setup carousel
-function setupCarousel(images) {
+function showProjectImage(images) {
     const carouselImage = document.getElementById('carousel-image');
-    const indicatorsContainer = document.getElementById('carousel-indicators');
-
-    console.log('Setting up carousel with images:', images);
-
-    if (!carouselImage || !indicatorsContainer) {
-        console.error('Carousel elements not found!');
+    if (!carouselImage) {
+        console.error('Carousel image element not found!');
         return;
     }
-
     if (!images || images.length === 0) {
-        console.error('No images provided to carousel');
+        // You might want to set a placeholder here
+        carouselImage.src = 'img/logo2.jpg';
         return;
     }
-
-    // Set first image
+    // Always display the first image
     carouselImage.src = images[0];
-    currentImageIndex = 0;
-
-    // Clear any existing auto-scroll
-    if (autoScrollInterval) {
-        clearInterval(autoScrollInterval);
-        autoScrollInterval = null;
-    }
-
-    indicatorsContainer.innerHTML = '';
-    indicatorsContainer.onclick = null;
-
-    images.forEach((img, idx) => {
-        const dot = document.createElement('div');
-        dot.className = 'indicator-dot' + (idx === 0 ? ' active' : '');
-        dot.setAttribute('data-index', idx);
-        dot.title = `Image ${idx + 1}`;
-        indicatorsContainer.appendChild(dot);
-    });
-
-    indicatorsContainer.addEventListener('click', function (e) {
-        e.preventDefault();
-        e.stopPropagation();
-
-        if (e.target && e.target.classList.contains('indicator-dot')) {
-            const index = parseInt(e.target.getAttribute('data-index'));
-
-            if (!isNaN(index)) {
-                if (autoScrollInterval) {
-                    clearInterval(autoScrollInterval);
-                    autoScrollInterval = null;
-                }
-                goToImage(index);
-                setTimeout(() => {
-                    if (images.length > 1) {
-                        startAutoScroll(images);
-                    }
-                }, 3000);
-            }
-        }
-    });
-
-    const carouselControls = document.querySelector('.carousel-controls');
-    if (carouselControls) {
-        if (images.length > 1) {
-            carouselControls.style.display = 'flex';
-        } else {
-            carouselControls.style.display = 'none';
-        }
-    }
-
-    if (images.length > 1) {
-        setTimeout(() => {
-            startAutoScroll(images);
-        }, 1000);
-    }
 }
 
 // Start auto-scroll functionality
