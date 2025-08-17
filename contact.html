@@ -745,6 +745,86 @@
           toast.addEventListener("click", () => toast.remove());
         }
       });
+
+      function toggleDropdown() {
+        const options = document.getElementById("service-options");
+        const arrow = document.getElementById("dropdown-arrow");
+        const selected = document.querySelector(".dropdown-selected");
+        if (options && arrow && selected) {
+          if (options.classList.contains("show")) {
+            options.classList.remove("show");
+            selected.classList.remove("active");
+            arrow.style.transform = "rotate(0deg)";
+          } else {
+            options.classList.add("show");
+            selected.classList.add("active");
+            arrow.style.transform = "rotate(180deg)";
+          }
+        }
+      }
+
+      function selectOption(value, text, clickedEvent) {
+        const actualEvent = clickedEvent || window.event;
+        const selectedText = document.getElementById("selected-text");
+        const hiddenInput = document.getElementById("service");
+        const options = document.getElementById("service-options");
+        const selected = document.querySelector(".dropdown-selected");
+        const arrow = document.getElementById("dropdown-arrow");
+        if (!selectedText || !hiddenInput) return;
+        let clickedOption;
+        if (actualEvent && actualEvent.target) {
+          clickedOption = actualEvent.target.closest(".dropdown-option");
+        } else {
+          const allOptions = document.querySelectorAll(".dropdown-option");
+          clickedOption = Array.from(allOptions).find(
+            (opt) =>
+              opt.getAttribute("onclick") &&
+              opt.getAttribute("onclick").includes(`'${value}'`)
+          );
+        }
+        if (clickedOption) {
+          selectedText.innerHTML = clickedOption.innerHTML;
+          hiddenInput.value = value;
+          if (options && selected && arrow) {
+            options.classList.remove("show");
+            selected.classList.remove("active");
+            arrow.style.transform = "rotate(0deg)";
+          }
+          const form = document.querySelector('form[name="contact"]');
+          if (form) {
+            const inputEvent = new Event("input", { bubbles: true });
+            hiddenInput.dispatchEvent(inputEvent);
+          }
+        }
+      }
+
+      document.addEventListener("click", function (e) {
+        if (!e.target.closest(".custom-dropdown")) {
+          const options = document.getElementById("service-options");
+          const selected = document.querySelector(".dropdown-selected");
+          const arrow = document.getElementById("dropdown-arrow");
+          if (options && selected && arrow) {
+            options.classList.remove("show");
+            selected.classList.remove("active");
+            arrow.style.transform = "rotate(0deg)";
+          }
+        }
+      });
+
+      const style = document.createElement("style");
+      style.textContent = `
+  @keyframes slideIn {
+    from { transform: translateX(100%); opacity: 0; }
+    to { transform: translateX(0); opacity: 1; }
+  }
+  .is-valid {
+    border-color: #00d4ff !important;
+  }
+  .is-invalid {
+    border-color: #ff4f6e !important;
+  }
+`;
+      document.head.appendChild(style);
     </script>
   </body>
 </html>
