@@ -138,7 +138,7 @@ $(document).ready(function () {
         e.preventDefault();
 
         var link = document.createElement('a');
-        link.href = 'assets/Siddhesh_Govalkar_QA_Engineer_Resume.pdf';
+        link.href = 'resume/Siddhesh_Govalkar_QA_Engineer_Resume.pdf';
         link.download = 'Siddhesh_Govalkar_QA_Engineer_Resume.pdf';
         document.body.appendChild(link);
         link.click();
@@ -377,7 +377,7 @@ let autoScrollInterval = null;
 const projects = {
     // CURRENT COMPANY PROJECTS
     1: {
-        image: "img/projects/maanch_logo.jpg",
+        image: "img/portfolio/maanch_logo.jpg",
         title: "Maanch Engagement Tracker",
         date: "Mar 2024 - Present",
         summary: "Capture the full breadth of your stewardship work",
@@ -391,12 +391,12 @@ const projects = {
             "Enhanced user experience through comprehensive UI/UX testing"
         ],
         images: [
-            "img/projects/maanch_logo.jpg"
+            "img/portfolio/maanch_logo.jpg"
         ]
     },
 
     2: {
-        image: "img/projects/worktops_logo.jpg",
+        image: "img/portfolio/worktops_logo.jpg",
         title: "House of Worktops",
         date: "Sep 2023 - Nov 2023",
         summary: "UK-based custom worktop design and manufacturing platform specializing in premium kitchen surfaces",
@@ -410,12 +410,12 @@ const projects = {
             "Enhanced visualization system improving customer decision-making by 45%"
         ],
         images: [
-            "img/projects/worktops_logo.jpg"
+            "img/portfolio/worktops_logo.jpg"
         ]
     },
 
     3: {
-        image: "img/projects/hwgroup_logo.jpg",
+        image: "img/portfolio/hwgroup_logo.jpg",
         title: "HWGroup",
         date: "Nov 2023 - Jan 2024",
         summary: "Corporate group management and business intelligence platform",
@@ -429,12 +429,12 @@ const projects = {
             "Enhanced cross-departmental workflow integration reducing processing delays by 40%"
         ],
         images: [
-            "img/projects/hwgroup_logo.jpg"
+            "img/portfolio/hwgroup_logo.jpg"
         ]
     },
 
     4: {
-        image: "img/projects/redpack_logo.png",
+        image: "img/portfolio/redpack_logo.png",
         title: "Redpack",
         date: "Oct 2023 - Dec 2023",
         summary: "UK-based logistics and package delivery management platform",
@@ -448,12 +448,12 @@ const projects = {
             "Enhanced real-time tracking reducing customer inquiries by 50%"
         ],
         images: [
-            "img/projects/redpack_logo.png"
+            "img/portfolio/redpack_logo.png"
         ]
     },
 
     5: {
-        image: "img/projects/DgNote_Logo.jpg",
+        image: "img/portfolio/DgNote_Logo.jpg",
         title: "DgNote",
         date: "Aug 2023 - Oct 2023",
         summary: "Digital insurance platform specializing in commercial and retail insurance with focus on marine insurance",
@@ -467,12 +467,12 @@ const projects = {
             "Optimized premium calculation engine achieving lowest market rates"
         ],
         images: [
-            "img/projects/DgNote_Logo.jpg"
+            "img/portfolio/DgNote_Logo.jpg"
         ]
     },
 
     6: {
-        image: "img/projects/icici_logo.jpg",
+        image: "img/portfolio/icici_logo.jpg",
         title: "ICICI Careers",
         date: "Jun 2023 - Aug 2023",
         summary: "Comprehensive career management platform for one of India's leading banks offering job applications, tracking, and onboarding",
@@ -486,12 +486,12 @@ const projects = {
             "Enhanced notification system ensuring timely candidate communication"
         ],
         images: [
-            "img/projects/icici_logo.jpg"
+            "img/portfolio/icici_logo.jpg"
         ]
     },
 
     7: {
-        image: "img/projects/bmt_logo.jpg",
+        image: "img/portfolio/bmt_logo.jpg",
         title: "BookMyTurf",
         date: "Jan 2023 - Present",
         summary: "Cricket and sports facility booking platform connecting ground owners with teams",
@@ -505,12 +505,12 @@ const projects = {
             "Optimized payment processing achieving 98% transaction success rate"
         ],
         images: [
-            "img/projects/bmt_logo.jpg"
+            "img/portfolio/bmt_logo.jpg"
         ]
     },
 
     8: {
-        image: "img/projects/hrx_logo.jpg",
+        image: "img/portfolio/hrx_logo.jpg",
         title: "HRX Brand",
         date: "May 2023 - Sep 2023",
         summary: "Fitness and lifestyle brand by Hrithik Roshan offering sports equipment, nutrition products, and wellness solutions",
@@ -524,12 +524,12 @@ const projects = {
             "Ensured seamless brand experience across 100+ retail partners nationwide"
         ],
         images: [
-            "img/projects/hrx_logo.jpg"
+            "img/portfolio/hrx_logo.jpg"
         ]
     },
 
     9: {
-        image: "img/projects/dogkart_logo.jpg",
+        image: "img/portfolio/dogkart_logo.jpg",
         title: "DogKart",
         date: "Mar 2023 - Nov 2023",
         summary: "India's comprehensive online pet store offering premium pet food, accessories, supplements, and grooming products",
@@ -543,12 +543,12 @@ const projects = {
             "Enhanced mobile commerce functionality achieving 40% increase in mobile conversions"
         ],
         images: [
-            "img/projects/dogkart_logo.jpg"
+            "img/portfolio/dogkart_logo.jpg"
         ]
     },
 
     10: {
-        image: "img/projects/homecliq_logo.jpg",
+        image: "img/portfolio/homecliq_logo.jpg",
         title: "HomeCliq",
         date: "Apr 2023 - Oct 2023",
         summary: "Real estate advisory platform providing comprehensive home buying support from purchase to interior design",
@@ -562,12 +562,12 @@ const projects = {
             "Optimized document management system reducing processing time by 45%"
         ],
         images: [
-            "img/projects/homecliq_logo.jpg"
+            "img/portfolio/homecliq_logo.jpg"
         ]
     },
 
     11: {
-        image: "img/projects/caregiver_logo.jpg",
+        image: "img/portfolio/caregiver_logo.jpg",
         title: "Caregiver Saathi",
         date: "Feb 2023 - Dec 2023",
         summary: "Comprehensive caregiver support and wellness ecosystem for families managing chronic/terminal illnesses",
@@ -581,12 +581,12 @@ const projects = {
             "Achieved 95% user satisfaction in accessing emotional support and practical resources"
         ],
         images: [
-            "img/projects/caregiver_logo.jpg"
+            "img/portfolio/caregiver_logo.jpg"
         ]
     },
 
     12: {
-        image: "img/projects/nhrdn_logo.jpg",
+        image: "img/portfolio/nhrdn_logo.jpg",
         title: "National HRD Network",
         date: "Jul 2023 - Sep 2023",
         summary: "Professional association platform for HR development through education, training, research, and experience sharing",
@@ -600,7 +600,7 @@ const projects = {
             "Enhanced knowledge sharing platform improving resource accessibility by 60%"
         ],
         images: [
-            "img/projects/nhrdn_logo.jpg"
+            "img/portfolio/nhrdn_logo.jpg"
         ]
     }
 };
