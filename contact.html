@@ -631,11 +631,9 @@
 
           requiredFields.forEach((field) => {
             const value = field.value.trim();
-
             if (!value || field.classList.contains("is-invalid")) {
               isValid = false;
             }
-
             if (field.name === "service" && (!value || value === "")) {
               isValid = false;
             }
@@ -662,6 +660,8 @@
           }, 100);
 
           form.addEventListener("submit", function (e) {
+            e.preventDefault();
+
             const requiredFields = form.querySelectorAll("[required]");
             let hasErrors = false;
 
@@ -672,7 +672,6 @@
             });
 
             if (hasErrors) {
-              e.preventDefault();
               showToast("Please correct the errors before submitting", "error");
               return;
             }
@@ -681,43 +680,39 @@
               '<i class="fas fa-spinner fa-spin me-2"></i>Sending...';
             submitBtn.disabled = true;
 
-            setTimeout(() => {
-              showToast(
-                "✅ Message sent successfully! I'll get back to you within 24 hours.",
-                "success"
-              );
+            const formData = new FormData(form);
 
-              setTimeout(() => {
-                resetForm();
-              }, 1000);
-            }, 500);
+            fetch("/", {
+              method: "POST",
+              headers: { "Content-Type": "application/x-www-form-urlencoded" },
+              body: new URLSearchParams(formData).toString(),
+            })
+              .then((response) => {
+                if (response.ok) {
+                  showToast(
+                    "✅ Message sent successfully! I'll get back to you within 24 hours.",
+                    "success"
+                  );
+
+                  setTimeout(() => {
+                    resetForm();
+                  }, 2000);
+                } else {
+                  throw new Error(`HTTP error! status: ${response.status}`);
+                }
+              })
+              .catch((error) => {
+                console.error("Form submission error:", error);
+                showToast(
+                  "❌ Failed to send message. Please try again or contact me directly.",
+                  "error"
+                );
+
+                submitBtn.innerHTML =
+                  '<i class="fas fa-paper-plane me-2"></i>Send Message';
+                validateForm();
+              });
           });
-        }
-
-        function resetForm() {
-          form.reset();
-
-          form.querySelectorAll(".is-valid, .is-invalid").forEach((el) => {
-            el.classList.remove("is-valid", "is-invalid");
-          });
-
-          const charCount = document.getElementById("char-count");
-          if (charCount) charCount.textContent = "0";
-
-          const selectedText = document.getElementById("selected-text");
-          const hiddenInput = document.getElementById("service");
-          if (selectedText && hiddenInput) {
-            selectedText.innerHTML =
-              '<i class="fas fa-hand-pointer" style="color: var(--electric-blue); margin-right: 0.5rem;"></i>QA Testing';
-            selectedText.classList.remove("placeholder");
-            hiddenInput.value = "manual";
-          }
-
-          submitBtn.innerHTML =
-            '<i class="fas fa-paper-plane me-2"></i>Send Message';
-          submitBtn.disabled = true;
-          submitBtn.style.opacity = "0.6";
-          submitBtn.title = "Please fill all required fields correctly";
         }
 
         function showToast(message, type = "success") {
@@ -763,7 +758,6 @@
               toast.remove();
             }
           }, 7000);
-
           toast.addEventListener("click", () => toast.remove());
         }
       });
