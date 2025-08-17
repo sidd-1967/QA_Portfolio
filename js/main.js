@@ -105,26 +105,6 @@ $(document).ready(function () {
         $(this)[0].reset();
     });
 
-    // Blog newsletter subscription
-    $('.blog__sidebar form').submit(function (e) {
-        e.preventDefault();
-        var email = $(this).find('input[type="email"]').val();
-
-        if (!email) {
-            alert('Please enter your email address.');
-            return false;
-        }
-
-        var emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
-        if (!emailRegex.test(email)) {
-            alert('Please enter a valid email address.');
-            return false;
-        }
-
-        alert('Thank you for subscribing to my QA newsletter!');
-        $(this)[0].reset();
-    });
-
     // Animate counters on scroll
     function animateCounters() {
         $('.counter__item').each(function () {
@@ -170,36 +150,6 @@ $(document).ready(function () {
                 'event_label': 'QA Resume Download'
             });
         }
-    });
-
-    // Copy to clipboard functionality for code blocks
-    $('pre code').each(function () {
-        var code = $(this);
-        var copyBtn = $('<button class="copy-btn">Copy</button>');
-        code.parent().prepend(copyBtn);
-
-        copyBtn.click(function () {
-            var text = code.text();
-            if (navigator.clipboard && navigator.clipboard.writeText) {
-                navigator.clipboard.writeText(text).then(function () {
-                    copyBtn.text('Copied!');
-                    setTimeout(function () {
-                        copyBtn.text('Copy');
-                    }, 2000);
-                });
-            } else {
-                var textarea = document.createElement('textarea');
-                textarea.value = text;
-                document.body.appendChild(textarea);
-                textarea.select();
-                document.execCommand('copy');
-                document.body.removeChild(textarea);
-                copyBtn.text('Copied!');
-                setTimeout(function () {
-                    copyBtn.text('Copy');
-                }, 2000);
-            }
-        });
     });
 
     // Smooth scrolling for anchor links
@@ -378,7 +328,7 @@ $(document).ready(function () {
     // Initialize matrix effect
     matrixEffect();
 
-    
+
 });
 
 // Device Detection & Redirect for coming soon on tablet and mobile
@@ -654,8 +604,6 @@ const projects = {
         ]
     }
 };
-
-
 
 // Generate portfolio cards from data
 function createPortfolioCards() {
@@ -1130,68 +1078,18 @@ document.addEventListener('DOMContentLoaded', function () {
     }
 });
 
-// Simplified cursor with Chrome-specific workaround
-document.addEventListener('DOMContentLoaded', () => {
-    const cursor = document.querySelector('.cursor-dot');
-    if (!cursor) return;
-    
-    cursor.style.opacity = '1';
-    
-    const isChrome = /Chrome/.test(navigator.userAgent) && !/Edg/.test(navigator.userAgent);
-    
-    if (isChrome) {
-        console.log('Chrome detected - Using ultra-minimal mode');
-        
-        // Skip requestAnimationFrame - direct updates with throttling
-        let lastUpdate = 0;
-        
-        document.addEventListener('mousemove', (e) => {
-            const now = Date.now();
-            if (now - lastUpdate < 10) return; // 100fps throttle
-            lastUpdate = now;
-            
-            // Use CSS custom properties for Chrome (sometimes faster)
-            cursor.style.setProperty('--x', (e.clientX - 7.5) + 'px');
-            cursor.style.setProperty('--y', (e.clientY - 7.5) + 'px');
-        }, { passive: true });
-        
-    } else {
-        // Keep your existing smooth implementation for other browsers
-        document.addEventListener('mousemove', (e) => {
-            cursor.style.transform = `translate(${e.clientX - 7.5}px, ${e.clientY - 7.5}px)`;
-        });
-        
-        const interactiveElements = 'a, button, input, textarea, select, [role="button"], .btn, .interactive';
-        
-        document.addEventListener('mouseenter', (e) => {
-            if (e.target.matches(interactiveElements)) {
-                cursor.classList.add('pointer');
-            }
-        }, true);
-        
-        document.addEventListener('mouseleave', (e) => {
-            if (e.target.matches(interactiveElements)) {
-                cursor.classList.remove('pointer');
-            }
-        }, true);
-    }
-    
-    document.addEventListener('mouseleave', () => cursor.style.opacity = '0');
-    document.addEventListener('mouseenter', () => cursor.style.opacity = '1');
-});
-
 
 // Mobile Menu Toggle Functionality
 document.addEventListener('DOMContentLoaded', () => {
     const hamburgerBtn = document.getElementById('hamburger-btn');
     const mobileOverlay = document.getElementById('mobile-overlay');
     const mobileNavLinks = document.querySelectorAll('.mobile-nav-link');
-    
+
     // Toggle mobile menu
     hamburgerBtn.addEventListener('click', () => {
         hamburgerBtn.classList.toggle('active');
         mobileOverlay.classList.toggle('active');
-        
+
         // Prevent body scroll when menu is open
         if (mobileOverlay.classList.contains('active')) {
             document.body.style.overflow = 'hidden';
@@ -1199,32 +1097,53 @@ document.addEventListener('DOMContentLoaded', () => {
             document.body.style.overflow = '';
         }
     });
-    
+
     // Close menu when clicking on overlay
     mobileOverlay.addEventListener('click', (e) => {
         if (e.target === mobileOverlay) {
             closeMenu();
         }
     });
-    
+
     // Close menu when clicking on nav links
     mobileNavLinks.forEach(link => {
         link.addEventListener('click', () => {
             closeMenu();
         });
     });
-    
+
     // Close menu function
     function closeMenu() {
         hamburgerBtn.classList.remove('active');
         mobileOverlay.classList.remove('active');
         document.body.style.overflow = '';
     }
-    
+
     // Close menu on ESC key
     document.addEventListener('keydown', (e) => {
         if (e.key === 'Escape' && mobileOverlay.classList.contains('active')) {
             closeMenu();
         }
     });
+});
+
+// Project Database Query scroll 
+document.addEventListener("DOMContentLoaded", () => {
+    const terminal = document.querySelector(".terminal-body");
+
+    terminal.addEventListener("wheel", function (e) {
+        const isAtTop = terminal.scrollTop === 0;
+        const isAtBottom =
+            Math.ceil(terminal.scrollTop + terminal.clientHeight) >= terminal.scrollHeight;
+
+        if ((isAtTop && e.deltaY < 0) || (isAtBottom && e.deltaY > 0)) {
+            // Allow main page scroll
+            return;
+        } else {
+            // Keep scrolling inside terminal (default speed)
+            // do NOT preventDefault → browser handles it naturally
+            e.stopPropagation();
+        }
+    }, { passive: true });
+
 });

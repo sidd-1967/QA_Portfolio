@@ -2795,6 +2795,7 @@ p {
 .command {
     color: #99f6f6;
     font-family: 'Source Code Pro', monospace;
+    padding-left: 5px !important;
 }
 
 .prompt,
@@ -2891,7 +2892,7 @@ p {
 }
 
 .terminal-body::-webkit-scrollbar {
-    width: 12px;
+    width: 6px;
     height: 12px;
     background: rgba(0, 255, 255, 0.1);
     border-radius: 4px;
