@@ -332,28 +332,28 @@ $(document).ready(function () {
 });
 
 // Device Detection & Redirect for coming soon on tablet and mobile
-(function () {
-    const tabletBreakpoint = 1024;  // tablet max width (change if needed)
+// (function () {
+//     const tabletBreakpoint = 1024;  // tablet max width (change if needed)
 
-    function redirectToSoon() {
-        const screenWidth = window.innerWidth;
+//     function redirectToSoon() {
+//         const screenWidth = window.innerWidth;
 
-        if (screenWidth <= tabletBreakpoint) {
-            // For mobile and tablet, redirect to coming-soon.html if not already there
-            if (!window.location.pathname.includes('coming-soon.html')) {
-                window.location.href = 'coming-soon.html';
-            }
-        } else {
-            // For desktop (> tabletBreakpoint), do nothing (allow access)
-        }
-    }
+//         if (screenWidth <= tabletBreakpoint) {
+//             // For mobile and tablet, redirect to coming-soon.html if not already there
+//             if (!window.location.pathname.includes('coming-soon.html')) {
+//                 window.location.href = 'coming-soon.html';
+//             }
+//         } else {
+//             // For desktop (> tabletBreakpoint), do nothing (allow access)
+//         }
+//     }
 
-    // Run on initial load
-    redirectToSoon();
+//     // Run on initial load
+//     redirectToSoon();
 
-    // Run on window resize
-    window.addEventListener('resize', redirectToSoon);
-})();
+//     // Run on window resize
+//     window.addEventListener('resize', redirectToSoon);
+// })();
 
 
 // Preloader
