@@ -6732,6 +6732,179 @@ form.contact__form .row {
     margin-top: 60px;
 }
 
+
+
+/* Updated selectors for the new form structure */
+form[name="contact"] {
+    background-color: var(--dark-layer);
+    padding: 2rem;
+    border-radius: 1rem;
+    box-shadow: 0 0 35px rgba(54, 255, 255, 0.2);
+    color: var(--text-light);
+    height: fit-content;
+    border-left: 4px solid var(--electric-blue);
+}
+
+form[name="contact"] label {
+    font-family: 'Orbitron', monospace;
+    font-weight: 600;
+    color: var(--primary-blue);
+    margin-bottom: 0.5rem;
+    display: block;
+    font-size: 0.95rem;
+    text-shadow: 0 0 5px rgba(0, 212, 255, 0.3);
+}
+
+form[name="contact"] input,
+form[name="contact"] textarea {
+    background-color: var(--input-bg) !important;
+    border: 2px solid var(--input-border) !important;
+    outline: 1px solid var(--input-outline) !important;
+    border-radius: 0.5rem !important;
+    color: var(--text-light) !important;
+    font-family: 'Rajdhani', sans-serif !important;
+    font-size: 1rem !important;
+    font-weight: 500 !important;
+    padding: 0.75rem 1rem !important;
+    margin-bottom: 0.5rem !important;
+    resize: vertical;
+    width: 100% !important;
+    transition: all 0.3s ease !important;
+    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.2) !important;
+}
+
+form[name="contact"] input:focus,
+form[name="contact"] textarea:focus {
+    background-color: var(--input-bg) !important;
+    border-color: var(--input-focus) !important;
+    outline: 2px solid var(--input-focus) !important;
+    box-shadow: 0 0 15px rgba(0, 212, 255, 0.3), 0 2px 8px rgba(0, 0, 0, 0.2) !important;
+    color: var(--text-light) !important;
+}
+
+form[name="contact"] input::placeholder,
+form[name="contact"] textarea::placeholder {
+    color: #8ab4c7 !important;
+    font-weight: 400 !important;
+    opacity: 0.9 !important;
+}
+
+/* Fix for validation states */
+form[name="contact"] .is-valid {
+    border-color: #00d4ff !important;
+    outline: 2px solid #00d4ff !important;
+    box-shadow: 0 0 10px rgba(0, 212, 255, 0.3) !important;
+}
+
+form[name="contact"] .is-invalid {
+    border-color: #ff4f6e !important;
+    outline: 2px solid #ff4f6e !important;
+    box-shadow: 0 0 10px rgba(255, 79, 110, 0.3) !important;
+}
+
+/* Button styling fix */
+form[name="contact"] button.neon-btn {
+    background-image: linear-gradient(45deg, var(--primary-blue), var(--electric-blue));
+    border: none;
+    color: var(--dark-bg);
+    font-family: 'Orbitron', monospace;
+    font-weight: 700;
+    font-size: 1.1rem;
+    padding: 0.85rem 2rem;
+    border-radius: 2rem;
+    cursor: pointer;
+    box-shadow: 0 0 25px rgba(54, 255, 255, 0.4);
+    transition: all 0.3s ease;
+    display: block;
+    width: 100%;
+}
+
+form[name="contact"] button.neon-btn:disabled {
+    background-image: linear-gradient(45deg, #666, #888);
+    box-shadow: none;
+    cursor: not-allowed;
+    opacity: 0.6;
+    pointer-events: none;
+}
+
+form[name="contact"] button.neon-btn:not(:disabled):hover,
+form[name="contact"] button.neon-btn:not(:disabled):focus {
+    background-image: linear-gradient(45deg, var(--electric-blue), var(--primary-blue));
+    box-shadow: 0 0 45px rgba(54, 255, 255, 0.6);
+    color: #fff;
+    outline: none;
+    transform: translateY(-2px);
+}
+
+/* Dropdown styling remains the same - it's already working */
+
+/* Character counter fix */
+form[name="contact"] .char-counter {
+    text-align: right;
+    margin-top: 0.25rem;
+    margin-bottom: 0.5rem;
+}
+
+form[name="contact"] .char-counter small {
+    color: #7a9db3;
+    font-family: 'Rajdhani', sans-serif;
+}
+
+/* Invalid feedback fix */
+form[name="contact"] .invalid-feedback {
+    color: #ff4f6e;
+    font-weight: 600;
+    font-family: 'Rajdhani', sans-serif;
+    font-size: 0.9rem;
+    margin-top: 0.25rem;
+}
+
+/* Form section styling fix */
+.contact-form-section {
+    height: 100%;
+}
+
+.contact-form-section form[name="contact"] {
+    height: 100%;
+    display: flex;
+    flex-direction: column;
+    border-left: 4px solid var(--electric-blue);
+}
+
+.contact-form-section form[name="contact"] .row {
+    flex: 1;
+}
+
+/* Netlify reCAPTCHA styling */
+form[name="contact"] div[data-netlify-recaptcha="true"] {
+    margin: 1rem 0;
+    text-align: center;
+}
+
+/* Override Bootstrap styles that might conflict */
+form[name="contact"] .form-control {
+    background-color: var(--input-bg) !important;
+    border: 2px solid var(--input-border) !important;
+    color: var(--text-light) !important;
+}
+
+form[name="contact"] .form-control:focus {
+    background-color: var(--input-bg) !important;
+    border-color: var(--input-focus) !important;
+    box-shadow: 0 0 15px rgba(0, 212, 255, 0.3), 0 2px 8px rgba(0, 0, 0, 0.2) !important;
+    color: var(--text-light) !important;
+}
+
+
+
+
+
+
+
+
+
+
+
 /* Large tablets and medium screens */
 @media (max-width: 1199px) {
 
