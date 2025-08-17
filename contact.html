@@ -631,9 +631,12 @@
 
           requiredFields.forEach((field) => {
             const value = field.value.trim();
+
             if (!value || field.classList.contains("is-invalid")) {
               isValid = false;
             }
+
+            // FIXED: Use === instead of =
             if (field.name === "service" && (!value || value === "")) {
               isValid = false;
             }
@@ -660,8 +663,7 @@
           }, 100);
 
           form.addEventListener("submit", function (e) {
-            e.preventDefault();
-
+            // Validate fields first
             const requiredFields = form.querySelectorAll("[required]");
             let hasErrors = false;
 
@@ -672,47 +674,53 @@
             });
 
             if (hasErrors) {
+              e.preventDefault(); // Prevent submission only if there are errors
               showToast("Please correct the errors before submitting", "error");
               return;
             }
 
+            // Show loading state immediately
             submitBtn.innerHTML =
               '<i class="fas fa-spinner fa-spin me-2"></i>Sending...';
             submitBtn.disabled = true;
 
-            const formData = new FormData(form);
+            // Show immediate toast notification
+            showToast("📤 Sending your message...", "info");
 
-            fetch("/", {
-              method: "POST",
-              headers: { "Content-Type": "application/x-www-form-urlencoded" },
-              body: new URLSearchParams(formData).toString(),
-            })
-              .then((response) => {
-                if (response.ok) {
-                  showToast(
-                    "✅ Message sent successfully! I'll get back to you within 24 hours.",
-                    "success"
-                  );
-
-                  setTimeout(() => {
-                    resetForm();
-                  }, 2000);
-                } else {
-                  throw new Error(`HTTP error! status: ${response.status}`);
-                }
-              })
-              .catch((error) => {
-                console.error("Form submission error:", error);
-                showToast(
-                  "❌ Failed to send message. Please try again or contact me directly.",
-                  "error"
-                );
-
-                submitBtn.innerHTML =
-                  '<i class="fas fa-paper-plane me-2"></i>Send Message';
-                validateForm();
-              });
+            // Let Netlify handle the form submission naturally (no preventDefault)
+            // The page will redirect after successful submission
           });
+        }
+
+        function resetForm() {
+          // Clear form fields
+          form.reset();
+
+          // Clear validation classes
+          form.querySelectorAll(".is-valid, .is-invalid").forEach((el) => {
+            el.classList.remove("is-valid", "is-invalid");
+          });
+
+          // Reset character counter
+          const charCount = document.getElementById("char-count");
+          if (charCount) charCount.textContent = "0";
+
+          // Reset dropdown to default QA Testing
+          const selectedText = document.getElementById("selected-text");
+          const hiddenInput = document.getElementById("service");
+          if (selectedText && hiddenInput) {
+            selectedText.innerHTML =
+              '<i class="fas fa-hand-pointer" style="color: var(--electric-blue); margin-right: 0.5rem;"></i>QA Testing';
+            selectedText.classList.remove("placeholder");
+            hiddenInput.value = "manual";
+          }
+
+          // Reset button to disabled state
+          submitBtn.innerHTML =
+            '<i class="fas fa-paper-plane me-2"></i>Send Message';
+          submitBtn.disabled = true;
+          submitBtn.style.opacity = "0.6";
+          submitBtn.title = "Please fill all required fields correctly";
         }
 
         function showToast(message, type = "success") {
@@ -723,8 +731,17 @@
           const toast = document.createElement("div");
           toast.className = "toast-notification";
 
-          const bgColor = type === "success" ? "#00d4ff" : "#ff4f6e";
-          const textColor = type === "success" ? "#000a19" : "#ffffff";
+          let bgColor, textColor;
+          if (type === "success") {
+            bgColor = "#00d4ff";
+            textColor = "#000a19";
+          } else if (type === "error") {
+            bgColor = "#ff4f6e";
+            textColor = "#ffffff";
+          } else if (type === "info") {
+            bgColor = "#36ffff";
+            textColor = "#000a19";
+          }
 
           toast.style.cssText = `
             position: fixed;
@@ -758,10 +775,12 @@
               toast.remove();
             }
           }, 7000);
+
           toast.addEventListener("click", () => toast.remove());
         }
       });
 
+      // Dropdown functions (unchanged)
       function toggleDropdown() {
         const options = document.getElementById("service-options");
         const arrow = document.getElementById("dropdown-arrow");
@@ -821,6 +840,7 @@
         }
       }
 
+      // Close dropdown when clicking outside
       document.addEventListener("click", function (e) {
         if (!e.target.closest(".custom-dropdown")) {
           const options = document.getElementById("service-options");
@@ -835,6 +855,7 @@
         }
       });
 
+      // Add CSS animations
       const style = document.createElement("style");
       style.textContent = `
     @keyframes slideIn {
