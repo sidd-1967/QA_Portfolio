@@ -516,10 +516,8 @@
           setupPhoneValidation();
           setupFormValidation();
           setupFormSubmission();
-
           const hiddenInput = document.getElementById("service");
           const selectedText = document.getElementById("selected-text");
-
           if (hiddenInput && selectedText) {
             hiddenInput.value = "manual";
             selectedText.innerHTML =
@@ -534,12 +532,10 @@
         function setupCharacterCounter() {
           const messageField = document.getElementById("message");
           const charCount = document.getElementById("char-count");
-
           if (messageField && charCount) {
             messageField.addEventListener("input", function () {
               const length = this.value.length;
               charCount.textContent = length;
-
               if (length > 500) {
                 charCount.style.color = "#ff4f6e";
                 this.value = this.value.substring(0, 500);
@@ -576,7 +572,6 @@
           const feedback =
             field.parentElement.querySelector(".invalid-feedback");
           let error = null;
-
           if (field.hasAttribute("required") && !value) {
             error = `${field.previousElementSibling.textContent
               .replace("*", "")
@@ -620,7 +615,6 @@
             field.classList.remove("is-invalid", "is-valid");
             if (feedback) feedback.textContent = "";
           }
-
           validateForm();
           return !error;
         }
@@ -628,71 +622,76 @@
         function validateForm() {
           const requiredFields = form.querySelectorAll("[required]");
           let isValid = true;
-
           requiredFields.forEach((field) => {
             const value = field.value.trim();
-
             if (!value || field.classList.contains("is-invalid")) {
               isValid = false;
             }
-
             if (field.name === "service" && (!value || value === "")) {
               isValid = false;
             }
           });
-
           submitBtn.disabled = !isValid;
           submitBtn.style.opacity = isValid ? "1" : "0.6";
-
           if (isValid) {
             submitBtn.title = "Send your message";
           } else {
             submitBtn.title = "Please fill all required fields";
           }
-
           return isValid;
         }
 
         function setupFormSubmission() {
-          submitBtn.disabled = true;
-          submitBtn.style.opacity = "0.6";
-
-          setTimeout(() => {
-            validateForm();
-          }, 100);
-
           form.addEventListener("submit", function (e) {
+            e.preventDefault();
             const requiredFields = form.querySelectorAll("[required]");
             let hasErrors = false;
-
             requiredFields.forEach((field) => {
-              if (!validateField(field)) {
-                hasErrors = true;
-              }
+              if (!validateField(field)) hasErrors = true;
             });
-
             if (hasErrors) {
-              e.preventDefault(); 
               showToast("Please correct the errors before submitting", "error");
               return;
             }
-
             submitBtn.innerHTML =
               '<i class="fas fa-spinner fa-spin me-2"></i>Sending...';
             submitBtn.disabled = true;
+            const formData = new FormData(form);
+            fetch(form.getAttribute("action") || window.location.pathname, {
+              method: "POST",
+              body: new URLSearchParams(formData),
+              headers: { "Content-Type": "application/x-www-form-urlencoded" },
+            })
+              .then((response) => {
+                if (response.ok) {
+                  showToast(
+                    "✅ Message sent successfully! I'll get back to you within 24 hours.",
+                    "success"
+                  );
+                  resetForm();
+                } else {
+                  throw new Error("Form submission failed");
+                }
+              })
+              .catch(() => {
+                showToast(
+                  "❌ Failed to send message. Please try again or contact me directly.",
+                  "error"
+                );
+                submitBtn.innerHTML =
+                  '<i class="fas fa-paper-plane me-2"></i>Send Message';
+                validateForm();
+              });
           });
         }
 
         function resetForm() {
           form.reset();
-
           form.querySelectorAll(".is-valid, .is-invalid").forEach((el) => {
             el.classList.remove("is-valid", "is-invalid");
           });
-
           const charCount = document.getElementById("char-count");
           if (charCount) charCount.textContent = "0";
-
           const selectedText = document.getElementById("selected-text");
           const hiddenInput = document.getElementById("service");
           if (selectedText && hiddenInput) {
@@ -701,7 +700,6 @@
             selectedText.classList.remove("placeholder");
             hiddenInput.value = "manual";
           }
-
           submitBtn.innerHTML =
             '<i class="fas fa-paper-plane me-2"></i>Send Message';
           submitBtn.disabled = true;
@@ -713,148 +711,40 @@
           document
             .querySelectorAll(".toast-notification")
             .forEach((toast) => toast.remove());
-
           const toast = document.createElement("div");
           toast.className = "toast-notification";
-
-          let bgColor, textColor;
-          if (type === "success") {
-            bgColor = "#00d4ff";
-            textColor = "#000a19";
-          } else if (type === "error") {
-            bgColor = "#ff4f6e";
-            textColor = "#ffffff";
-          } else if (type === "info") {
-            bgColor = "#36ffff";
-            textColor = "#000a19";
-          }
-
+          const bgColor = type === "success" ? "#00d4ff" : "#ff4f6e";
+          const textColor = type === "success" ? "#000a19" : "#ffffff";
           toast.style.cssText = `
-            position: fixed;
-            bottom: 20px;
-            right: 20px;
-            background: ${bgColor};
-            color: ${textColor};
-            padding: 1rem 1.5rem;
-            border-radius: 0.5rem;
-            box-shadow: 0 4px 12px rgba(0, 0, 0, 0.3);
-            font-family: 'Josefin Sans', sans-serif;
-            font-weight: 600;
-            cursor: pointer;
-            max-width: 350px;
-            z-index: 9999;
-            animation: slideIn 0.3s ease;
-            word-wrap: break-word;
-        `;
-
+      position: fixed;
+      bottom: 20px;
+      right: 20px;
+      background: ${bgColor};
+      color: ${textColor};
+      padding: 1rem 1.5rem;
+      border-radius: 0.5rem;
+      box-shadow: 0 4px 12px rgba(0, 0, 0, 0.3);
+      font-family: 'Josefin Sans', sans-serif;
+      font-weight: 600;
+      cursor: pointer;
+      max-width: 350px;
+      z-index: 9999;
+      animation: slideIn 0.3s ease;
+      word-wrap: break-word;
+    `;
           toast.innerHTML = `
-            <div style="display: flex; align-items: center; justify-content: space-between;">
-                <span>${message}</span>
-                <span style="margin-left: 1rem; font-size: 1.2rem; cursor: pointer;">&times;</span>
-            </div>
-        `;
-
+      <div style="display: flex; align-items: center; justify-content: space-between;">
+        <span>${message}</span>
+        <span style="margin-left: 1rem; font-size: 1.2rem; cursor: pointer;">&times;</span>
+      </div>
+    `;
           document.body.appendChild(toast);
-
           setTimeout(() => {
-            if (toast.parentNode) {
-              toast.remove();
-            }
+            if (toast.parentNode) toast.remove();
           }, 7000);
-
           toast.addEventListener("click", () => toast.remove());
         }
       });
-
-      function toggleDropdown() {
-        const options = document.getElementById("service-options");
-        const arrow = document.getElementById("dropdown-arrow");
-        const selected = document.querySelector(".dropdown-selected");
-
-        if (options && arrow && selected) {
-          if (options.classList.contains("show")) {
-            options.classList.remove("show");
-            selected.classList.remove("active");
-            arrow.style.transform = "rotate(0deg)";
-          } else {
-            options.classList.add("show");
-            selected.classList.add("active");
-            arrow.style.transform = "rotate(180deg)";
-          }
-        }
-      }
-
-      function selectOption(value, text, clickedEvent) {
-        const actualEvent = clickedEvent || window.event;
-
-        const selectedText = document.getElementById("selected-text");
-        const hiddenInput = document.getElementById("service");
-        const options = document.getElementById("service-options");
-        const selected = document.querySelector(".dropdown-selected");
-        const arrow = document.getElementById("dropdown-arrow");
-
-        if (!selectedText || !hiddenInput) return;
-
-        let clickedOption;
-        if (actualEvent && actualEvent.target) {
-          clickedOption = actualEvent.target.closest(".dropdown-option");
-        } else {
-          const allOptions = document.querySelectorAll(".dropdown-option");
-          clickedOption = Array.from(allOptions).find(
-            (opt) =>
-              opt.getAttribute("onclick") &&
-              opt.getAttribute("onclick").includes(`'${value}'`)
-          );
-        }
-
-        if (clickedOption) {
-          selectedText.innerHTML = clickedOption.innerHTML;
-          hiddenInput.value = value;
-
-          if (options && selected && arrow) {
-            options.classList.remove("show");
-            selected.classList.remove("active");
-            arrow.style.transform = "rotate(0deg)";
-          }
-
-          const form = document.querySelector('form[name="contact"]');
-          if (form) {
-            const inputEvent = new Event("input", { bubbles: true });
-            hiddenInput.dispatchEvent(inputEvent);
-          }
-        }
-      }
-
-      document.addEventListener("click", function (e) {
-        if (!e.target.closest(".custom-dropdown")) {
-          const options = document.getElementById("service-options");
-          const selected = document.querySelector(".dropdown-selected");
-          const arrow = document.getElementById("dropdown-arrow");
-
-          if (options && selected && arrow) {
-            options.classList.remove("show");
-            selected.classList.remove("active");
-            arrow.style.transform = "rotate(0deg)";
-          }
-        }
-      });
-
-      const style = document.createElement("style");
-      style.textContent = `
-    @keyframes slideIn {
-        from { transform: translateX(100%); opacity: 0; }
-        to { transform: translateX(0); opacity: 1; }
-    }
-    
-    .is-valid {
-        border-color: #00d4ff !important;
-    }
-    
-    .is-invalid {
-        border-color: #ff4f6e !important;
-    }
-`;
-      document.head.appendChild(style);
     </script>
   </body>
 </html>
