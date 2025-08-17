@@ -746,8 +746,6 @@ function closeProjectPanel() {
             behavior: 'instant'
         });
 
-        console.log('Scroll restored to:', window.pageYOffset);
-
     }, 500); // Wait for full slide-out animation 
 
     currentProject = null;
@@ -773,7 +771,6 @@ function clearHoverStates() {
 function showProjectImage(images) {
     const carouselImage = document.getElementById('carousel-image');
     if (!carouselImage) {
-        console.error('Carousel image element not found!');
         return;
     }
     if (!images || images.length === 0) {
@@ -977,11 +974,9 @@ function setupLazyLoading() {
                 }
             });
         } else {
-            console.warn('No placeholders found for lazy loading');
             loadAllCards();
         }
     } else {
-        console.log('IntersectionObserver not supported, loading all cards');
         loadAllCards();
     }
 }
@@ -1085,43 +1080,52 @@ document.addEventListener('DOMContentLoaded', () => {
     const mobileOverlay = document.getElementById('mobile-overlay');
     const mobileNavLinks = document.querySelectorAll('.mobile-nav-link');
 
-    // Toggle mobile menu
-    hamburgerBtn.addEventListener('click', () => {
-        hamburgerBtn.classList.toggle('active');
-        mobileOverlay.classList.toggle('active');
+    if (hamburgerBtn && typeof hamburgerBtn.addEventListener === 'function') {
+        hamburgerBtn.addEventListener('click', () => {
+            if (hamburgerBtn && mobileOverlay) {
+                hamburgerBtn.classList.toggle('active');
+                mobileOverlay.classList.toggle('active');
 
-        // Prevent body scroll when menu is open
-        if (mobileOverlay.classList.contains('active')) {
-            document.body.style.overflow = 'hidden';
-        } else {
-            document.body.style.overflow = '';
-        }
-    });
-
-    // Close menu when clicking on overlay
-    mobileOverlay.addEventListener('click', (e) => {
-        if (e.target === mobileOverlay) {
-            closeMenu();
-        }
-    });
-
-    // Close menu when clicking on nav links
-    mobileNavLinks.forEach(link => {
-        link.addEventListener('click', () => {
-            closeMenu();
+                // Prevent body scroll when menu is open
+                if (mobileOverlay.classList.contains('active')) {
+                    document.body.style.overflow = 'hidden';
+                } else {
+                    document.body.style.overflow = '';
+                }
+            }
         });
-    });
+    }
+
+    if (mobileOverlay && typeof mobileOverlay.addEventListener === 'function') {
+        mobileOverlay.addEventListener('click', (e) => {
+            if (e.target === mobileOverlay) {
+                closeMenu();
+            }
+        });
+    }
+
+    if (mobileNavLinks && mobileNavLinks.length > 0) {
+        mobileNavLinks.forEach(link => {
+            if (link && typeof link.addEventListener === 'function') {
+                link.addEventListener('click', () => {
+                    closeMenu();
+                });
+            }
+        });
+    }
 
     // Close menu function
     function closeMenu() {
-        hamburgerBtn.classList.remove('active');
-        mobileOverlay.classList.remove('active');
-        document.body.style.overflow = '';
+        if (hamburgerBtn && mobileOverlay) {
+            hamburgerBtn.classList.remove('active');
+            mobileOverlay.classList.remove('active');
+            document.body.style.overflow = '';
+        }
     }
 
     // Close menu on ESC key
     document.addEventListener('keydown', (e) => {
-        if (e.key === 'Escape' && mobileOverlay.classList.contains('active')) {
+        if (e.key === 'Escape' && mobileOverlay && mobileOverlay.classList.contains('active')) {
             closeMenu();
         }
     });
@@ -1131,19 +1135,19 @@ document.addEventListener('DOMContentLoaded', () => {
 document.addEventListener("DOMContentLoaded", () => {
     const terminal = document.querySelector(".terminal-body");
 
+    if (!terminal) {
+        return;
+    }
+
     terminal.addEventListener("wheel", function (e) {
         const isAtTop = terminal.scrollTop === 0;
         const isAtBottom =
             Math.ceil(terminal.scrollTop + terminal.clientHeight) >= terminal.scrollHeight;
 
         if ((isAtTop && e.deltaY < 0) || (isAtBottom && e.deltaY > 0)) {
-            // Allow main page scroll
             return;
         } else {
-            // Keep scrolling inside terminal (default speed)
-            // do NOT preventDefault → browser handles it naturally
             e.stopPropagation();
         }
     }, { passive: true });
-
 });

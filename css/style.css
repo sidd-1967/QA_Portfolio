@@ -6732,9 +6732,6 @@ form.contact__form .row {
     margin-top: 60px;
 }
 
-
-
-/* Updated selectors for the new form structure */
 form[name="contact"] {
     background-color: var(--dark-layer);
     padding: 2rem;
@@ -6789,7 +6786,6 @@ form[name="contact"] textarea::placeholder {
     opacity: 0.9 !important;
 }
 
-/* Fix for validation states */
 form[name="contact"] .is-valid {
     border-color: #00d4ff !important;
     outline: 2px solid #00d4ff !important;
@@ -6802,7 +6798,6 @@ form[name="contact"] .is-invalid {
     box-shadow: 0 0 10px rgba(255, 79, 110, 0.3) !important;
 }
 
-/* Button styling fix */
 form[name="contact"] button.neon-btn {
     background-image: linear-gradient(45deg, var(--primary-blue), var(--electric-blue));
     border: none;
@@ -6836,9 +6831,6 @@ form[name="contact"] button.neon-btn:not(:disabled):focus {
     transform: translateY(-2px);
 }
 
-/* Dropdown styling remains the same - it's already working */
-
-/* Character counter fix */
 form[name="contact"] .char-counter {
     text-align: right;
     margin-top: 0.25rem;
@@ -6850,7 +6842,6 @@ form[name="contact"] .char-counter small {
     font-family: 'Rajdhani', sans-serif;
 }
 
-/* Invalid feedback fix */
 form[name="contact"] .invalid-feedback {
     color: #ff4f6e;
     font-weight: 600;
@@ -6859,7 +6850,6 @@ form[name="contact"] .invalid-feedback {
     margin-top: 0.25rem;
 }
 
-/* Form section styling fix */
 .contact-form-section {
     height: 100%;
 }
@@ -6875,13 +6865,11 @@ form[name="contact"] .invalid-feedback {
     flex: 1;
 }
 
-/* Netlify reCAPTCHA styling */
 form[name="contact"] div[data-netlify-recaptcha="true"] {
     margin: 1rem 0;
     text-align: center;
 }
 
-/* Override Bootstrap styles that might conflict */
 form[name="contact"] .form-control {
     background-color: var(--input-bg) !important;
     border: 2px solid var(--input-border) !important;
@@ -6895,17 +6883,6 @@ form[name="contact"] .form-control:focus {
     color: var(--text-light) !important;
 }
 
-
-
-
-
-
-
-
-
-
-
-/* Large tablets and medium screens */
 @media (max-width: 1199px) {
 
     .availability-expertise-section,
@@ -6923,7 +6900,6 @@ form[name="contact"] .form-control:focus {
     }
 }
 
-/* Tablets */
 @media (max-width: 991px) {
     .contact {
         padding: 3rem 0;
@@ -6949,7 +6925,6 @@ form[name="contact"] .form-control:focus {
         padding: 2rem;
     }
 
-    /* Stack the two main columns */
     .contact-main-wrapper .row:first-child .col-lg-6:first-child {
         margin-bottom: 2rem;
     }
@@ -6963,7 +6938,6 @@ form[name="contact"] .form-control:focus {
         margin-bottom: 1.2rem;
     }
 
-    /* Form adjustments */
     form.contact__form {
         padding: 1.8rem;
         min-height: auto;
@@ -6982,7 +6956,6 @@ form[name="contact"] .form-control:focus {
     }
 }
 
-/* Mobile screens */
 @media (max-width: 767px) {
     .contact {
         padding: 2rem 0;
@@ -7015,7 +6988,6 @@ form[name="contact"] .form-control:focus {
         margin-bottom: 1rem;
     }
 
-    /* Availability section mobile */
     .availability-expertise-section {
         padding: 1.5rem;
         margin-bottom: 1.5rem;
@@ -7046,7 +7018,6 @@ form[name="contact"] .form-control:focus {
         line-height: 1.5;
     }
 
-    /* Contact info mobile styling */
     .compact-contact-info {
         margin: 1.5rem 0;
         padding: 1rem 0;
@@ -7073,7 +7044,6 @@ form[name="contact"] .form-control:focus {
         width: 18px;
     }
 
-    /* Response info mobile */
     .response-info {
         padding-top: 1.2rem;
         margin-top: auto;
@@ -7088,7 +7058,6 @@ form[name="contact"] .form-control:focus {
         font-size: 0.9rem;
     }
 
-    /* Form section mobile */
     form.contact__form {
         padding: 1.5rem;
         min-height: auto;
@@ -7117,7 +7086,6 @@ form[name="contact"] .form-control:focus {
         resize: vertical;
     }
 
-    /* Dropdown mobile */
     .dropdown-options {
         max-height: 180px;
     }
@@ -7132,7 +7100,6 @@ form[name="contact"] .form-control:focus {
         font-size: 0.9rem;
     }
 
-    /* Button mobile */
     button.neon-btn {
         padding: 0.8rem 2rem;
         font-size: 1rem;
@@ -7140,7 +7107,6 @@ form[name="contact"] .form-control:focus {
         border-radius: 1.5rem;
     }
 
-    /* Form grid responsive */
     .contact__form .row.g-3 {
         --bs-gutter-y: 1rem;
     }
@@ -7149,7 +7115,6 @@ form[name="contact"] .form-control:focus {
         margin-bottom: 0.7rem;
     }
 
-    /* Character counter */
     .char-counter {
         margin-top: 0.3rem;
         margin-bottom: 0.5rem;
@@ -7159,14 +7124,12 @@ form[name="contact"] .form-control:focus {
         font-size: 0.85rem;
     }
 
-    /* Invalid feedback */
     .invalid-feedback {
         font-size: 0.85rem;
         margin-top: 0.3rem;
     }
 }
 
-/* Small mobile phones */
 @media (max-width: 480px) {
     .contact {
         padding: 1.5rem 0;
@@ -7190,7 +7153,6 @@ form[name="contact"] .form-control:focus {
         padding: 1.2rem;
     }
 
-    /* Form adjustments for very small screens */
     .contact__form input,
     .contact__form textarea,
     .dropdown-selected {
@@ -7202,8 +7164,7 @@ form[name="contact"] .form-control:focus {
         padding: 0.75rem 1.5rem;
         font-size: 0.95rem;
     }
-
-    /* Stack all form fields */
+    
     .row.g-3 .col-md-6 {
         flex: 0 0 100%;
         max-width: 100%;
@@ -7225,10 +7186,7 @@ form[name="contact"] .form-control:focus {
     }
 }
 
-/* Touch device optimizations */
 @media (hover: none) and (pointer: coarse) {
-
-    /* Larger touch targets */
     .dropdown-selected {
         min-height: 48px;
         padding: 0.8rem 1rem;
@@ -7249,7 +7207,6 @@ form[name="contact"] .form-control:focus {
         padding: 0.6rem 0;
     }
 
-    /* Remove problematic hover effects */
     .compact-contact-item:hover,
     .compact-contact-item a:hover {
         color: inherit;
