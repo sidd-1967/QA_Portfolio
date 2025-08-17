@@ -418,78 +418,7 @@ $(document).ready(function () {
     });
 });
 
-// Create custom cursor dot
-const cursorDot = document.createElement('div');
-cursorDot.classList.add('cursor-dot');
-document.body.appendChild(cursorDot);
-
-// Follow mouse movement
-document.addEventListener('mousemove', (e) => {
-    cursorDot.style.left = e.clientX + 'px';
-    cursorDot.style.top = e.clientY + 'px';
-});
-
-// Custom Cursor Implementation - Single instance
-(function () {
-    'use strict';
-
-    // Remove any existing cursor elements
-    const existingCursor = document.querySelector('.cursor-dot');
-    if (existingCursor) {
-        existingCursor.remove();
-    }
-
-    // Create new cursor dot
-    const cursorDot = document.createElement('div');
-    cursorDot.classList.add('cursor-dot');
-    document.body.appendChild(cursorDot);
-
-    // Track mouse movement
-    document.addEventListener('mousemove', (e) => {
-        cursorDot.style.left = e.clientX + 'px';
-        cursorDot.style.top = e.clientY + 'px';
-    });
-
-    // Interactive elements for pointer transformation
-    const pointerSelectors = [
-        'button',
-        '.neon-btn',
-        '.dropdown-selected',
-        '.dropdown-option',
-        'a[href]',
-        '[onclick]',
-        'input[type="submit"]',
-        'input[type="button"]'
-    ];
-
-    // Handle hover states with event delegation
-    document.addEventListener('mouseover', (e) => {
-        const isInteractive = pointerSelectors.some(selector =>
-            e.target.matches(selector) || e.target.closest(selector)
-        );
-
-        if (isInteractive && !e.target.matches(':disabled')) {
-            cursorDot.classList.add('pointer');
-            cursorDot.classList.remove('not-allowed');
-        } else if (e.target.matches('button:disabled, .neon-btn:disabled')) {
-            cursorDot.classList.add('not-allowed');
-            cursorDot.classList.remove('pointer');
-        }
-    });
-
-    document.addEventListener('mouseout', (e) => {
-        const isInteractive = pointerSelectors.some(selector =>
-            e.target.matches(selector) || e.target.closest(selector)
-        );
-
-        if (isInteractive) {
-            cursorDot.classList.remove('pointer', 'not-allowed');
-        }
-    });
-})();
-
 // PORTFOLIO PANEL
-
 let scrollPosition = 0;
 let currentProject = null;
 let currentImageIndex = 0;

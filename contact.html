@@ -63,13 +63,14 @@
     <script src="https://cdnjs.cloudflare.com/ajax/libs/SlickNav/1.0.10/jquery.slicknav.min.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/OwlCarousel2/2.3.4/owl.carousel.min.js"></script>
     <script src="https://code.jquery.com/ui/1.13.2/jquery-ui.min.js"></script>
+    <script src="js/main.js"></script>
     <script>
         window.onRecaptchaLoad = function () {
             console.log('reCAPTCHA loaded successfully');
         };
     </script>
     <script src="https://www.google.com/recaptcha/api.js?render=6Le84aYrAAAAAFy9eNfTE7xDiaIX48z10286hgIC&onload=onRecaptchaLoad" async defer></script>
-    <script src="js/main.js"></script>
+
     
     <!-- GSAP Library (Required) -->
     <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.2/gsap.min.js"></script>
@@ -224,7 +225,7 @@
                                                 Phone Number <span class="required">*</span>
                                             </label>
                                             <input type="tel" class="form-control" id="phone" name="phone"
-                                                placeholder="+91 98765 43210" pattern="[0-9]{10}" required>
+                                                placeholder="9876543210" pattern="[0-9]{10}" required>
                                             <div class="invalid-feedback">
                                                 Please enter a valid 10-digit phone number
                                             </div>
