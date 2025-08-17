@@ -636,7 +636,6 @@
               isValid = false;
             }
 
-            // FIXED: Use === instead of =
             if (field.name === "service" && (!value || value === "")) {
               isValid = false;
             }
@@ -663,7 +662,6 @@
           }, 100);
 
           form.addEventListener("submit", function (e) {
-            // Validate fields first
             const requiredFields = form.querySelectorAll("[required]");
             let hasErrors = false;
 
@@ -674,38 +672,27 @@
             });
 
             if (hasErrors) {
-              e.preventDefault(); // Prevent submission only if there are errors
+              e.preventDefault(); 
               showToast("Please correct the errors before submitting", "error");
               return;
             }
 
-            // Show loading state immediately
             submitBtn.innerHTML =
               '<i class="fas fa-spinner fa-spin me-2"></i>Sending...';
             submitBtn.disabled = true;
-
-            // Show immediate toast notification
-            showToast("📤 Sending your message...", "info");
-
-            // Let Netlify handle the form submission naturally (no preventDefault)
-            // The page will redirect after successful submission
           });
         }
 
         function resetForm() {
-          // Clear form fields
           form.reset();
 
-          // Clear validation classes
           form.querySelectorAll(".is-valid, .is-invalid").forEach((el) => {
             el.classList.remove("is-valid", "is-invalid");
           });
 
-          // Reset character counter
           const charCount = document.getElementById("char-count");
           if (charCount) charCount.textContent = "0";
 
-          // Reset dropdown to default QA Testing
           const selectedText = document.getElementById("selected-text");
           const hiddenInput = document.getElementById("service");
           if (selectedText && hiddenInput) {
@@ -715,7 +702,6 @@
             hiddenInput.value = "manual";
           }
 
-          // Reset button to disabled state
           submitBtn.innerHTML =
             '<i class="fas fa-paper-plane me-2"></i>Send Message';
           submitBtn.disabled = true;
@@ -780,7 +766,6 @@
         }
       });
 
-      // Dropdown functions (unchanged)
       function toggleDropdown() {
         const options = document.getElementById("service-options");
         const arrow = document.getElementById("dropdown-arrow");
@@ -840,7 +825,6 @@
         }
       }
 
-      // Close dropdown when clicking outside
       document.addEventListener("click", function (e) {
         if (!e.target.closest(".custom-dropdown")) {
           const options = document.getElementById("service-options");
@@ -855,7 +839,6 @@
         }
       });
 
-      // Add CSS animations
       const style = document.createElement("style");
       style.textContent = `
     @keyframes slideIn {
