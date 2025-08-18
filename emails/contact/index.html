@@ -1,7 +1,19 @@
 <!DOCTYPE html>
-<html>
+<html lang="en">
   <head>
     <meta charset="UTF-8" />
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    
+    <!-- Email-specific meta tags -->
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="format-detection" content="telephone=no, date=no, address=no, email=no" />
+    <meta name="x-apple-disable-message-reformatting" />
+    <meta name="color-scheme" content="light dark" />
+    <meta name="supported-color-schemes" content="light dark" />
+    
+    <title>New QA Project Inquiry</title>
+    
     <style>
       body {
         background: #0a0a0f;
@@ -10,6 +22,8 @@
         padding: 20px;
         font-family: "Rajdhani", Arial, sans-serif;
         font-size: 16px;
+        -webkit-font-smoothing: antialiased;
+        -moz-osx-font-smoothing: grayscale;
       }
       .mail-container {
         max-width: 600px;
@@ -98,6 +112,7 @@
         color: #b3e5fc;
         font-family: "Rajdhani", Arial, sans-serif;
         vertical-align: top;
+        word-wrap: break-word;
       }
       .mail-table td:first-child {
         font-weight: 600;
@@ -126,6 +141,13 @@
       }
       .mail-footer a:hover {
         text-decoration: underline;
+      }
+      
+      /* Dark mode support */
+      @media (prefers-color-scheme: dark) {
+        .mail-container {
+          border-color: #00d4ff !important;
+        }
       }
     </style>
   </head>
@@ -179,17 +201,10 @@
 
       <div class="mail-footer">
         Submitted via
-        <a href="https://siddhesh-qa-portfolio.netlify.app"
-          >Siddhesh's QA Portfolio</a
-        ><br /><small
-          style="
-            font-size: 12px;
-            color: #0099cc;
-            margin-top: 8px;
-            display: inline-block;
-          "
-          >This email was generated automatically from your contact form</small
-        >
+        <a href="https://siddhesh-qa-portfolio.netlify.app">Siddhesh's QA Portfolio</a><br />
+        <small style="font-size: 12px; color: #0099cc; margin-top: 8px; display: inline-block;">
+          This email was generated automatically from your contact form
+        </small>
       </div>
     </div>
   </body>
